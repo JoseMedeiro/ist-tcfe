@@ -1,11 +1,9 @@
 \section{Theoretical Analysis}
 \label{sec:analysis}
 
-In this section, the circuit shown in Figure 1 is analyzed theoretically with the Mesh Method and with the Nodal Method, in order to complement each other results.
+In this section, the circuit shown in Figure~\ref{fig:Circuit_Base} is analyzed theoretically with the Mesh Method and with the Nodal Method, in order to complement each other results.
 
 \subsection{Mesh Method}
-
-%The circuit consists of a single V-R-C loop where a current $i(t)$ circulates. The voltage source $v_I(t)$ drives its input, and the output voltage $v_O(t)$ is taken from the capacitor terminals. Applying the Kirchhoff Voltage Law (KVL), a single equation for the single loop in the circuit can be written as
 
 The Mesh Method consists in introducing currents that circulate in the meshes of the circuit, that is, in the loops that do not contain other loops, as shown in Figure~\ref{fig:Circuit_Mesh}, and then evaluate the circuit based on the new currents.
 
@@ -18,16 +16,16 @@ The Mesh Method consists in introducing currents that circulate in the meshes of
 After identifying the mesh currents, the next step in this method is to use the Kirchhoff Voltage Law~(KVL) in the meshes that do not contain current sources (mesh~$\alpha$~(\ref{eq:MM_Alpha}) and $\delta$~(\ref{eq:MM_Delta})) and to relate the mesh currents to the currents imposed by the sources (mesh~$\beta$~(\ref{eq:MM_Beta}) and $\gamma$~(\ref{eq:MM_Gamma})):
 
 \begin{equation}
-  R_1I_{\alpha} + V_b + R_4(I_{\alpha}-I_{\delta}) - V_a = 0
+  R_1I_{\alpha} + V_b + R_4(I_{\alpha}-I_{\delta}) - V_a = 0;
   \label{eq:MM_Alpha}
 \end{equation}
 \begin{equation}
-  R_6I_{\delta} + R_4(I_{\delta}-I_{\alpha}) + V_c + R_7I_{\delta} = 0
+  R_6I_{\delta} + R_4(I_{\delta}-I_{\alpha}) + V_c + R_7I_{\delta} = 0;
   \label{eq:MM_Delta}
 \end{equation}
 
 \begin{equation}
-  I_{\beta} + I_b = 0;
+  I_{\beta} = - I_b;
   \label{eq:MM_Beta}
 \end{equation}
 \begin{equation}
@@ -49,11 +47,11 @@ Since there are 8 variables in the circuit, $I_{\alpha}$, $I_{\beta}$, $I_{\gamm
 The other two are found by examining the circuit and with Ohm's Law:
 
 \begin{equation}
-  I_c + I_{\delta} = 0;
+  I_c = - I_{\delta};
   \label{eq:MM_Ic}
 \end{equation}
 \begin{equation}
-  V_b - R_3(I_{\alpha}-I_{\beta}) = 0
+  V_b = R_3(I_{\alpha}-I_{\beta})
   \label{eq:MM_Vb}
 \end{equation}
 
@@ -70,9 +68,9 @@ The solution to this linear system of equations is determined by Octave:
   \label{tab:malhas}
 \end{table}
 
-\section{Nodal Method}
+\subsection{Nodal Method}
 
-In the Nodal Method, the determination of the values of current and voltage is made by, firstly, finding all the knots in the circuit, as made in Figure \ref{fig:Circuit_Nodal}.
+In the Nodal Method, the determination of the values of current and voltage is made by, firstly, finding all the knots in the circuit, as made in Figure~\ref{fig:Circuit_Nodal}.
 
 \begin{figure}[h] \centering
 \includegraphics[width=0.5\linewidth]{CircuitNodal.pdf}
@@ -91,7 +89,7 @@ Then, it is used the Kirchhoff Current Law~(KCL) in the nodes that are not conne
   \label{eq:NM_Point3}
 \end{equation}
 \begin{equation}
-  \frac{v_5-v_6}{R_5} - I_b = -I_d;
+  \frac{v_5-v_6}{R_5} - I_b + I_d = 0;
   \label{eq:NM_Point6}
 \end{equation}
 \begin{equation}
@@ -104,20 +102,20 @@ Then, it is used the Kirchhoff Current Law~(KCL) in the nodes that are not conne
   \label{eq:NM_Va}
 \end{equation}
 \begin{equation}
-  v_5 - v_8 - V_c = 0.
+  v_5 - v_8 = V_c.
   \label{eq:NM_Vc}
 \end{equation}
 
 Since there are 8+4 variables ($v_1$~to~$v_8$, $V_b$, $V_c$, $I_b$, $I_c$), the system is defined by twelve independent equations. Two are provided in the circuit and are the same as in the Mesh Method, (\ref{eq:Vb_Ib})~and~(\ref{eq:Vc_Ic}).
 By observing the circuit,
 \begin{equation}
-  v_5 - v_8 - V_b = 0.
+  v_5 - v_8 = V_b.
   \label{eq:NM_Vb}
 \end{equation}
 
 Using Ohm’s Law, we find the relation:
 \begin{equation}
-  I_c - \frac{v_4-v_7}{R_6} = 0.
+  I_c = \frac{v_4-v_7}{R_6}.
   \label{eq:NM_OhmIc}
 \end{equation}
 
@@ -127,7 +125,7 @@ Because there needs to be a knot with a defined voltage, we chose $v_4$ to be co
   \label{eq:NM_v4=0}
 \end{equation}
 
-For the last equation, the continuity of current in the circuit can be used to create a “super-knot”, bypassing the voltage sources.
+For the last equation, the continuity of current in the circuit can be used to create a “super-knot”, bypassing the voltage sources $V_a$ and $V_c$, from which the equations are~(\ref{eq:NM_SPVa}) and~(\ref{eq:NM_SPVc}), respectively:
 
 \begin{equation}
   \frac{v_5-v_4}{R_4} + \frac{v_2-v_1}{R_1} - I_c = 0;
@@ -138,7 +136,7 @@ For the last equation, the continuity of current in the circuit can be used to c
   \label{eq:NM_SPVc}
 \end{equation}
 
-Given that there only one equation is needed, we chose to use the more simple~(\ref{eq:NM_SPVa}.
+Given that there only one equation is needed, we chose to use the more simple~(\ref{eq:NM_SPVa}).
 The solution to this linear system of equations is determined by Octave:
 
 \begin{table}[h]
@@ -151,4 +149,3 @@ The solution to this linear system of equations is determined by Octave:
   \caption{Variables in the Nodal Method. A variable preceded by @ is of type {\em current} and expressed in Ampere; other variables are of type {\em voltage} and expressed in Volt.}
   \label{tab:nos}
 \end{table}
-
