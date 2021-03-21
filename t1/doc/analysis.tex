@@ -7,7 +7,7 @@ In this section, the circuit shown in Figure 1 is analyzed theoretically with th
 
 %The circuit consists of a single V-R-C loop where a current $i(t)$ circulates. The voltage source $v_I(t)$ drives its input, and the output voltage $v_O(t)$ is taken from the capacitor terminals. Applying the Kirchhoff Voltage Law (KVL), a single equation for the single loop in the circuit can be written as
 
-The Mesh Method consists in introducing currents that circulate in the meshes of the circuit, that is, in the loops that do not contain other loops, as shown in Figure~\ref{fig:Circuit_Mesh}, and then evaluate the circuit based on the new currents.
+The Mesh Method consists in introducing currents that circulate in the meshes of the circuit, which are the loops that do not contain other loops, as shown in Figure~\ref{fig:Circuit_Mesh}, and then evaluate the circuit based on the new currents.
 
 \begin{figure}[h] \centering
 \includegraphics[width=0.5\linewidth]{CircuitMesh.pdf}
@@ -70,9 +70,8 @@ The solution to this linear system of equations is determined by Octave:
   \label{tab:malhas}
 \end{table}
 
-\section{Nodal Method}
-
-In the Nodal Method, the determination of the values of current and voltage is made by, firstly, finding all the knots in the circuit, as made in Figure \ref{fig:Circuit_Nodal}.
+\subsection{Nodal Method}
+Firstly, computing the values of current and voltage using the nodal method requires finding all the knots in the circuit, as it is presented in Figure \ref{fig:Circuit_Nodal}.
 
 \begin{figure}[h] \centering
 \includegraphics[width=0.5\linewidth]{CircuitNodal.pdf}
@@ -80,7 +79,7 @@ In the Nodal Method, the determination of the values of current and voltage is m
 \label{fig:Circuit_Nodal}
 \end{figure}
 
-Then, it is used the Kirchhoff Current Law~(KCL) in the nodes that are not connected to voltage sources (Equations~\ref{eq:NM_Point2}~to~\ref{eq:NM_Point7}) an relate the knots voltages with the voltage sources that are connected to them (Equations~\ref{eq:NM_Va}~and~\ref{eq:NM_Vc}):
+Then, the Kirchhoff Current Law~(KCL) is used in the nodes not connected to voltage sources (Equations~\ref{eq:NM_Point2}~to~\ref{eq:NM_Point7}) and two additional equations relating the knots voltages with the voltage sources connected to them are presented (Equations~\ref{eq:NM_Va}~and~\ref{eq:NM_Vc}):
 
 \begin{equation}
   \frac{v_3-v_2}{R_2} - \frac{V_b}{R_3} + \frac{v_1-v_2}{R_1} = 0;
@@ -115,7 +114,7 @@ By observing the circuit,
   \label{eq:NM_Vb}
 \end{equation}
 
-Using Ohm’s Law, we find the relation:
+Using Ohm’s Law, the following relation is found:
 \begin{equation}
   I_c - \frac{v_4-v_7}{R_6} = 0.
   \label{eq:NM_OhmIc}
@@ -138,7 +137,7 @@ For the last equation, the continuity of current in the circuit can be used to c
   \label{eq:NM_SPVc}
 \end{equation}
 
-Given that there only one equation is needed, we chose to use the more simple~(\ref{eq:NM_SPVa}.
+Given that only one more equation is needed, we chose to use the simpler one~(\ref{eq:NM_SPVa}.
 The solution to this linear system of equations is determined by Octave:
 
 \begin{table}[h]
