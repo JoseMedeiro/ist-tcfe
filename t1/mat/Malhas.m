@@ -43,8 +43,8 @@ Vc = Kc*Ic
 Ib = Kb*Vb
 Ic = -Idelta
 Vb = R3*(Ialfa-Ibeta)
-p
-rintf("\nAtribuição dos valores para o laboratório:\n\n");
+
+printf("\nAtribuição dos valores para o laboratório:\n\n");
 
 %%EXAMPLE NUMERIC COMPUTATIONS
 
