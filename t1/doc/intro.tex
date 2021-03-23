@@ -4,6 +4,18 @@
 % state the learning objective 
 The objective of this laboratory assignment is to study a circuit with four meshes containing a
 voltage source $V_a$, a current source $I_d$, and two linearly dependent sources: a voltage controlled current source $I_b$ and a current controlled voltage source $V_c$. The circuit also contains seven Resistors from $R_1$ to $R_7$ as it is shown in Figure~\ref{fig:Circuit_Base}.
+The values for the caracteristics of this components, apart of $I_b$ and $V_c$ and including $K_b$ and $K_c$, is given by python and are:
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [A, V, S or $\Omega$]} \\ \hline
+    \input{../Enunciado/Enunciado_tab}
+  \end{tabular}
+  \caption{Variables in the Nodal Method. A variable preceded by @ is of type {\em current} and expressed in Ampere; variables preceded by \# is of type {\em resistance} and expressed in Ohm; variables preceded by § is of type {\em conductance} and expressed in Seimens; other variables are of type {\em voltage} and expressed in Volt.}
+  \label{tab:Enunciado}
+\end{table}
 
 In Section~\ref{sec:analysis}, two different theoretical analysis of the circuit are
 presented using the mesh method and the nodal method. In Section~\ref{sec:simulation}, the circuit is analysed by
