@@ -3,10 +3,7 @@
 
 \subsection{Operating Point Analysis}
 
-Table~\ref{tab:op} shows the simulated operating point results for the circuit
-under analysis and the distribution of the numbers of the nodes was done from the top to bottom and from right to left. It is important to note that was necessary to implement a test voltage source (V3) providing 0V to analyze the current in node 4. This creation does not affect the dynamics of the circuit, therefore, neither does it change the results.
-
-Compared to the theoretical analysis the simulation showed practically identical results, expect for small divergence in decimal places. It is worth mentioning that ngspice software also uses the same mathematical methods as octave to find results, hence, this result was already expected.
+Table~\ref{tab:op} shows the simulated operating point results for the circuit under analysis. All the currents were measured from the lower numbered node to the higher one; so, the direction of the current that passes through $R_6$ is, if the result is positive, from $v_4$ to $v_7$.
 
 \begin{table}[h]
   \centering
@@ -21,9 +18,10 @@ Compared to the theoretical analysis the simulation showed practically identical
   \label{tab:op}
 \end{table}
 
+It is important to notice that it has been necessary to implement an extra test voltage sorce $V_3$ connecting $v_4$ to $R_6$ providing 0V so that is does not interfere with the rest of the circuit and enable us to measure the current $I_c$ flowing in the above mencioned resistor. Therefore, his creation does not change any results and it is only based on the Ngspice requirements to define a current controlled voltage source.
 
-
-
+Compared to the theoretical analysis the simulation showed practically identical results, except for a small divergence in the last decimal place that probably occurs when NGSpice rounds the numbers. Thus, the maximum relative error is $10^{-5}$.
+It is worth mentioning that ngspice software also uses the same mathematical methods as octave to find results, hence, this result was already expected.
 
 
 

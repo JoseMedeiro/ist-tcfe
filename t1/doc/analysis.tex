@@ -54,9 +54,8 @@ The other two are found by examining the circuit and with Ohm's Law:
   V_b = R_3(I_{\alpha}-I_{\beta})
   \label{eq:MM_Vb}
 \end{equation}
-
+\paragraph{}
 The solution to this linear system of equations is determined by Octave:
-
 \begin{table}[h]
   \centering
   \begin{tabular}{|l|r|}
@@ -136,16 +135,17 @@ For the last equation, the continuity of current in the circuit can be used to c
   \label{eq:NM_SPVc}
 \end{equation}
 
-Given that only one more equation is needed, we chose to use the simpler one~(\ref{eq:NM_SPVa}.
+Given that only one more equation is needed, we chose to use the simpler one~(\ref{eq:NM_SPVa}).
 The solution to this linear system of equations is determined by Octave:
 
 \begin{table}[h]
   \centering
   \begin{tabular}{|l|r|}
-    \hline    
+  \hline  
     {\bf Name} & {\bf Value [A or V]} \\ \hline
     \input{../mat/Nos_tab}
   \end{tabular}
   \caption{Variables in the Nodal Method. A variable preceded by @ is of type {\em current} and expressed in Ampere; other variables are of type {\em voltage} and expressed in Volt.}
   \label{tab:nos}
 \end{table}
+
