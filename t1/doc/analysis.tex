@@ -14,7 +14,7 @@ The Mesh Method consists in introducing currents that circulate in the meshes of
 
 After identifying the mesh currents, the next step in this method is to use the Kirchhoff Voltage Law~(KVL) in the meshes that do not contain current sources (mesh~$\alpha$~(\ref{eq:MM_Alpha}) and $\delta$~(\ref{eq:MM_Delta})) and to relate the mesh currents to the currents imposed by the sources (mesh~$\beta$~(\ref{eq:MM_Beta}) and $\gamma$~(\ref{eq:MM_Gamma})):
 \begin{equation}
-  R_1I_{\alpha} + V_b + R_4(I_{\alpha}-I_{\delta}) - V_a = 0;
+  R_1I_{\alpha} + R_3(I_{\alpha}-I_{\beta}) + R_4(I_{\alpha}-I_{\delta}) - V_a = 0;
   \label{eq:MM_Alpha}
 \end{equation}
 \begin{equation}
