@@ -37,13 +37,13 @@ syms v8
 printf("\n\nKNL equações:\n");
 
 printf("\n\Knots equações:\n");
-Ic+(v8-v7)/R7 == 0
-(v5-v6)/R5-Ib+Id == 0
+(v3-v2)/R2+(v5-v2)/R3+(v1-v2)/R1 == 0
 Ib+(v2-v3)/R2 == 0
-(v3-v2)/R2-Vb/R3+(v1-v2)/R1 == 0
+(v5-v6)/R5-Ib+Id == 0
+(v4-v7)/R6+(v8-v7)/R7 == 0
 printf("\n\SuperKnots equações:\n");
-(v7-v8)/R7-Id+(v4-v5)/R4+Vb/R3+(v6-v5)/R5 == 0
--Ic+(v5-v4)/R4+(v2-v1)/R1 == 0
+(v7-v8)/R7-Id+(v4-v5)/R4+(v2-v5)/R3+(v6-v5)/R5 == 0
+(v7-v4)/R6+(v5-v4)/R4+(v2-v1)/R1 == 0
 printf("\n\Por observação do circuito\n");
 
 v4 == 0
@@ -54,10 +54,11 @@ v2-v5 == Vb
 Ic = (v4-v7)/R6
 Vc = Kc*Ic
 Ib = Kb*Vb
-printf("\n\Como uma das equações do SuperKnots não é necessária, retiramos a maior:\n");
+printf("\n\Como uma das equações do SuperKnots não é necessária, retiramos a maior:\n\n");
 (v7-v8)/R7-Id+(v4-v5)/R4+Vb/R3+(v6-v5)/R5 == 0
 
 %%  Atribuição de Valores
+printf("\nAtribuição dos valores para o laboratório:\n\n");
 
 R1 = 1.03258022265e3
 R2 = 2.05854281116e3 
@@ -73,18 +74,18 @@ Id = 1.04739543259e-3
 Kb = 7.07448059081e-3 
 Kc = 8.22345657857e3 
 
-A = [ 0     , 0         , 0     , 0     , 0         , 0     , -1/R7 , 1/R7  , 0     , 0 , 0 , 1   ;...
-      0     , 0         , 0     , 0     , 1/R5      , -1/R5 , 0     , 0     , 0     , 0 , -1, 0   ;...
-      0     , 1/R2      , -1/R2 , 0     , 0         , 0     , 0     , 0     , 0     , 0 , 1 , 0   ;...
-      1/R1  , -1/R2-1/R1, 1/R2  , 0     , 0         , 0     , 0     , 0     , -1/R3 , 0 , 0 , 0   ;...
-      -1/R1 , 1/R1      , 0     , -1/R4 , 1/R4      , 0     , 0     , 0     , 0     , 0 , 0 , -1  ;...
-      0     , 0         , 0     , 1     , 0         , 0     , 0     , 0     , 0     , 0 , 0 , 0   ;...
-      1     , 0         , 0     , -1    , 0         , 0     , 0     , 0     , 0     , 0 , 0 , 0   ;...
-      0     , 0         , 0     , 0     , 1         , 0     , 0     , -1    , 0     , -1, 0 , 0   ;...
-      0     , 1         , 0     , 0     , -1        , 0     , 0     , 0     , -1    , 0 , 0 , 0   ;...
-      0     , 0         , 0     , 1/R6  , 0         , 0     , -1/R6 , 0     , 0     , 0 , 0 , -1  ;...
-      0     , 0         , 0     , 0     , 0         , 0     , 0     , 0     , 0     , 1 , 0 , -Kc ;...
-      0     , 0         , 0     , 0     , 0         , 0     , 0     , 0     , -Kb   , 0 , 1 , 0   ];
+A = [ 0     , 0               , 0     , 1/R6      , 0         , 0     , -1/R7-1/R6  , 1/R7  , 0     , 0 , 0 , 0   ;...
+      0     , 0               , 0     , 0         , 1/R5      , -1/R5 , 0           , 0     , 0     , 0 , -1, 0   ;...
+      0     , 1/R2            , -1/R2 , 0         , 0         , 0     , 0           , 0     , 0     , 0 , 1 , 0   ;...
+      1/R1  , -1/R2-1/R1-1/R3 , 1/R2  , 0         , 1/R3      , 0     , 0           , 0     , 0     , 0 , 0 , 0   ;...
+      -1/R1 , 1/R1            , 0     , -1/R4-1/R6, 1/R4      , 0     , 1/R6        , 0     , 0     , 0 , 0 , 0  ;...
+      0     , 0               , 0     , 1         , 0         , 0     , 0           , 0     , 0     , 0 , 0 , 0   ;...
+      1     , 0               , 0     , -1        , 0         , 0     , 0           , 0     , 0     , 0 , 0 , 0   ;...
+      0     , 0               , 0     , 0         , 1         , 0     , 0           , -1    , 0     , -1, 0 , 0   ;...
+      0     , 1               , 0     , 0         , -1        , 0     , 0           , 0     , -1    , 0 , 0 , 0   ;...
+      0     , 0               , 0     , 1/R6      , 0         , 0     , -1/R6       , 0     , 0     , 0 , 0 , -1  ;...
+      0     , 0               , 0     , 0         , 0         , 0     , 0           , 0     , 0     , 1 , 0 , -Kc ;...
+      0     , 0               , 0     , 0         , 0         , 0     , 0           , 0     , -Kb   , 0 , 1 , 0   ];
 
 B = [ 0; -Id; 0; 0; 0; 0; Va; 0; 0; 0; 0; 0];
 
@@ -103,22 +104,6 @@ Ib=x(11)
 Ic=x(12)
 
 %	Impressão da Tabela
-%fid = fopen ("Nos_tab.tex", "w");
-%fprintf(fid, "$v_{1}$ & %e \\\\ \\hline \n", v1);
-%fprintf(fid, "$v_{2}$ & %e \\\\ \\hline \n", v2);
-%fprintf(fid, "$v_{3}$ & %e \\\\ \\hline \n", v3);
-%fprintf(fid, "$v_{4}$ & %e \\\\ \\hline \n", v4);
-%fprintf(fid, "$v_{5}$ & %e \\\\ \\hline \n", v5);
-%fprintf(fid, "$v_{6}$ & %e \\\\ \\hline \n", v6);
-%fprintf(fid, "$v_{7}$ & %e \\\\ \\hline \n", v7);
-%fprintf(fid, "$v_{8}$ & %e \\\\ \\hline \n", v8);
-
-%fprintf(fid, "$V_{b}$ & %e \\\\ \\hline \n", Vb);
-%fprintf(fid, "$V_{c}$ & %e \\\\ \\hline \n", Vc);
-%fprintf(fid, "@$I_{b}$ & %e \\\\ \\hline \n", Ib);
-%fprintf(fid, "@$I_{c}$ & %e \\\\ \\hline \n", Ic);
-
-%fclose (fid);
 printf("Nos_TAB \n")
 printf("$v_{1}$ = %e \n", v1);
 printf("$v_{2}$ = %e \n", v2);
