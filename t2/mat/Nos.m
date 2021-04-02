@@ -37,7 +37,9 @@ syms v6
 syms v7
 syms v8
 
+%%
 %%  PASSO 1
+%%
 
 printf("\n\Knots equações:\n");
 (v3-v2)/R2+(v5-v2)/R3+(v1-v2)/R1 == 0
@@ -162,10 +164,13 @@ printf("@$I_{c}$ = %e \n", Ic);
 
 printf("PASSO1_END \n")
 
-%	Passo 2
+%%
+%%  Passo 2 - Condição limite (t = 0)
+%%
 
 % Dizer que Vs = 0
 Vs_dummy = 0;
+
 %     v1    , v2              , v3     , v4       , v5        , v6    , v7          , v8    , Vb    , Vd, Ib, Id  , Ic
 A = [ 0     , 0               , 0     , 1/R6      , 0         , 0     , -1/R7-1/R6  , 1/R7  , 0     , 0 , 0 , 0   , 0   ;...
       0     , 0               , 0     , 0         , 1/R5      , -1/R5 , 0           , 0     , 0     , 0 , -1, 0   , -1  ;...
@@ -213,7 +218,9 @@ printf("#$\\tau$ = %e \n", tau);
 
 printf("PASSO2_END \n")
 
-% PASSO 3
+%%
+%%  PASSO 3 - Solução Natural - v6
+%%
 
 tempo = 0:(20e-3)/1000:20e-3;
 
@@ -221,14 +228,16 @@ v6_Nt = v6*e.^(-1/tau*tempo);
 
 hf_PASSO3 = figure ();
 
-plot(tempo,v6_Nt)
+plot(tempo*1e3,v6_Nt)
 hold on
 
 xlabel ("t[ms]");
 ylabel ("v6(t) [V]");
 print (hf_PASSO3, "PASSO4.eps", "-depsc");
 
-% PASSO 4
+%%
+%%  PASSO 4 - Solução Forçada - Todos os Nodos (apenas o coeficiente)
+%%
 
 Vs_dummy = 1;
 
@@ -256,12 +265,14 @@ B = [ 0     ; 0               ; 0     ; 0         ; 0         ; 0           ; Vs
 
 x = A\B
 
+
+%%  Ex
 Vs_Ft     = e.^(j*(w*tempo-pi/2));
 v6_Ft     = Vs_Ft*(x(6));
-v6_Complexo = x(6);
-v8_Ft     = Vs_Ft*(x(8));
 
-% PASSO 5
+%%
+%%  PASSO 5 - Solução Prévia + Natural + Forçada - VS, v6
+%%
 
 tempoNegativo = -5e-3:(5e-3)/100:0-(5e-3)/100;
 tempoPositivo = tempo;
@@ -275,43 +286,39 @@ v6_negativo = v6_Menor0+0*tempoNegativo;
 v6_positivo = v6_Nt + v6_Ft;
 v6_total = [v6_negativo, v6_positivo];
 
-v8_negativo = v8_Menor0+0*tempoNegativo;
-v8_positivo = v8_Ft;
-v8_total = [v8_negativo, v8_positivo];
+%v8_negativo = v8_Menor0+0*tempoNegativo;
+%v8_positivo = v8_Ft;
+%v8_total = [v8_negativo, v8_positivo];
 
 hf_PASSO5 = figure ();
 
-plot(tempoTotal,vs_total,'r')
+plot(tempoTotal*1e3,vs_total,'r')
 hold on
-plot(tempoTotal,v6_total,'b')
-plot(tempoTotal,v8_total,'g')
-plot(tempoTotal,v6_total-v8_total, '-')
+plot(tempoTotal*1e3,v6_total,'b')
+%plot(tempoTotal,v8_total,'g')
+%plot(tempoTotal,v6_total-v8_total, '-')
 
 xlabel ("t[ms]");
 ylabel ("vi(t), vo(t) [V]");
-print (hf_PASSO5, "forced.eps", "-depsc");
+legend;
+print (hf_PASSO5, "PASSO5.eps", "-depsc");
 hold off
 
-% PASSO 6
+%%
+%%  PASSO 6 - Resposta de Frequência - Vs, v6, Vc
+%%
 
-%s = tf('s');
-%vc_freq_response = 1/(1+1000*s*C);
-%w_limite = [0.1, 1e6];
-
-%Vc_numer = [0      , 1];
-%Vc_denom = [C*R_eq , 1];
-%Vc_frec = tf(numer,denom);
-%w_limite = logspace(-1, 6, 200);
 w = logspace(-1, 6, 200);
 
 Vs_frec_response = w;
 Vc_frec_response = w;
 v6_frec_response = w;
+Vc_frec_response_teste =w;
 Vs_dummy = 1;
 
 for c = 1:size(w,2)
   
-  Zc = 1/(j*2*pi*w(c)*C)
+  Zc = 1/(j*2*pi*w(c)*C);
   
   %     v1    , v2              , v3     , v4       , v5        , v6          , v7          , v8    , Vb    , Vd, Ib, Id
   A = [ 0     , 0               , 0     , 1/R6      , 0         , 0           , -1/R7-1/R6  , 1/R7  , 0     , 0 , 0 , 0   ;...
@@ -334,9 +341,11 @@ for c = 1:size(w,2)
   Vs_frec_response(c) = x(1)-x(4);
   v6_frec_response(c) = x(6);
   Vc_frec_response(c) = x(6)-x(8);
+  %Vc_frec_response_teste(c) = x(5);
   
 endfor  
 %
+w_absissa = log10(w);
 
 Vs_frec_response_amplitude = 20*log10(abs(Vs_frec_response));
 v6_frec_response_amplitude = 20*log10(abs(v6_frec_response));
@@ -344,12 +353,30 @@ Vc_frec_response_amplitude = 20*log10(abs(Vc_frec_response));
 
 hf_PASSO6 = figure();
 
-loglog(w,abs(Vs_frec_response),'r')
+plot(w_absissa,Vs_frec_response_amplitude,'r')
 hold on
-loglog(w,abs(v6_frec_response),'b')
-loglog(w,abs(Vc_frec_response),'g')
+plot(w_absissa,v6_frec_response_amplitude,'b')
+plot(w_absissa,Vc_frec_response_amplitude,'g')
+%plot(w_absissa,20*log10(Vc_frec_response_teste),'d')
 
 xlabel ("t[ms]");
 ylabel ("vi(t), vo(t) [V]");
 
-print (hf_PASSO6, "Frec.eps", "-depsc");
+print (hf_PASSO6, "PASSO6-AMPLITUDE.eps", "-depsc");
+
+Vs_frec_response_angulo = angle(Vs_frec_response)*180/pi;
+v6_frec_response_angulo = angle(v6_frec_response)*180/pi;
+Vc_frec_response_angulo = angle(Vc_frec_response)*180/pi;
+%Vc_frec_response_teste_ang = angle(Vc_frec_response_teste)*180/pi;
+hf_PASSO6 = figure();
+
+plot(w_absissa,Vs_frec_response_angulo,'r')
+hold on
+plot(w_absissa,v6_frec_response_angulo,'b')
+plot(w_absissa,Vc_frec_response_angulo,'g')
+%plot(w_absissa,Vc_frec_response_teste_ang,'d')
+
+xlabel ("t[ms]");
+ylabel ("vi(t), vo(t) [V]");
+
+print (hf_PASSO6, "PASSO6-ANGULO.eps", "-depsc");

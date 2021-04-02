@@ -1,14 +1,5 @@
-all:  octaveNos.log octaveMalhas.log
+all:  octaveNos.log
 
-	
-#	Corre o ficheiro Malhas.m e analisa o log do ficheiro
-PreOctaveMalhas.log: Malhas.m
-	octave $< > $@
-
-octaveMalhas.log: PreOctaveMalhas.log
-	$(eval OCTTABS=$(shell grep -R _TAB $< | sed 's/_TAB//g' | sed ':a;N;$!ba;s/\n/ /g'))
-	$(foreach i, $(OCTTABS), sed -n '/^$i_TAB/,/^$i_END/{p;/^$i_END/q}' $< | grep -v $i_TAB | grep -v $i_END | grep -v '#' | sed 's/\=/\&/g' | sed 's/$$/\\\\ \\hline/g' > $i_tab.tex;)
-	 mv PreOctaveMalhas.log octaveMalhas.log
 
 #	Corre o ficheiro Nos.m e analisa o log do ficheiro
 PreOctaveNos.log: Nos.m
@@ -21,6 +12,6 @@ octaveNos.log: PreOctaveNos.log
 	
 #	Higienização
 clean:
-	@rm -f octave-workspace *.log *.tex
+	@rm -f octave-workspace *.log *.tex *.eps
 
 .PHONY: clean
