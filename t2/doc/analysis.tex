@@ -1,9 +1,9 @@
 \section{Theoretical Analysis}
 \label{sec:analysis}
 
-In this section, the circuit shown in Figure~\ref{fig:Circuit_Base} is analyzed theoretically with the Mesh Method and with the Nodal Method, in order to complement each other results.
+In this section, the circuit shown in Figure~\ref{fig:Circuit_Base} is analyzed theoretically with the Nodal Method, Trasient solution in order to caracterize it in the interval $\left[-5,20\right[$.
 
-\subsection{Mesh Method}
+\subsection{Step 1: Solution for $t<0$}
 
 The Mesh Method consists in introducing currents that circulate in the meshes of the circuit, which are the loops that do not contain other loops, as shown in Figure~\ref{fig:Circuit_Mesh}, and then evaluate the circuit based on the new currents.
 \begin{figure}[h] \centering
@@ -81,6 +81,9 @@ The solution to this linear system of equations is determined by Octave:
   \caption{Variables in the Mesh Method. A variable preceded by @ is of type {\em current} and expressed in Ampere; other variables are of type {\em voltage} and expressed in Volt.}
   \label{tab:malhas}
 \end{table}
+
+\subsection{Step 2: Solution for $t=0$}
+
 
 \subsection{Nodal Method}
 

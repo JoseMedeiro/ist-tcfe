@@ -8,7 +8,6 @@
 
 * Independent Power Sources
 Va 1 4 DC 5.19832384287 
-Id 8 6 DC 1.04739543259m
 
 * Resistors
 * Positive to negative -> Smaller knot to bigger numbered knot
@@ -26,6 +25,9 @@ V3 4 0 0V
 * Linear dependent Sources
 Gb 6 3 (2,5) 7.07448059081m
 Hc 5 8 V3 8.22345657857k
+
+* Capacitor
+C1 6 8 1.04739543259u
 
 .control
 
