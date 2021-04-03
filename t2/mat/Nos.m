@@ -71,20 +71,38 @@ printf("\n\Como uma das equações do SuperKnots não é necessária, retiramos 
 %%  Atribuição de Valores
 printf("\nAtribuição dos valores para o laboratório:\n\n");
 
-R1 = DATA(1)*1e3
-R2 = DATA(2)*1e3
-R3 = DATA(3)*1e3
-R4 = DATA(4)*1e3
-R5 = DATA(5)*1e3
-R6 = DATA(6)*1e3
-R7 = DATA(7)*1e3
+R1 = DATA(1)*1e3;
+R2 = DATA(2)*1e3;
+R3 = DATA(3)*1e3;
+R4 = DATA(4)*1e3;
+R5 = DATA(5)*1e3;
+R6 = DATA(6)*1e3;
+R7 = DATA(7)*1e3;
 
-Vs = DATA(8)
+Vs = DATA(8);
 
-C = DATA(9)*1e-6
+C = DATA(9)*1e-6;
 
-Kb = DATA(10)*1e-3 
-Kd = DATA(11)*1e3 
+Kb = DATA(10)*1e-3;
+Kd = DATA(11)*1e3;
+
+%	Impressão da Tabela
+printf("DATA_TAB \n")
+
+printf("\\#$R_{1}$ = %e \n", R1);
+printf("\\#$R_{2}$ = %e \n", R2);
+printf("\\#$R_{3}$ = %e \n", R3);
+printf("\\#$R_{4}$ = %e \n", R4);
+printf("\\#$R_{5}$ = %e \n", R5);
+printf("\\#$R_{6}$ = %e \n", R6);
+printf("\\#$R_{7}$ = %e \n", R7);
+printf("$V_{s}$ = %e \n",    Vs);
+printf("\\&$C$ = %e \n",      C);
+printf("§$K_{b}$ = %e \n",   Kb);
+printf("\\#$K_{d}$ = %e \n", Kd);
+
+printf("DATA_END \n")
+
 
 %     v1    , v2              , v3     , v4       , v5        , v6    , v7          , v8    , Vb    , Vd, Ib, Id  , Vc, Ic
 A = [ 0     , 0               , 0     , 1/R6      , 0         , 0     , -1/R7-1/R6  , 1/R7  , 0     , 0 , 0 , 0   , 0 , 0   ;...
