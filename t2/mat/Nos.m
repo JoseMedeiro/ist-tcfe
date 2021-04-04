@@ -228,6 +228,30 @@ Id=x(12)
 
 printf("PASSO2_TAB \n")
 
+printf("$v_{1}$ = %e \n", v1);
+printf("$v_{2}$ = %e \n", v2);
+printf("$v_{3}$ = %e \n", v3);
+printf("$v_{4}$ = %e \n", v4);
+printf("$v_{5}$ = %e \n", v5);
+printf("$v_{6}$ = %e \n", v6);
+printf("$v_{7}$ = %e \n", v7);
+printf("$v_{8}$ = %e \n", v8);
+
+printf("@$I_{1}$ = %e \n", I1);
+printf("@$I_{2}$ = %e \n", I2);
+printf("@$I_{3}$ = %e \n", I3);
+printf("@$I_{4}$ = %e \n", I4);
+printf("@$I_{5}$ = %e \n", I5);
+printf("@$I_{6}$ = %e \n", I6);
+printf("@$I_{7}$ = %e \n", I7);
+printf("@$I_{S}$ = %e \n", I_S);
+printf("@$I_{D}$ = %e \n", I_D);
+
+printf("$V_{b}$ = %e \n", Vb);
+printf("$V_{d}$ = %e \n", Vd);
+printf("@$I_{b}$ = %e \n", Ib);
+printf("@$I_{d}$ = %e \n", Id);
+
 printf("$V_{c}$ = %e \n", Vc);
 printf("@$I_{c}$ = %e \n", Ic);
 
@@ -249,8 +273,8 @@ hf_PASSO3 = figure ();
 plot(tempo*1e3,v6_Nt)
 hold on
 
-xlabel ("t[ms]");
-ylabel ("v6(t) [V]");
+xlabel ("t, ms");
+ylabel ("Voltage, V");
 print (hf_PASSO3, "PASSO4.eps", "-depsc");
 
 %%
@@ -315,10 +339,11 @@ hold on
 plot(tempoTotal*1e3,v6_total,'b')
 %plot(tempoTotal,v8_total,'g')
 %plot(tempoTotal,v6_total-v8_total, '-')
+h = {"Vs", "v6"}
 
-xlabel ("t[ms]");
-ylabel ("vi(t), vo(t) [V]");
-legend;
+xlabel ("t, ms");
+ylabel ("Voltage, V");
+legend(h);
 print (hf_PASSO5, "PASSO5.eps", "-depsc");
 hold off
 
@@ -332,6 +357,7 @@ Vs_frec_response = w;
 Vc_frec_response = w;
 v6_frec_response = w;
 Vc_frec_response_teste =w;
+V2_frec_response=w;
 Vs_dummy = 1;
 
 for c = 1:size(w,2)
@@ -359,7 +385,8 @@ for c = 1:size(w,2)
   Vs_frec_response(c) = x(1)-x(4);
   v6_frec_response(c) = x(6);
   Vc_frec_response(c) = x(6)-x(8);
-  %Vc_frec_response_teste(c) = x(5);
+  %Vc_frec_response_teste(c) = x(8);
+  %V2_frec_response(c)=x(4);
   
 endfor  
 %
@@ -376,9 +403,12 @@ hold on
 plot(w_absissa,v6_frec_response_amplitude,'b')
 plot(w_absissa,Vc_frec_response_amplitude,'g')
 %plot(w_absissa,20*log10(Vc_frec_response_teste),'d')
+%plot(w_absissa,20*log10(V2_frec_response),'k')
+h = {"Vs", "v6", "Vc"};
 
-xlabel ("t[ms]");
-ylabel ("vi(t), vo(t) [V]");
+xlabel ("log10(w}, rad/s");
+ylabel ("|T|, dB");
+legend(h);
 
 print (hf_PASSO6, "PASSO6-AMPLITUDE.eps", "-depsc");
 
@@ -386,6 +416,7 @@ Vs_frec_response_angulo = angle(Vs_frec_response)*180/pi;
 v6_frec_response_angulo = angle(v6_frec_response)*180/pi;
 Vc_frec_response_angulo = angle(Vc_frec_response)*180/pi;
 %Vc_frec_response_teste_ang = angle(Vc_frec_response_teste)*180/pi;
+%V2_frec_response_ang = angle(V2_frec_response)*180/pi;
 hf_PASSO6 = figure();
 
 plot(w_absissa,Vs_frec_response_angulo,'r')
@@ -393,8 +424,12 @@ hold on
 plot(w_absissa,v6_frec_response_angulo,'b')
 plot(w_absissa,Vc_frec_response_angulo,'g')
 %plot(w_absissa,Vc_frec_response_teste_ang,'d')
+%plot(w_absissa,V2_frec_response_ang,'k')
+h = {"Vs", "v6", "Vc"}
 
-xlabel ("t[ms]");
-ylabel ("vi(t), vo(t) [V]");
+
+xlabel ("log10(w), rad/s");
+ylabel ("Phase, degrees");
+legend(h);
 
 print (hf_PASSO6, "PASSO6-ANGULO.eps", "-depsc");

@@ -1,88 +1,90 @@
 \section{Theoretical Analysis}
 \label{sec:analysis}
 
-In this section, the circuit shown in Figure~\ref{fig:Circuit_Base} is analyzed theoretically with the Nodal Method, Trasient solution in order to caracterize it in the interval $\left[-5,20\right[$.
+In this section, the circuit shown in Figure~\ref{fig:Circuit_Base} is analyzed theoretically with the Nodal Method and General Solution Method in order to caracterize it in the interval $\left[-5,20\right[$.
 
 \subsection{Step 1: Solution for $t<0$}
 
-The Mesh Method consists in introducing currents that circulate in the meshes of the circuit, which are the loops that do not contain other loops, as shown in Figure~\ref{fig:Circuit_Mesh}, and then evaluate the circuit based on the new currents.
+When $t<0$ we consider that the circuit is in equilibrium and, because of that, no current passes through the capacitor, since the relation between current and voltage in this component is:
+\begin{equation}
+  \frec{dV}{dt}=\frac{I}{C} \rightarrow I = 0.
+  \label{eq:Cap}
+\end{equation}
+
+Hence, we can simplify the circuit:
 \begin{figure}[h] \centering
 \includegraphics[width=0.45\linewidth]{CircuitMesh.pdf}
 \caption{Circuit analysed with mesh currents.}
-\label{fig:Circuit_Mesh}
+\label{fig:Circuit_Passo1}
 \end{figure}
 
-After identifying the mesh currents, the next step in this method is to use the Kirchhoff Voltage Law~(KVL) in the meshes that do not contain current sources (mesh~$\alpha$~(\ref{eq:MM_Alpha}) and $\delta$~(\ref{eq:MM_Delta})) and to relate the mesh currents to the currents imposed by the sources (mesh~$\beta$~(\ref{eq:MM_Beta}) and $\gamma$~(\ref{eq:MM_Gamma})):
-\begin{equation}
-  R_1I_{\alpha} + R_3(I_{\alpha}-I_{\beta}) + R_4(I_{\alpha}-I_{\delta}) - V_a = 0;
-  \label{eq:MM_Alpha}
-\end{equation}
-\begin{equation}
-  I_{\beta} = - I_b;
-  \label{eq:MM_Beta}
-\end{equation}
-\begin{equation}
-  I_{\gamma} = - I_d.
-  \label{eq:MM_Gamma}
-\end{equation}
-\begin{equation}
-  R_6I_{\delta} + R_4(I_{\delta}-I_{\alpha}) + V_c + R_7I_{\delta} = 0;
-  \label{eq:MM_Delta}
-\end{equation}
+Applying the Nodal Method to this circuit leads to the following equations:
 
-Since there are 8 variables in the circuit, $I_{\alpha}$, $I_{\beta}$, $I_{\gamma}$, $I_{\delta}$, $V_b$, $V_c$, $I_b$, $I_c$, there must be more four independent equations: two of them are already given,
-
-\begin{equation}
-  I_b = K_bV_b;
-  \label{eq:Vb_Ib}
-\end{equation}
-\begin{equation}
-  V_c = K_cI_c.
-  \label{eq:Vc_Ic}
-\end{equation}
-
-The other two are found by examining the circuit and with Ohm's Law:
-
-\begin{equation}
-  I_c = - I_{\delta};
-  \label{eq:MM_Ic}
-\end{equation}
-\begin{equation}
-  V_b = R_3(I_{\alpha}-I_{\beta})
-  \label{eq:MM_Vb}
-\end{equation}
-
-In resume, the linear system of equations is:
-%	IMPORTANTE VER AS MALHAS
-%	AS PRIMEIRAS 4 EQUAÇÕES SÃO DOS NÓS ALFA A DELTA, POR ORDEM ALFABETICA
-%	AS EQUAÇÕES 5 E 6 SÃO AS RELAÇÕES NO CIRCUITO COM AS FONTES LINEARES
-%	AS EQUAÇÕES 7 E 8 SÃO AS RELAÇÕES QUE EXISTEM NAS FONTES LINEARES 
 \begin{equation}
 \begin{cases}
-	(R_1+R_3+R_4)I_{\alpha} - R_3I_{\beta} - R_4I_{\delta} &= V_a;		\\
-  	I_{\beta} + I_b &= 0;												\\
-  	I_{\gamma} &= - I_d.												\\
-  	(R_6+R_4+R_7)I_{\delta} - R_4I_{\alpha} + V_c &= 0;					\\
-  	I_{\delta} + I_c &= 0; 												\\
-  	R_3I_{\alpha} - R_3I_{\beta} - V_b &= 0.							\\
-  	-K_bV_b + I_b &= 0;													\\
-  	V_c - K_cI_c &= 0.
+	v_1 - v_4 &= V_s;																				  \\
+	\frac{1}{R_1}v_1 - (\frac{1}{R_2}+\frac{1}{R_1}+\frac{1}{R_3})v_2 + (\frac{1}{R_2})v_3 + \frac{1}{R_3}v_5 &= 0; \\
+  	\frac{1}{R_2}v_2 - \frac{1}{R_2}v_3+ I_b &= 0;													  \\
+  	-\frac{1}{R_1}v_1 + \frac{1}{R_1}v_2 - (\frac{1}{R_4}+\frac{1}{R_6})v_4 + \frac{1}{R_4}v_5 + \frac{1}{R_6}v_7 &= 0;			  																	  \\
+	v_5 - v_8 - V_d &= 0;																			  \\
+  	\frac{1}{R_5}v_5 - \frac{1}{R_5}v_6 - I_b &= 0;												  	  \\
+  	-(\frac{1}{R_7}+\frac{1}{R_6})v_7 + \frac{1}{R_7}v_8 + \frac{1}{R_6}v_4 &= 0;					  \\
+	v_2 - v_3 - V_b &= 0;																			  \\
+  	\frac{1}{R_6}v_4 - \frac{1}{R_6}v_7 - I_d &= 0;													  \\
+  	v_4 &= 0;																						  \\
+  	-K_bV_b + I_b &= 0;																				  \\
+  	V_d - K_cI_c &= 0.
 \end{cases}
 \end{equation}
 
-The solution to this linear system of equations is determined by Octave:
+Where the $2^{nd}$, $3^{rd}$, $6^{th}$ and $7^{th}$ are the equations in the respective nodes; the $1^{st}$ and $5^{th}$ are the relations imposed by the voltages soureces in those nodes; the $4^{th}$ is the supernode that bypasses $V_s$; the $8^{th}$ to $10^{th}$ are the relations between the circuit and, in order, $V_b$, $I_d$ and $v_4$; the final two equations are the ones that describe $I_b$ and $V_d$, respectivly. 
+The solution to this linear system of equations is determined by Octave, plus the currents flowing in the circuit using Ohm's Law to the resistor's branches and Kirchhoff Current Law~(KCL) to the branches with voltage sources:
+
 \begin{table}[h]
   \centering
   \begin{tabular}{|l|r|}
     \hline    
     {\bf Name} & {\bf Value [A or V]} \\ \hline
-    \input{../mat/Malhas_tab}
+    \input{../mat/PASSO1_tab}
   \end{tabular}
   \caption{Variables in the Mesh Method. A variable preceded by @ is of type {\em current} and expressed in Ampere; other variables are of type {\em voltage} and expressed in Volt.}
-  \label{tab:malhas}
+  \label{tab:PASSO1}
 \end{table}
 
-\subsection{Step 2: Solution for $t=0$}
+All the currents were measured from the lower numbered node to the higher one; so, the direction of the current that passes through $R_6$ is, if the result is positive, from $v_4$ to $v_7$.
+
+\subsection{Step 2: Solution for $t=0$ and $R_{eq}$}
+
+Once found the solution for the nodes in $t<0$, the next step is to calculate the boundary conditions for the knots in the circuit, because the voltage in the nodes don't need to be necessarily continuos, only the difference of potencial in the capacitor, $V_c$. Therefor, a non continuos change in a power source, in this case in the voltage source $V_s$, might lead to a diferent voltage in the nodes.
+Since the solution to this circuit will also be divided in natural and forced, we can use this step to evaluate the equivelent resistance of the circuit, $R_{eq}$.
+
+To evaluate the circuit at $t=0$, we must have in mind that $V_c$ is continuos, so $V_c(0)=V_c(0^-)$. Another point to take into account is that, for the natural solution, we can ignore the sinusoidal part of $V_s$, which leaves us with $V_s=0$. In this conditions, we can say that the circuit~\ref{fig:Circuit_Base} is identical to this one:
+
+\begin{figure}[h] \centering
+\includegraphics[width=0.45\linewidth]{CircuitMesh.pdf}
+\caption{Circuit analysed with mesh currents.}
+\label{fig:Circuit_Passo2}
+\end{figure}
+
+The set of equations that describe it are, using the Nodal Method:
+
+\begin{equation}
+\begin{cases}
+	v_1 - v_4 &= 0;																				  \\
+	\frac{1}{R_1}v_1 - (\frac{1}{R_2}+\frac{1}{R_1}+\frac{1}{R_3})v_2 + (\frac{1}{R_2})v_3 + \frac{1}{R_3}v_5 &= 0; \\
+  	\frac{1}{R_2}v_2 - \frac{1}{R_2}v_3+ I_b &= 0;													  \\
+  	-\frac{1}{R_1}v_1 + \frac{1}{R_1}v_2 - (\frac{1}{R_4}+\frac{1}{R_6})v_4 + \frac{1}{R_4}v_5 + \frac{1}{R_6}v_7 &= 0;			  																	  \\
+	v_5 - v_8 - V_d &= 0;																			  \\
+  	\frac{1}{R_5}v_5 - \frac{1}{R_5}v_6 - I_b &= 0;												  	  \\
+  	-(\frac{1}{R_7}+\frac{1}{R_6})v_7 + \frac{1}{R_7}v_8 + \frac{1}{R_6}v_4 &= 0;					  \\
+	v_2 - v_3 - V_b &= 0;																			  \\
+  	\frac{1}{R_6}v_4 - \frac{1}{R_6}v_7 - I_d &= 0;													  \\
+  	v_4 &= 0;																						  \\
+  	-K_bV_b + I_b &= 0;																				  \\
+  	V_d - K_cI_c &= 0.
+\end{cases}
+\end{equation}
+
 
 
 \subsection{Nodal Method}
