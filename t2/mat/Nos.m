@@ -277,6 +277,7 @@ xlabel ("t, ms");
 ylabel ("Voltage, V");
 legend("v6");
 print (hf_PASSO3, "PASSO3.eps", "-depsc");
+hold off;
 
 %%
 %%  PASSO 4 - Solução Forçada - Todos os Nodos (apenas o coeficiente)
@@ -335,7 +336,7 @@ tempoPositivo = tempo;
 tempoTotal    = [tempoNegativo, tempoPositivo];
  
 vs_negativo = Vs+0*tempoNegativo;
-vs_positivo = e.^(j*(w*tempoPositivo-pi/2));
+vs_positivo = Vs_Ft;
 vs_total = [vs_negativo, vs_positivo];
 
 v6_negativo = v6_Menor0+0*tempoNegativo;
@@ -359,7 +360,7 @@ xlabel ("t, ms")
 ylabel ("Voltage, V")
 legend(h);
 print (hf_PASSO5, "PASSO5.eps", "-depsc");
-hold off
+hold off;
 
 %%
 %%  PASSO 6 - Resposta de Frequência - Vs, v6, Vc
@@ -370,8 +371,8 @@ w = logspace(-1, 6, 200);
 Vs_frec_response = w;
 Vc_frec_response = w;
 v6_frec_response = w;
-Vc_frec_response_teste =w;
-V2_frec_response=w;
+%Vc_frec_response_teste =w;
+%V2_frec_response=w;
 Vs_dummy = 1;
 
 for c = 1:size(w,2)
@@ -416,7 +417,7 @@ plot(w_absissa,Vs_frec_response_amplitude,'r')
 hold on
 plot(w_absissa,v6_frec_response_amplitude,'b')
 plot(w_absissa,Vc_frec_response_amplitude,'g')
-%plot(w_absissa,20*log10(Vc_frec_response_teste),'d')
+%plot(w_absissa,20*log10(Vc_frec_response_teste),'k')
 %plot(w_absissa,20*log10(V2_frec_response),'k')
 h = {"Vs", "v6", "Vc"}
 
@@ -425,6 +426,7 @@ ylabel ("|T|, dB")
 legend(h);
 
 print (hf_PASSO6, "PASSO6-AMPLITUDE.eps", "-depsc");
+hold off;
 
 Vs_frec_response_angulo = angle(Vs_frec_response)*180/pi;
 v6_frec_response_angulo = angle(v6_frec_response)*180/pi;
@@ -447,3 +449,4 @@ ylabel ("Phase, degrees")
 legend(h);
 
 print (hf_PASSO6, "PASSO6-ANGULO.eps", "-depsc");
+hold off;

@@ -1,0 +1,64 @@
+* NGSPICE simulation script
+
+* T2 - Circuit 
+
+* Tópico 3
+
+* Resistors 
+	R1 1 2 1.03258022265k
+	R2 2 3 2.05854281116k 
+	R3 2 5 3.05658918951k 
+	R4 4 5 4.12083818633k 
+	R5 5 6 3.10223748153k 
+	R6 0 7 2.09909352125k 
+	R7 7 8 1.01569886691k
+	
+* V aux
+	V3 9 7 0	
+
+* Linear dep. source
+
+	Hd 5 8 V3 8.22345657857k
+	Gb 6 3 (2,5) 7.07448059081m
+	
+	VS 1 0 0
+
+* Capacitor
+
+	C1 6 8 1.04739543259u 
+
+	.IC v(6)=5.579017e+00 v(8)=-2.974577e+00
+	
+	
+* CONTRAL COMMANDS
+
+
+
+.control
+
+*makes plots in color
+set hcopypscolor=0
+set color0=white
+set color1=black
+set color2=red
+set color3=blue
+set color4=violet
+set color5=rgb:3/8/0
+set color6=rgb:4/0/0
+
+op
+
+
+echo "********************************************"
+echo  "Transient analysis"
+echo "********************************************"
+tran 1e-5 20e-3
+
+hardcopy trans.ps v(6)
+echo trans_FIG
+
+
+quit
+.endc
+
+.end	

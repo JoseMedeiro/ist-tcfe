@@ -23,7 +23,7 @@ Applying the Nodal Method to this circuit leads to the following equations:
 \begin{equation}
 \begin{cases}
 	v_1 - v_4 &= V_s;																				  \\
-	\frac{1}{R_1}v_1 - (\frac{1}{R_2}+\frac{1}{R_1}+\frac{1}{R_3})v_2 + (\frac{1}{R_2})v_3 + \frac{1}{R_3}v_5 &= 0; \\
+	\frac{1}{R_1}v_1 - (\frac{1}{R_2}+\frac{1}{R_1}+\frac{1}{R_3})v_2 + (\frac{1}{R_2})v_3 + \frac{1}{R_3}v_5 &= 0; 																						  \\
   	\frac{1}{R_2}v_2 - \frac{1}{R_2}v_3+ I_b &= 0;													  \\
   	-\frac{1}{R_1}v_1 + \frac{1}{R_1}v_2 - (\frac{1}{R_4}+\frac{1}{R_6})v_4 + \frac{1}{R_4}v_5 + \frac{1}{R_6}v_7 &= 0;			  																	  \\
 	v_5 - v_8 - V_d &= 0;																			  \\
@@ -55,7 +55,7 @@ All the currents were measured from the lower numbered node to the higher one; s
 
 \subsection{Step 2: Solution for $t=0$ and $R_{eq}$}
 
-Once found the solution for the nodes in $t<0$, the next step is to calculate the boundary conditions for the knots in the circuit, because the voltage in the nodes don't need to be necessarily continuos, only the difference of potencial in the capacitor, $V_c$. Therefor, a non continuos change in a power source, in this case in the voltage source $V_s$, might lead to a diferent voltage in the nodes.
+Once found the solution for the nodes in $t<0$, the next step is to calculate the boundary conditions for the knots in the circuit, because the voltage in the nodes doesn't necessarily need to be continuos, only the difference of potencial in the capacitor, $V_c$. Therefor, a non continuos change in a power source, in this case in the voltage source $V_s$, might lead to a diferent voltage in the nodes.
 Since the solution to this circuit will also be divided in natural and forced, we can use this step to evaluate the equivelent resistance of the circuit, $R_{eq}$.
 
 To evaluate the circuit at $t=0$, we must have in mind that $V_c$ is continuos, so $V_c(0)=V_c(0^-)$. Another point to take into account is that, for the natural solution, we can ignore the sinusoidal part of $V_s$, which leaves us with $V_s=0$. In this conditions, we can say that the circuit~\ref{fig:Circuit_Base} is identical to this one:
