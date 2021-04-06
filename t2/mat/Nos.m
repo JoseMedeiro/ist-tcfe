@@ -275,7 +275,8 @@ hold on
 
 xlabel ("t, ms");
 ylabel ("Voltage, V");
-print (hf_PASSO3, "PASSO4.eps", "-depsc");
+legend("v6");
+print (hf_PASSO3, "PASSO3.eps", "-depsc");
 
 %%
 %%  PASSO 4 - Solução Forçada - Todos os Nodos (apenas o coeficiente)
@@ -301,7 +302,7 @@ A = [ 0     , 0               , 0     , 1/R6      , 0         , 0           , -1
       0     , 1               , 0     , 0         , -1        , 0           , 0           , 0     , -1    , 0 , 0 , 0   ;...
       0     , 0               , 0     , 1/R6      , 0         , 0           , -1/R6       , 0     , 0     , 0 , 0 , -1  ;...
       0     , 0               , 0     , 0         , 0         , 0           , 0           , 0     , 0     , 1 , 0 , -Kd ;...
-      0     , 0               , 0     , 0         , 0         , 0           , 0           , 0     , -Kb   , 0 , 1 , 0   ]
+      0     , 0               , 0     , 0         , 0         , 0           , 0           , 0     , -Kb   , 0 , 1 , 0   ];
       
 B = [ 0     ; 0               ; 0     ; 0         ; 0         ; 0           ; Vs_dummy    ; 0     ; 0     ; 0 ; 0 ; 0   ];
 
@@ -311,6 +312,19 @@ x = A\B
 %%  Ex
 Vs_Ft     = e.^(j*(w*tempo-pi/2));
 v6_Ft     = Vs_Ft*(x(6));
+
+printf("PASSO4_TAB \n")
+
+printf("$v_{1}$ = %e %e j \n", real(x(1)), imag(x(1)));
+printf("$v_{2}$ = %e %e j \n", real(x(2)), imag(x(2)));
+printf("$v_{3}$ = %e %e j \n", real(x(3)), imag(x(3)));
+printf("$v_{4}$ = %e %e j \n", real(x(4)), imag(x(4)));
+printf("$v_{5}$ = %e %e j \n", real(x(5)), imag(x(5)));
+printf("$v_{6}$ = %e %e j \n", real(x(6)), imag(x(6)));
+printf("$v_{7}$ = %e %e j \n", real(x(7)), imag(x(7)));
+printf("$v_{8}$ = %e %e j \n", real(x(8)), imag(x(8)));
+
+printf("PASSO4_END \n")
 
 %%
 %%  PASSO 5 - Solução Prévia + Natural + Forçada - VS, v6
@@ -341,8 +355,8 @@ plot(tempoTotal*1e3,v6_total,'b')
 %plot(tempoTotal,v6_total-v8_total, '-')
 h = {"Vs", "v6"}
 
-xlabel ("t, ms");
-ylabel ("Voltage, V");
+xlabel ("t, ms")
+ylabel ("Voltage, V")
 legend(h);
 print (hf_PASSO5, "PASSO5.eps", "-depsc");
 hold off
@@ -404,10 +418,10 @@ plot(w_absissa,v6_frec_response_amplitude,'b')
 plot(w_absissa,Vc_frec_response_amplitude,'g')
 %plot(w_absissa,20*log10(Vc_frec_response_teste),'d')
 %plot(w_absissa,20*log10(V2_frec_response),'k')
-h = {"Vs", "v6", "Vc"};
+h = {"Vs", "v6", "Vc"}
 
-xlabel ("log10(w}, rad/s");
-ylabel ("|T|, dB");
+xlabel ("log10(w), rad/s")
+ylabel ("|T|, dB")
 legend(h);
 
 print (hf_PASSO6, "PASSO6-AMPLITUDE.eps", "-depsc");
@@ -428,8 +442,8 @@ plot(w_absissa,Vc_frec_response_angulo,'g')
 h = {"Vs", "v6", "Vc"}
 
 
-xlabel ("log10(w), rad/s");
-ylabel ("Phase, degrees");
+xlabel ("log10(w), rad/s")
+ylabel ("Phase, degrees")
 legend(h);
 
 print (hf_PASSO6, "PASSO6-ANGULO.eps", "-depsc");
