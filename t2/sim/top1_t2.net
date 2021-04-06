@@ -1,0 +1,28 @@
+* NGSPICE simulation script
+
+* forces current values to be saved
+.options savecurrents
+
+* T2 - Circuit 
+.include top1_t2.cir
+	
+
+	
+* Contral commands 
+.control
+
+op
+
+echo "********************************************"
+echo  "Operating point"
+echo "********************************************"
+
+echo "PASSO1_TAB"
+print all
+echo "PASSO1_END"
+
+
+quit
+.endc
+
+.end
