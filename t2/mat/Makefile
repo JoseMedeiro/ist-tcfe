@@ -20,9 +20,9 @@ clean:
 	make clean_data
 
 clean_math:
-	@rm -f octave-workspace o*.log p*.log  *.tex *.eps *.mat
+	@rm -f octave-workspace o*.log p*.log  *.tex *.eps
 	
 clean_data:
-	@rm -f DataImport.log *.mat *.txt
+	@rm -f octave-workspace DataImport.log *.mat *.txt
 
 .PHONY: clean_math clean_data clean

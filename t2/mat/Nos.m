@@ -153,6 +153,17 @@ I_D =I7+Ic;
 
 %	Impressão da Tabela
 printf("PASSO1_TAB \n")
+
+printf("@$I_{c}$ = %e \n", Ic);
+printf("@$I_{D}$ = %e \n", I_D);
+printf("@$I_{1}$ = %e \n", I1);
+printf("@$I_{2}$ = %e \n", I2);
+printf("@$I_{3}$ = %e \n", I3);
+printf("@$I_{4}$ = %e \n", I4);
+printf("@$I_{5}$ = %e \n", I5);
+printf("@$I_{6}$ = %e \n", I6);
+printf("@$I_{7}$ = %e \n", I7);
+
 printf("$v_{1}$ = %e \n", v1);
 printf("$v_{2}$ = %e \n", v2);
 printf("$v_{3}$ = %e \n", v3);
@@ -162,15 +173,6 @@ printf("$v_{6}$ = %e \n", v6);
 printf("$v_{7}$ = %e \n", v7);
 printf("$v_{8}$ = %e \n", v8);
 
-printf("@$I_{1}$ = %e \n", I1);
-printf("@$I_{2}$ = %e \n", I2);
-printf("@$I_{3}$ = %e \n", I3);
-printf("@$I_{4}$ = %e \n", I4);
-printf("@$I_{5}$ = %e \n", I5);
-printf("@$I_{6}$ = %e \n", I6);
-printf("@$I_{7}$ = %e \n", I7);
-printf("@$I_{S}$ = %e \n", I_S);
-printf("@$I_{D}$ = %e \n", I_D);
 
 printf("$V_{b}$ = %e \n", Vb);
 printf("$V_{d}$ = %e \n", Vd);
@@ -178,7 +180,6 @@ printf("@$I_{b}$ = %e \n", Ib);
 printf("@$I_{d}$ = %e \n", Id);
 
 printf("$V_{c}$ = %e \n", Vc);
-printf("@$I_{c}$ = %e \n", Ic);
 
 printf("PASSO1_END \n")
 
@@ -228,6 +229,15 @@ Id=x(12)
 
 printf("PASSO2_TAB \n")
 
+printf("@$I_{D}$ = %e \n", I_D);
+printf("@$I_{1}$ = %e \n", I1);
+printf("@$I_{2}$ = %e \n", I2);
+printf("@$I_{3}$ = %e \n", I3);
+printf("@$I_{4}$ = %e \n", I4);
+printf("@$I_{5}$ = %e \n", I5);
+printf("@$I_{6}$ = %e \n", I6);
+printf("@$I_{7}$ = %e \n", I7);
+
 printf("$v_{1}$ = %e \n", v1);
 printf("$v_{2}$ = %e \n", v2);
 printf("$v_{3}$ = %e \n", v3);
@@ -237,26 +247,11 @@ printf("$v_{6}$ = %e \n", v6);
 printf("$v_{7}$ = %e \n", v7);
 printf("$v_{8}$ = %e \n", v8);
 
-printf("@$I_{1}$ = %e \n", I1);
-printf("@$I_{2}$ = %e \n", I2);
-printf("@$I_{3}$ = %e \n", I3);
-printf("@$I_{4}$ = %e \n", I4);
-printf("@$I_{5}$ = %e \n", I5);
-printf("@$I_{6}$ = %e \n", I6);
-printf("@$I_{7}$ = %e \n", I7);
-printf("@$I_{S}$ = %e \n", I_S);
-printf("@$I_{D}$ = %e \n", I_D);
-
-printf("$V_{b}$ = %e \n", Vb);
-printf("$V_{d}$ = %e \n", Vd);
-printf("@$I_{b}$ = %e \n", Ib);
-printf("@$I_{d}$ = %e \n", Id);
-
 printf("$V_{c}$ = %e \n", Vc);
 printf("@$I_{c}$ = %e \n", Ic);
 
 printf("#$R_{eq}$ = %e \n", R_eq);
-printf("#$\\tau$ = %e \n", tau);
+printf("*$\\tau$ = %e \n", tau);
 
 printf("PASSO2_END \n")
 
@@ -316,14 +311,14 @@ v6_Ft     = Vs_Ft*(x(6));
 
 printf("PASSO4_TAB \n")
 
-printf("$v_{1}$ = %e %e j \n", real(x(1)), imag(x(1)));
-printf("$v_{2}$ = %e %e j \n", real(x(2)), imag(x(2)));
-printf("$v_{3}$ = %e %e j \n", real(x(3)), imag(x(3)));
-printf("$v_{4}$ = %e %e j \n", real(x(4)), imag(x(4)));
-printf("$v_{5}$ = %e %e j \n", real(x(5)), imag(x(5)));
-printf("$v_{6}$ = %e %e j \n", real(x(6)), imag(x(6)));
-printf("$v_{7}$ = %e %e j \n", real(x(7)), imag(x(7)));
-printf("$v_{8}$ = %e %e j \n", real(x(8)), imag(x(8)));
+printf("$Pv_{1}$ = %e %e j \n", real(x(1)), imag(x(1)));
+printf("$Pv_{2}$ = %e %e j \n", real(x(2)), imag(x(2)));
+printf("$Pv_{3}$ = %e %e j \n", real(x(3)), imag(x(3)));
+printf("$Pv_{4}$ = %e %e j \n", real(x(4)), imag(x(4)));
+printf("$Pv_{5}$ = %e %e j \n", real(x(5)), imag(x(5)));
+printf("$Pv_{6}$ = %e %e j \n", real(x(6)), imag(x(6)));
+printf("$Pv_{7}$ = %e %e j \n", real(x(7)), imag(x(7)));
+printf("$Pv_{8}$ = %e %e j \n", real(x(8)), imag(x(8)));
 
 printf("PASSO4_END \n")
 

@@ -70,12 +70,12 @@ The set of equations that describe it are, using the Nodal Method:
 
 \begin{equation}
 \begin{cases}
-	v_1 - v_4 &= 0;																				  \\
+	v_1 - v_4 &= 0;																				  	  \\
 	\frac{1}{R_1}v_1 - (\frac{1}{R_2}+\frac{1}{R_1}+\frac{1}{R_3})v_2 + (\frac{1}{R_2})v_3 + \frac{1}{R_3}v_5 &= 0; \\
   	\frac{1}{R_2}v_2 - \frac{1}{R_2}v_3+ I_b &= 0;													  \\
   	-\frac{1}{R_1}v_1 + \frac{1}{R_1}v_2 - (\frac{1}{R_4}+\frac{1}{R_6})v_4 + \frac{1}{R_4}v_5 + \frac{1}{R_6}v_7 &= 0;			  																	  \\
 	v_5 - v_8 - V_d &= 0;																			  \\
-  	\frac{1}{R_5}v_5 - \frac{1}{R_5}v_6 - I_b &= 0;												  	  \\
+  	v_6 - v_8 - V_c &= 0;											  	  							  \\
   	-(\frac{1}{R_7}+\frac{1}{R_6})v_7 + \frac{1}{R_7}v_8 + \frac{1}{R_6}v_4 &= 0;					  \\
 	v_2 - v_3 - V_b &= 0;																			  \\
   	\frac{1}{R_6}v_4 - \frac{1}{R_6}v_7 - I_d &= 0;													  \\
@@ -85,109 +85,131 @@ The set of equations that describe it are, using the Nodal Method:
 \end{cases}
 \end{equation}
 
+Where the $2^{nd}$, $3^{rd}$ and $7^{th}$ are the equations in the respective nodes; the $1^{st}$, $5^{th}$ and $6^{th}$ are the relations imposed by the voltages soureces in those nodes; the $4^{th}$ is the supernode that bypasses $V_s$; the $8^{th}$ to $10^{th}$ are the relations between the circuit and, in order, $V_b$, $I_d$ and $v_4$; the final two equations are the ones that describe $I_b$ and $V_d$, respectivly. 
+We note that 
+\begin{equation}
+	I_c = I_b + \frac{v_6-v_5}{R_5},
+\end{equation}
+\begin{equation}
+	R_{eq} = \frac{V_c}{I_c}, \text{ and}
+\end{equation}
+\begin{equation}
+	\tau = R_{eq}C.
+\end{equation}
 
 
-\subsection{Nodal Method}
+The solution to this linear system of equations is determined by Octave, plus the currents flowing in the circuit using Ohm's Law to the resistor's branches and Kirchhoff Current Law~(KCL) to the branches with voltage sources:
 
-Firstly, computing the values of current and voltage using the nodal method requires finding all the knots in the circuit, as it is presented in Figure \ref{fig:Circuit_Nodal}.
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [A or V]} \\ \hline
+    \input{../mat/PASSO2_tab}
+  \end{tabular}
+  \caption{Variables in the Mesh Method. A variable preceded by @ is of type {\em current} and expressed in Ampere; other variables are of type {\em voltage} and expressed in Volt.}
+  \label{tab:PASSO2}
+\end{table}
+
+
+\subsection{Step 3: Natural Solution for $t>0$}
+
+Using $R_{eq}$ and $v_6$ from the previous step we can compute the natural solution of $v_6(t)$:
+
+\begin{equation}
+	
+	v_6(t) =& v_6(+\infty) - (v_6(+\infty) - v_6(0))e^{-\frac[1}[\tau}t}		\\
+	v_6(t) =& v_6(0))e^{-\frac[1}[\tau}t}, \text{ dado que } (v_6(+\infty) = 0.
+	
+\end{equation}
+
+Using Octave to plot this equation gives us:
+
 \begin{figure}[h] \centering
-\includegraphics[width=0.5\linewidth]{CircuitNodal.pdf}
-\caption{Circuit analysed with nodal voltages.}
-\label{fig:Circuit_Nodal}
+\includegraphics[width=0.45\linewidth]{../mat/PASSO3.eps}
+\caption{Natural solution of $v_6(t)$.}
+\label{fig:TEO_NAT_SOL}
 \end{figure}
 
-Then, the Kirchhoff Current Law~(KCL) is used in the nodes not connected to voltage sources (Equations~\ref{eq:NM_Point2}~to~\ref{eq:NM_Point7}) and two additional equations relating the knots voltages with the voltage sources connected to them are presented (Equations~\ref{eq:NM_Va}~and~\ref{eq:NM_Vc}):
+\subsection{Step 4: Forced Solution for $t>0$}
+
+Since $V_s$ is a sinusoidal source in $t>0$, we can perform a complex analysis, replacing all the componets for their impedances. In this case, only the capacitor changes (since all resistors have the same impedance):
 
 \begin{equation}
-  \frac{v_3-v_2}{R_2} + \frac{v_2-v_5}{R_3} + \frac{v_1-v_2}{R_1} = 0;
-  \label{eq:NM_Point2}
-\end{equation}
-\begin{equation}
-  I_b + \frac{v_2-v_3}{R_2} = 0;	
-  \label{eq:NM_Point3}
-\end{equation}
-\begin{equation}
-  \frac{v_5-v_6}{R_5} - I_b + I_d = 0;
-  \label{eq:NM_Point6}
-\end{equation}
-\begin{equation}
-  \frac{v_4-v_7}{R_6} + \frac{v_8-v_7}{R_7} = 0;
-  \label{eq:NM_Point7}
+	
+	Z_c = \frac{j\omegaC}
+	
 \end{equation}
 
-\begin{equation}
-  v_1 - v_4 = V_a;
-  \label{eq:NM_Va}
-\end{equation}
-\begin{equation}
-  v_5 - v_8 = V_c.
-  \label{eq:NM_Vc}
-\end{equation}
-
-Since there are 8+4 variables ($v_1$~to~$v_8$, $V_b$, $V_c$, $I_b$, $I_c$), the system is defined by twelve independent equations. Two are provided in the circuit and are the same as in the Mesh Method, (\ref{eq:Vb_Ib})~and~(\ref{eq:Vc_Ic}).
-By observing the circuit,
-\begin{equation}
-  v_2 - v_5 = V_b.
-  \label{eq:NM_Vb}
-\end{equation}
-
-Using Ohm’s Law, the following relation is found:
-\begin{equation}
-  \frac{v_4-v_7}{R_6} = I_c.
-  \label{eq:NM_OhmIc}
-\end{equation}
-
-Because there needs to be a knot with a defined voltage, we chose $v_4$ to be connected to the ground:
-\begin{equation}
-  v_4 = 0.
-  \label{eq:NM_v4=0}
-\end{equation}
-
-For the last equation, the continuity of current in the circuit can be used to create a “super-knot”, bypassing the voltage sources $V_a$ and $V_c$, from which the equations are~(\ref{eq:NM_SPVa}) and~(\ref{eq:NM_SPVc}), respectively:
-
-\begin{equation}
-  \frac{v_5-v_4}{R_4} + \frac{v_2-v_1}{R_1} - \frac{v_4-v_7}{R_6} = 0;
-  \label{eq:NM_SPVa}
-\end{equation}
-\begin{equation}
-  \frac{v_7-v_8}{R_7} - Id + \frac{v_6-v_5}{R_5} + \frac{v_2-v_5}{R_3} + \frac{v_4-v_5}{R_4} = 0.
-  \label{eq:NM_SPVc}
-\end{equation}
-
-Given that only one more equation is needed, we chose to use the simpler one~(\ref{eq:NM_SPVa}).
-%	IMPORTANTE VER OS NÓS
-%	AS PRIMEIRAS 7 EQUAÇÕES SÃO DOS NÓS 1 A 7, EM QUE O PRIMEIRO NÓ COM UMA FONTE DE TENSÃO MOSTRA A RELAÇÃO ENTRE OS NÓS EXTREMOS, A SEGUNDA (DO OUTRO NÓ) FAZ A EQUAÇÃO DO SUPERNÓ
-%	AS EQUAÇÕES 8 E 9 SÃO AS RELAÇÕES NO CIRCUITO COM AS FONTES LINEARES
-%	A EQUAÇÃO 10 É O ZERO DOS NÓS
-%	AS EQUAÇÕES 11 E 12 SÃO AS RELAÇÕES QUE EXISTEM NAS FONTES LINEARES 
+Where $\omega$ is the frequency ($1k rads^{-1}$).
+Saying that $V_s = 1$ to calculate the phasors relative to $V_s$ and using the Nodal Method we arive to a set of equations:
 
 \begin{equation}
 \begin{cases}
-	v_1 - v_4 &= V_a;																				  \\
+	v_1 - v_4 &= 1;																				  	  \\
 	\frac{1}{R_1}v_1 - (\frac{1}{R_2}+\frac{1}{R_1}+\frac{1}{R_3})v_2 + (\frac{1}{R_2})v_3 + \frac{1}{R_3}v_5 &= 0; \\
   	\frac{1}{R_2}v_2 - \frac{1}{R_2}v_3+ I_b &= 0;													  \\
   	-\frac{1}{R_1}v_1 + \frac{1}{R_1}v_2 - (\frac{1}{R_4}+\frac{1}{R_6})v_4 + \frac{1}{R_4}v_5 + \frac{1}{R_6}v_7 &= 0;			  																	  \\
-	v_5 - v_8 - V_c &= 0;																			  \\
-  	\frac{1}{R_5}v_5 - \frac{1}{R_5}v_6 - I_b &= -I_d;												  \\
+	v_5 - v_8 - V_d &= 0;																			  \\
+  	\frac{1}{R_5}v_5 - (\frac{1}{R_5} + j\omegaC)v_6 + (j\omegaC)v_8- I_b &= 0;						  \\
   	-(\frac{1}{R_7}+\frac{1}{R_6})v_7 + \frac{1}{R_7}v_8 + \frac{1}{R_6}v_4 &= 0;					  \\
 	v_2 - v_3 - V_b &= 0;																			  \\
-  	\frac{1}{R_6}v_4 - \frac{1}{R_6}v_7 - I_c &= 0;													  \\
+  	\frac{1}{R_6}v_4 - \frac{1}{R_6}v_7 - I_d &= 0;													  \\
   	v_4 &= 0;																						  \\
   	-K_bV_b + I_b &= 0;																				  \\
-  	V_c - K_cI_c &= 0.
+  	V_d - K_cI_c &= 0.
 \end{cases}
+\label{eq:PASSO4}
 \end{equation}
+
+Where the $2^{nd}$, $3^{rd}$, $6^{th}$ and $7^{th}$ are the equations in the respective nodes; the $1^{st}$ and $5^{th}$ are the relations imposed by the voltages soureces in those nodes; the $4^{th}$ is the supernode that bypasses $V_s$; the $8^{th}$ to $10^{th}$ are the relations between the circuit and, in order, $V_b$, $I_d$ and $v_4$; the final two equations are the ones that describe $I_b$ and $V_d$, respectivly. 
 
 The solution to this linear system of equations is determined by Octave:
 
 \begin{table}[h]
   \centering
   \begin{tabular}{|l|r|}
-  \hline  
-    {\bf Name} & {\bf Value [A or V]} \\ \hline
-    \input{../mat/Nos_tab}
+    \hline    
+    {\bf Name} & {\bf Value} \\ \hline
+    \input{../mat/PASSO4_tab}
   \end{tabular}
-  \caption{Variables in the Nodal Method. A variable preceded by @ is of type {\em current} and expressed in Ampere; other variables are of type {\em voltage} and expressed in Volt.}
-  \label{tab:nos}
+  \caption{Variables in the Nodal Method. Variables are adimentional.}
+  \label{tab:PASSO4}
 \end{table}
+
+The forced solution of $v_6(t)$ is given by $v_6(t) = V_s(t)*Pv_6$.
+
+\subsection{Step 5: Total Solution for $t\in [-5,20]ms$}
+
+The total solution of $v_6$ will be the solution from step 1 for $t\in [-5,0[ms$ and the sum of the natural solution and forced solution for $t\in [0,20]ms$
+The plot given by Octave is:
+
+\begin{figure}[h] \centering
+\includegraphics[width=0.45\linewidth]{../mat/PASSO5.eps}
+\caption{Total solution of $v_6(t)$ and $V_s(t)$.}
+\label{fig:TEO_TOT_SOL}
+\end{figure}
+
+\subsection{Step 6: Frequency Response of $v_6$ and $V_c$}
+
+In this subsection is made an analysis of the frequency response of $v_6$ and $V_c$ in order to $V_s$. for that we need to solve the same system as in step 4 (equation \ref{eq:PASSO4}), with $\omega$ as a parameter. The magnitude (absolute value of the complex vectors) and phase (angle of the complex vectors is ploted using Octave:
+
+\begin{figure}[h] \centering
+\includegraphics[width=0.45\linewidth]{../mat/PASSO6-AMPLITUDE.eps}
+\caption{Magnitude responce of $V_s$, $v_6(t)$, $V_c(t)$ and $v_8$.}
+\label{fig:TEO_MAG}
+\end{figure}
+
+\begin{figure}[h] \centering
+\includegraphics[width=0.45\linewidth]{../mat/PASSO6-ANGULO.eps}
+\caption{Angle responce of $V_s$, $v_6(t)$, $V_c(t)$ and $v_8$.}
+\label{fig:TEO_ANG}
+\end{figure}
+
+The results of $V_s$ are to be expected, since $\frac{V_s}{V_s}=1$.
+The results of $V_c$ are also expected, since a capacitor is a low pass filter and this plots match to the ones of the classes.
+The results of $v_6$ are, at first glance, unnexpected, since we are used to suppose that $v_6 \to 0$; but in fact what happens is that $V_c \to 0 \Rightarrow v_6 - v_8 \to 0$. Because the phase response of $v_8$ is constant, $v_6 - v_8 \to 0 \Rightarrow v_6 \to v_8$.
+
+
+
 
