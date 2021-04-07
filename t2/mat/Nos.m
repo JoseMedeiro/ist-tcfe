@@ -227,6 +227,16 @@ Vd=x(10)
 Ib=x(11)
 Id=x(12)
 
+I1  =(v1-v2)/R1;
+I2  =(v2-v3)/R2;
+I3  =(v2-v5)/R3;
+I4  =(v4-v5)/R4;
+I5  =(v5-v6)/R5;
+I6  =Id;
+I7  =(v7-v8)/R7;
+I_S =-I1;
+I_D =Ic+I5;
+
 printf("PASSO2_TAB \n")
 
 printf("@$I_{D}$ = %e \n", I_D);
@@ -250,7 +260,7 @@ printf("$v_{8}$ = %e \n", v8);
 printf("$V_{c}$ = %e \n", Vc);
 printf("@$I_{c}$ = %e \n", Ic);
 
-printf("#$R_{eq}$ = %e \n", R_eq);
+printf("\\#$R_{eq}$ = %e \n", R_eq);
 printf("*$\\tau$ = %e \n", tau);
 
 printf("PASSO2_END \n")
@@ -366,7 +376,7 @@ w = logspace(-1, 6, 200);
 Vs_frec_response = w;
 Vc_frec_response = w;
 v6_frec_response = w;
-%Vc_frec_response_teste =w;
+Vc_frec_response_teste =w;
 %V2_frec_response=w;
 Vs_dummy = 1;
 
@@ -395,7 +405,7 @@ for c = 1:size(w,2)
   Vs_frec_response(c) = x(1)-x(4);
   v6_frec_response(c) = x(6);
   Vc_frec_response(c) = x(6)-x(8);
-  %Vc_frec_response_teste(c) = x(8);
+  Vc_frec_response_teste(c) = x(8);
   %V2_frec_response(c)=x(4);
   
 endfor  
@@ -412,9 +422,9 @@ plot(w_absissa,Vs_frec_response_amplitude,'r')
 hold on
 plot(w_absissa,v6_frec_response_amplitude,'b')
 plot(w_absissa,Vc_frec_response_amplitude,'g')
-%plot(w_absissa,20*log10(Vc_frec_response_teste),'k')
+plot(w_absissa,20*log10(Vc_frec_response_teste),'k--')
 %plot(w_absissa,20*log10(V2_frec_response),'k')
-h = {"Vs", "v6", "Vc"}
+h = {"Vs", "v6", "Vc", "v8"}
 
 xlabel ("log10(w), rad/s")
 ylabel ("|T|, dB")
@@ -426,7 +436,7 @@ hold off;
 Vs_frec_response_angulo = angle(Vs_frec_response)*180/pi;
 v6_frec_response_angulo = angle(v6_frec_response)*180/pi;
 Vc_frec_response_angulo = angle(Vc_frec_response)*180/pi;
-%Vc_frec_response_teste_ang = angle(Vc_frec_response_teste)*180/pi;
+Vc_frec_response_teste_ang = angle(Vc_frec_response_teste)*180/pi;
 %V2_frec_response_ang = angle(V2_frec_response)*180/pi;
 hf_PASSO6 = figure();
 
@@ -434,9 +444,9 @@ plot(w_absissa,Vs_frec_response_angulo,'r')
 hold on
 plot(w_absissa,v6_frec_response_angulo,'b')
 plot(w_absissa,Vc_frec_response_angulo,'g')
-%plot(w_absissa,Vc_frec_response_teste_ang,'d')
+plot(w_absissa,Vc_frec_response_teste_ang,'k--')
 %plot(w_absissa,V2_frec_response_ang,'k')
-h = {"Vs", "v6", "Vc"}
+h = {"Vs", "v6", "Vc", "v8"}
 
 
 xlabel ("log10(w), rad/s")

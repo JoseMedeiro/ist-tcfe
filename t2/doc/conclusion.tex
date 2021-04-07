@@ -2,5 +2,50 @@
 \label{sec:conclusion}
 
 To conclude, in this laboratory assigment the objective of analysing a circuit containing a sinusoidal voltage source and a capacitor has been achieved. 
-Static, time and frequency analyses have been performed both theoretically using the Octave maths tool and by circuit simulation using the Ngspice tool. 
-The results match considerably, as expected, since this is a relatively straightforward circuit containing only one capacitor apart from linear components, therefore the theoretical and simulation models shouldn't differ. 
+Static, time and frequency analyses have been performed both theoretically using the Octave maths tool and by circuit simulation using the Ngspice tool.
+
+\begin{table}[h]
+\centering
+\begin{minipage}[t]{0.33\linewidth}
+ 	 \begin{tabular}[t]{|l|r|}
+ 	   \hline    
+ 	   {\bf Name} & {\bf Value [A or V]} \\ \hline
+ 	   \input{../mat/PASSO1_tab}
+ 	 \end{tabular}
+ 	 \label{tab:PASSO1_CONCLUSAO}
+\end{minipage}
+\begin{minipage}[t]{0.33\linewidth}
+  		\begin{tabular}[t]{|l|r|}
+    	\hline    
+   		{\bf Name} & {\bf Value [A or V]} \\ \hline
+    	\input{../sim/PASSO1_tab}
+  		\end{tabular}
+  	\label{tab:SIM_PASSO1_CONCLUSAO}
+\end{minipage}
+  	\caption{Operating point for $t<0$. in Octave and NGSpice, respectivily A variable preceded by @ is of type {\em current} are expressed in Ampere; other variables are of type {\it voltage} and expressed in Volt. (As shown in Tables \ref{tab:TEO_PASSO1} and \ref{tab:SIM_PASSO1})}
+\end{table}
+
+\newpage
+
+\begin{table}[h]
+\centering
+\begin{minipage}[t]{0.33\linewidth}
+ 	 \begin{tabular}[t]{|l|r|}
+ 	   \hline    
+ 	   {\bf Name} & {\bf Value [A or V]} \\ \hline
+ 	   \input{../mat/PASSO2_tab}
+ 	 \end{tabular}
+ 	 \label{tab:PASSO2_CONCLUSAO}
+\end{minipage}
+\begin{minipage}[t]{0.33\linewidth}
+  		\begin{tabular}[t]{|l|r|}
+    	\hline    
+   		{\bf Name} & {\bf Value [A or V]} \\ \hline
+    	\input{../sim/PASSO2_tab}
+  		\end{tabular}
+  	\label{tab:SIM_PASSO2_CONCLUSAO}
+\end{minipage}
+  \caption{Variables in the Mesh Method. A variable preceded by @ is of type {\em current} and expressed in Ampere; variables preceded by * are expressed in Farad Ohm;other variables are of type {\em voltage} and expressed in Volt. (As shown in Tables \ref{tab:TEO_PASSO2} and \ref{tab:SIM_PASSO2})}
+\end{table}
+
+The results match considerably, as expected, since this is a relatively straightforward circuit containing only one capacitor apart from linear components, therefore the theoretical and simulation models shouldn't differ. Values of the order of $10^{-14}$ and lower should be taken as 0.

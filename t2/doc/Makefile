@@ -8,8 +8,9 @@ LODFIGS = $(patsubst %.odg,%.pdf,$(wildcard *.odg))
 
 all: $(FILE).pdf
 	evince $< &
-
+	
 $(FILE).pdf: $(wildcard *.tex) $(LODFIGS)
+	cp -f ../mat/*.eps .
 	pdflatex  $(FILE).tex
 	pdflatex  $(FILE).tex
 	pdflatex  $(FILE).tex
@@ -21,8 +22,8 @@ $(FILE).pdf: $(wildcard *.tex) $(LODFIGS)
 
 clean:
 	@rm -rf *.aux *.bbl *.blg *.glg *.glo *.gls *.ilg *.ist *.lof
-	@rm -rf *.log *.lot *.nlo *.nls *.out *.toc *~ *.*% ./*.pdf ./*.ps
-
-.PHONY: all clean
+	@rm -rf *.log *.lot *.nlo *.nls *.out *.toc *~ *.*% ./*.pdf ./*.ps *.eps
+	
+.PHONY: all clean clean_math
 
 

@@ -7,7 +7,7 @@ In this section, the circuit shown in Figure~\ref{fig:Circuit_Base} is analyzed 
 
 When $t<0$ we consider that the circuit is in equilibrium and, because of that, no current passes through the capacitor, since the relation between current and voltage in this component is:
 \begin{equation}
-  \frec{dV}{dt}=\frac{I}{C} \rightarrow I = 0.
+  \frac{dV}{dt}=\frac{I}{C} \Rightarrow I = 0.
   \label{eq:Cap}
 \end{equation}
 
@@ -48,7 +48,7 @@ The solution to this linear system of equations is determined by Octave, plus th
     \input{../mat/PASSO1_tab}
   \end{tabular}
   \caption{Variables in the Mesh Method. A variable preceded by @ is of type {\em current} and expressed in Ampere; other variables are of type {\em voltage} and expressed in Volt.}
-  \label{tab:PASSO1}
+  \label{tab:TEO_PASSO1}
 \end{table}
 
 All the currents were measured from the lower numbered node to the higher one; so, the direction of the current that passes through $R_6$ is, if the result is positive, from $v_4$ to $v_7$.
@@ -75,7 +75,7 @@ The set of equations that describe it are, using the Nodal Method:
   	\frac{1}{R_2}v_2 - \frac{1}{R_2}v_3+ I_b &= 0;													  \\
   	-\frac{1}{R_1}v_1 + \frac{1}{R_1}v_2 - (\frac{1}{R_4}+\frac{1}{R_6})v_4 + \frac{1}{R_4}v_5 + \frac{1}{R_6}v_7 &= 0;			  																	  \\
 	v_5 - v_8 - V_d &= 0;																			  \\
-  	v_6 - v_8 - V_c &= 0;											  	  							  \\
+  	v_6 - v_8  &= V_c;											  	  							  \\
   	-(\frac{1}{R_7}+\frac{1}{R_6})v_7 + \frac{1}{R_7}v_8 + \frac{1}{R_6}v_4 &= 0;					  \\
 	v_2 - v_3 - V_b &= 0;																			  \\
   	\frac{1}{R_6}v_4 - \frac{1}{R_6}v_7 - I_d &= 0;													  \\
@@ -104,11 +104,11 @@ The solution to this linear system of equations is determined by Octave, plus th
   \centering
   \begin{tabular}{|l|r|}
     \hline    
-    {\bf Name} & {\bf Value [A or V]} \\ \hline
+    {\bf Name} & {\bf Value [A, V or F$\Omega$]} \\ \hline
     \input{../mat/PASSO2_tab}
   \end{tabular}
-  \caption{Variables in the Mesh Method. A variable preceded by @ is of type {\em current} and expressed in Ampere; other variables are of type {\em voltage} and expressed in Volt.}
-  \label{tab:PASSO2}
+  \caption{Variables in the Mesh Method. A variable preceded by @ is of type {\em current} and expressed in Ampere; variables preceded by * are expressed in Farad Ohm;other variables are of type {\em voltage} and expressed in Volt.}
+  \label{tab:TEO_PASSO2}
 \end{table}
 
 
@@ -117,16 +117,16 @@ The solution to this linear system of equations is determined by Octave, plus th
 Using $R_{eq}$ and $v_6$ from the previous step we can compute the natural solution of $v_6(t)$:
 
 \begin{equation}
-	
-	v_6(t) =& v_6(+\infty) - (v_6(+\infty) - v_6(0))e^{-\frac[1}[\tau}t}		\\
-	v_6(t) =& v_6(0))e^{-\frac[1}[\tau}t}, \text{ dado que } (v_6(+\infty) = 0.
-	
+	\begin{split}
+	v_6(t) 	&= v_6(+\infty) - (v_6(+\infty) - v_6(0))e^{-\frac{1}{\tau}t}		\\				
+			&= v_6(0)e^{-\frac{1}{\tau}t}, \text{ dado que } v_6(+\infty) = 0.
+	\end{split}
 \end{equation}
 
 Using Octave to plot this equation gives us:
 
 \begin{figure}[h] \centering
-\includegraphics[width=0.45\linewidth]{../mat/PASSO3.eps}
+\includegraphics[width=0.45\linewidth]{PASSO3.eps}
 \caption{Natural solution of $v_6(t)$.}
 \label{fig:TEO_NAT_SOL}
 \end{figure}
@@ -136,12 +136,10 @@ Using Octave to plot this equation gives us:
 Since $V_s$ is a sinusoidal source in $t>0$, we can perform a complex analysis, replacing all the componets for their impedances. In this case, only the capacitor changes (since all resistors have the same impedance):
 
 \begin{equation}
-	
-	Z_c = \frac{j\omegaC}
-	
+	Z_c = \frac{1}{j \omega C},
 \end{equation}
 
-Where $\omega$ is the frequency ($1k rads^{-1}$).
+where $\omega$ is the frequency ($1k \text{ }rads^{-1}$).
 Saying that $V_s = 1$ to calculate the phasors relative to $V_s$ and using the Nodal Method we arive to a set of equations:
 
 \begin{equation}
@@ -151,7 +149,7 @@ Saying that $V_s = 1$ to calculate the phasors relative to $V_s$ and using the N
   	\frac{1}{R_2}v_2 - \frac{1}{R_2}v_3+ I_b &= 0;													  \\
   	-\frac{1}{R_1}v_1 + \frac{1}{R_1}v_2 - (\frac{1}{R_4}+\frac{1}{R_6})v_4 + \frac{1}{R_4}v_5 + \frac{1}{R_6}v_7 &= 0;			  																	  \\
 	v_5 - v_8 - V_d &= 0;																			  \\
-  	\frac{1}{R_5}v_5 - (\frac{1}{R_5} + j\omegaC)v_6 + (j\omegaC)v_8- I_b &= 0;						  \\
+  	\frac{1}{R_5}v_5 - (\frac{1}{R_5} + j \omega C)v_6 + (j \omega C)v_8- I_b &= 0;						  \\
   	-(\frac{1}{R_7}+\frac{1}{R_6})v_7 + \frac{1}{R_7}v_8 + \frac{1}{R_6}v_4 &= 0;					  \\
 	v_2 - v_3 - V_b &= 0;																			  \\
   	\frac{1}{R_6}v_4 - \frac{1}{R_6}v_7 - I_d &= 0;													  \\
@@ -174,41 +172,42 @@ The solution to this linear system of equations is determined by Octave:
     \input{../mat/PASSO4_tab}
   \end{tabular}
   \caption{Variables in the Nodal Method. Variables are adimentional.}
-  \label{tab:PASSO4}
+  \label{tab:TEO_PASSO4}
 \end{table}
 
-The forced solution of $v_6(t)$ is given by $v_6(t) = V_s(t)*Pv_6$.
-
+The forced solution of $v_6(t)$ is given by $v_6(t) = V_s(t)Pv_6$.
+\newpage
 \subsection{Step 5: Total Solution for $t\in [-5,20]ms$}
 
 The total solution of $v_6$ will be the solution from step 1 for $t\in [-5,0[ms$ and the sum of the natural solution and forced solution for $t\in [0,20]ms$
 The plot given by Octave is:
 
 \begin{figure}[h] \centering
-\includegraphics[width=0.45\linewidth]{../mat/PASSO5.eps}
+\includegraphics[width=0.50\linewidth]{PASSO5.eps}
 \caption{Total solution of $v_6(t)$ and $V_s(t)$.}
 \label{fig:TEO_TOT_SOL}
 \end{figure}
 
+\newpage
 \subsection{Step 6: Frequency Response of $v_6$ and $V_c$}
 
 In this subsection is made an analysis of the frequency response of $v_6$ and $V_c$ in order to $V_s$. for that we need to solve the same system as in step 4 (equation \ref{eq:PASSO4}), with $\omega$ as a parameter. The magnitude (absolute value of the complex vectors) and phase (angle of the complex vectors is ploted using Octave:
 
 \begin{figure}[h] \centering
-\includegraphics[width=0.45\linewidth]{../mat/PASSO6-AMPLITUDE.eps}
-\caption{Magnitude responce of $V_s$, $v_6(t)$, $V_c(t)$ and $v_8$.}
+\includegraphics[width=0.50\linewidth]{PASSO6-AMPLITUDE.eps}
+\caption{Magnitude response of $V_s$, $v_6$, $V_c$ and $v_8$.}
 \label{fig:TEO_MAG}
 \end{figure}
 
 \begin{figure}[h] \centering
-\includegraphics[width=0.45\linewidth]{../mat/PASSO6-ANGULO.eps}
-\caption{Angle responce of $V_s$, $v_6(t)$, $V_c(t)$ and $v_8$.}
+\includegraphics[width=0.50\linewidth]{PASSO6-ANGULO.eps}
+\caption{Angle response of $V_s$, $v_6$, $V_c$ and $v_8$.}
 \label{fig:TEO_ANG}
 \end{figure}
 
 The results of $V_s$ are to be expected, since $\frac{V_s}{V_s}=1$.
 The results of $V_c$ are also expected, since a capacitor is a low pass filter and this plots match to the ones of the classes.
-The results of $v_6$ are, at first glance, unnexpected, since we are used to suppose that $v_6 \to 0$; but in fact what happens is that $V_c \to 0 \Rightarrow v_6 - v_8 \to 0$. Because the phase response of $v_8$ is constant, $v_6 - v_8 \to 0 \Rightarrow v_6 \to v_8$.
+The results of $v_6$ are, at first glance, unnexpected, since we are used to suppose that $v_6 \to 0$; but in fact what happens is that $V_c \to 0 \Rightarrow v_6 - v_8 \to 0$. Because the phase response of $v_8$ is constant, $v_6 - v_8 \to 0 \Rightarrow v_6 \to v_8$, so the results of $v_6$ are, indeed, expected.
 
 
 

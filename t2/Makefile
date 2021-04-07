@@ -10,6 +10,11 @@ all:
 	make -C sim
 	make -C doc
 	cp doc/report.pdf .
+math:
+	make -C mat
+	make -C sim
+	make -C doc
+	cp doc/report.pdf .
 	
 clean:
 	make -C Enunciado clean
@@ -20,8 +25,8 @@ clean:
 clean_math:
 	make -C mat clean_math
 	make -C sim clean_math
-	make -C doc clean_math
+	make -C doc clean
 	
-.PHONY: all clean clean_math
+.PHONY: all math clean clean_math
 
 
