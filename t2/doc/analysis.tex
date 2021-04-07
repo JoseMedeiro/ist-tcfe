@@ -1,7 +1,7 @@
 \section{Theoretical Analysis}
 \label{sec:analysis}
 
-In this section, the circuit shown in Figure~\ref{fig:Circuit_Base} is analyzed theoretically with the Nodal Method and General Solution Method in order to caracterize it in the interval $\left[-5,20\right[$.
+In this section, the circuit shown in Figure~\ref{fig:Circuit_Base} is analyzed theoretically with the Nodal Method and General Solution Method in order to caracterize it in the interval $\left[-5,20\right[$~ms.
 
 \subsection{Step 1: Solution for $t<0$}
 
@@ -13,7 +13,7 @@ When $t<0$ we consider that the circuit is in equilibrium and, because of that, 
 
 Hence, we can simplify the circuit:
 \begin{figure}[h] \centering
-\includegraphics[height=8cm]{Circuit2.pdf}
+\includegraphics[height=8cm]{Circuit3.pdf}
 \caption{Simplified circuit for Step 1.}
 \label{fig:Circuit_Passo1}
 \end{figure}
@@ -37,7 +37,7 @@ Applying the Nodal Method to this circuit leads to the following equations:
 \end{cases}
 \end{equation}
 
-Where the $2^{nd}$, $3^{rd}$, $6^{th}$ and $7^{th}$ are the equations in the respective nodes; the $1^{st}$ and $5^{th}$ are the relations imposed by the voltages soureces in those nodes; the $4^{th}$ is the supernode that bypasses $V_s$; the $8^{th}$ to $10^{th}$ are the relations between the circuit and, in order, $V_b$, $I_d$ and $v_4$; the final two equations are the ones that describe $I_b$ and $V_d$, respectivly. 
+Where the $2^{nd}$, $3^{rd}$, $6^{th}$ and $7^{th}$ are the equations in the respective nodes; the $1^{st}$ and $5^{th}$ are the relations imposed by the voltages soureces in those nodes; the $4^{th}$ is the supernode that bypasses $V_s$; the $8^{th}$ to $10^{th}$ are the relations between the circuit and, in order, $V_b$, $I_d$ and $v_4$; the final two equations are the ones that describe $I_b$ and $V_d$, respectivly. \par
 The solution to this linear system of equations is determined by Octave, plus the currents flowing in the circuit using Ohm's Law to the resistor's branches and Kirchhoff Current Law~(KCL) to the branches with voltage sources:
 
 \begin{table}[h]
@@ -61,7 +61,7 @@ Since the solution to this circuit will also be divided in natural and forced, w
 To evaluate the circuit at $t=0$, we must have in mind that $V_c$ is continuos, so $V_c(0)=V_c(0^-)$. Another point to take into account is that, for the natural solution, we can ignore the sinusoidal part of $V_s$, which leaves us with $V_s=0$. In this conditions, we can say that the circuit~\ref{fig:Circuit_Base} is identical to this one:
 
 \begin{figure}[h] \centering
-\includegraphics[height=8cm]{Circuit3.pdf}
+\includegraphics[height=8cm]{Circuit2.pdf}
 \caption{Equivalent circuit when $t=0$.}
 \label{fig:Circuit_Passo2}
 \end{figure}
@@ -107,7 +107,7 @@ The solution to this linear system of equations is determined by Octave, plus th
     {\bf Name} & {\bf Value [A, V or F$\Omega$]} \\ \hline
     \input{../mat/PASSO2_tab}
   \end{tabular}
-  \caption{Variables in the Mesh Method. A variable preceded by @ is of type {\em current} and expressed in Ampere; variables preceded by * are expressed in Farad Ohm;other variables are of type {\em voltage} and expressed in Volt.}
+  \caption{Variables in the Mesh Method. A variable preceded by @ is of type {\em current} and expressed in Ampere; variables preceded by \# is of type {\em resistance} and expressed in Ohm; variables preceded by * are expressed in Farad Ohm;other variables are of type {\em voltage} and expressed in Volt.}
   \label{tab:TEO_PASSO2}
 \end{table}
 
@@ -171,15 +171,15 @@ The solution to this linear system of equations is determined by Octave:
     {\bf Name} & {\bf Value} \\ \hline
     \input{../mat/PASSO4_tab}
   \end{tabular}
-  \caption{Variables in the Nodal Method. Variables are adimentional.}
+  \caption{Variables in the Complex Nodal Method. Variables are adimentional.}
   \label{tab:TEO_PASSO4}
 \end{table}
 
 The forced solution of $v_6(t)$ is given by $v_6(t) = V_s(t)Pv_6$.
 \newpage
-\subsection{Step 5: Total Solution for $t\in [-5,20]ms$}
+\subsection{Step 5: Total Solution for $t\in [-5,20]$ ms}
 
-The total solution of $v_6$ will be the solution from step 1 for $t\in [-5,0[ms$ and the sum of the natural solution and forced solution for $t\in [0,20]ms$
+The total solution of $v_6$ will be the solution from step 1 for $t\in [-5,0[$ ms and the sum of the natural solution and forced solution for $t\in [0,20]$ ms.
 The plot given by Octave is:
 
 \begin{figure}[h] \centering
@@ -191,7 +191,7 @@ The plot given by Octave is:
 \newpage
 \subsection{Step 6: Frequency Response of $v_6$ and $V_c$}
 
-In this subsection is made an analysis of the frequency response of $v_6$ and $V_c$ in order to $V_s$. for that we need to solve the same system as in step 4 (equation \ref{eq:PASSO4}), with $\omega$ as a parameter. The magnitude (absolute value of the complex vectors) and phase (angle of the complex vectors is ploted using Octave:
+In this subsection is made an analysis of the frequency response of $v_6$ and $V_c$ in order to $V_s$. for that we need to solve the same system as in step 4 (equation \ref{eq:PASSO4}), with $\omega$ as a parameter. The magnitude (absolute value of the complex vectors) and phase (angle of the complex vectors) is ploted using Octave:
 
 \begin{figure}[h] \centering
 \includegraphics[width=0.60\linewidth]{PASSO6-AMPLITUDE.eps}
