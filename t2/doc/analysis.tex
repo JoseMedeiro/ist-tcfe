@@ -13,8 +13,8 @@ When $t<0$ we consider that the circuit is in equilibrium and, because of that, 
 
 Hence, we can simplify the circuit:
 \begin{figure}[h] \centering
-\includegraphics[width=0.45\linewidth]{CircuitMesh.pdf}
-\caption{Circuit analysed with mesh currents.}
+\includegraphics[height=8cm]{Circuit2.pdf}
+\caption{Simplified circuit for Step 1.}
 \label{fig:Circuit_Passo1}
 \end{figure}
 
@@ -61,8 +61,8 @@ Since the solution to this circuit will also be divided in natural and forced, w
 To evaluate the circuit at $t=0$, we must have in mind that $V_c$ is continuos, so $V_c(0)=V_c(0^-)$. Another point to take into account is that, for the natural solution, we can ignore the sinusoidal part of $V_s$, which leaves us with $V_s=0$. In this conditions, we can say that the circuit~\ref{fig:Circuit_Base} is identical to this one:
 
 \begin{figure}[h] \centering
-\includegraphics[width=0.45\linewidth]{CircuitMesh.pdf}
-\caption{Circuit analysed with mesh currents.}
+\includegraphics[height=8cm]{Circuit3.pdf}
+\caption{Equivalent circuit when $t=0$.}
 \label{fig:Circuit_Passo2}
 \end{figure}
 
@@ -194,13 +194,13 @@ The plot given by Octave is:
 In this subsection is made an analysis of the frequency response of $v_6$ and $V_c$ in order to $V_s$. for that we need to solve the same system as in step 4 (equation \ref{eq:PASSO4}), with $\omega$ as a parameter. The magnitude (absolute value of the complex vectors) and phase (angle of the complex vectors is ploted using Octave:
 
 \begin{figure}[h] \centering
-\includegraphics[width=0.50\linewidth]{PASSO6-AMPLITUDE.eps}
+\includegraphics[width=0.60\linewidth]{PASSO6-AMPLITUDE.eps}
 \caption{Magnitude response of $V_s$, $v_6$, $V_c$ and $v_8$.}
 \label{fig:TEO_MAG}
 \end{figure}
 
 \begin{figure}[h] \centering
-\includegraphics[width=0.50\linewidth]{PASSO6-ANGULO.eps}
+\includegraphics[width=0.60\linewidth]{PASSO6-ANGULO.eps}
 \caption{Angle response of $V_s$, $v_6$, $V_c$ and $v_8$.}
 \label{fig:TEO_ANG}
 \end{figure}

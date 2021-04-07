@@ -149,13 +149,13 @@ I5  =(v5-v6)/R5;
 I6  =Id;
 I7  =(v7-v8)/R7;
 I_S =-I1;
-I_D =I7+Ic;
+I_D =-(I7+Ic);
 
 %	Impressão da Tabela
 printf("PASSO1_TAB \n")
 
 printf("@$I_{c}$ = %e \n", Ic);
-printf("@$I_{D}$ = %e \n", I_D);
+printf("@$I_{b}$ = %e \n", Ib);
 printf("@$I_{1}$ = %e \n", I1);
 printf("@$I_{2}$ = %e \n", I2);
 printf("@$I_{3}$ = %e \n", I3);
@@ -179,6 +179,7 @@ printf("$V_{d}$ = %e \n", Vd);
 printf("@$I_{b}$ = %e \n", Ib);
 printf("@$I_{d}$ = %e \n", Id);
 
+printf("@$I_{D}$ = %e \n", Ic);
 printf("$V_{c}$ = %e \n", Vc);
 
 printf("PASSO1_END \n")
@@ -235,11 +236,11 @@ I5  =(v5-v6)/R5;
 I6  =Id;
 I7  =(v7-v8)/R7;
 I_S =-I1;
-I_D =Ic+I5;
+I_D =-(Ic+I7);
 
 printf("PASSO2_TAB \n")
 
-printf("@$I_{D}$ = %e \n", I_D);
+printf("@$I_{b}$ = %e \n", Ib);
 printf("@$I_{1}$ = %e \n", I1);
 printf("@$I_{2}$ = %e \n", I2);
 printf("@$I_{3}$ = %e \n", I3);
