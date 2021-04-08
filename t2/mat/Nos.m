@@ -330,6 +330,8 @@ printf("$Pv_{5}$ = %e %e j \n", real(x(5)), imag(x(5)));
 printf("$Pv_{6}$ = %e %e j \n", real(x(6)), imag(x(6)));
 printf("$Pv_{7}$ = %e %e j \n", real(x(7)), imag(x(7)));
 printf("$Pv_{8}$ = %e %e j \n", real(x(8)), imag(x(8)));
+printf("$ \\left | Pv_{6} \\right | $ = %e \n", abs(x(6)));
+printf("$ \\theta( Pv_{6} ) $ = %e \n", angle(x(6)));
 
 printf("PASSO4_END \n")
 
