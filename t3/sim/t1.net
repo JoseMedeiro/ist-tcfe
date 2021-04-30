@@ -1,0 +1,62 @@
+*
+* NGSPICE simulation script
+* T1
+*
+
+* forces current values to be saved
+.options savecurrents
+
+.include EnvelopeTest.cir
+*.include top4_t2.cir
+
+.control
+
+*makes plots in color
+set hcopypscolor=0
+set color0=white
+set color1=black
+set color2=red
+set color3=blue
+set color4=violet
+set color5=rgb:3/8/0
+set color6=rgb:4/0/0
+
+op
+
+echo "********************************************"
+echo  "Transient analysis"
+echo "********************************************"
+op
+
+print v(3)
+print i(Vs)
+
+
+tran 1e-5 200e-3 10e-3
+
+hardcopy trans3.ps v(3)
+*hardcopy trans4.ps v(3)-12
+echo diode_FIG
+
+print vecmax(v(3))
+print vecmax(v(3))-vecmin(v(3))
+print mean(v(3))
+print mean(v(3))-12
+print vecmin(v(3))
+echo "Riple merit"
+print 1/(vecmax(v(3))-vecmin(v(3)))
+echo "Mean merit"
+print 1/(mean(v(3))-12)
+
+echo "Total Quality"
+print 1/(abs(mean(v(3))-12) + vecmax(v(3))-vecmin(v(3)) + 1u)
+echo " "
+echo "Total Merit"
+print 1/(abs(mean(v(3))-12) + vecmax(v(3))-vecmin(v(3)) + 1u)/(10+2*7.2+20*0.1)
+
+
+*quit
+*.endc
+
+*.end
+
