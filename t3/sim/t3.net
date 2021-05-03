@@ -1,12 +1,9 @@
 *
 * NGSPICE simulation script
-* T1
+* T3
 *
 
-* forces current values to be saved
-.options savecurrents
-
-.include Envelope.cir
+.include Optimization_150k_150u.cir
 
 .control
 
@@ -24,17 +21,30 @@ set color6=rgb:4/0/0
 echo "********************************************"
 echo  "Transient analysis"
 echo "********************************************"
-op
 
 tran 1e-5 200e-3 10e-3
 
-hardcopy trans3.ps v(IN) v(VIN)
+hardcopy trans4.ps v(IN) v(3)
+echo group_FIG
+
+hardcopy trans41.ps v(IN)
+echo envelope_FIG
+
+hardcopy trans42.ps v(3)
 echo diode_FIG
 
+hardcopy trans5.ps v(3)-12
+echo out_FIG
+
+echo  n = 130.8317/230
+print mean(v(3))-12
+print vecmax(v(3))-vecmin(v(3))
+
+print 1/(abs(mean(v(3))-12) + vecmax(v(3))-vecmin(v(3)) + 1u)/(150+150+(18 + 4)*.1)
 
 
-*quit
-*.endc
+quit
+.endc
 
-*.end
+.end
 

@@ -41,6 +41,17 @@ for c = 2:size(t,2)
   
 endfor
 
+%Gráficos
+%hf_PASSO3 = figure ();
+%hold on
+%plot(t*1e3,V2_t)
+%xlabel ("t, ms");
+%ylabel ("Voltage, V");
+%legend("vd");
+%print (hf_PASSO3, "PASSO3.eps", "-depsc");
+%hold off;
+
+
 endfunction
 
 function state  = find_off  (Vin_2, Vin_1, deltat, R, C)

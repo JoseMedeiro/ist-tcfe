@@ -1,15 +1,22 @@
 %%  Função do Estabilizador
-function Resultado = FullStabilizer(RESOLUCAO, R1, R2, C1, Vin, n, m)
+
+RESOLUCAO = 3000;
+R1        = 63.5e3;
+R2        = 63.5e3;
+C1        = 125e-6;
+Vin       = 130.8317;
+n         = 20;
+m         = 0;
 
 Resultado = 1:2;
 t     = linspace(0,200e-3,RESOLUCAO);
 vin_t = Vin*abs(real(e.^(j*50*2*pi*t)));
 for c=1:RESOLUCAO
   
-  if (vin_t(c) < 0.65*2)
+  if (vin_t(c) < 0.75*2)
     vin_t(c) = 0;
    else
-    vin_t(c) = vin_t(c) - 0.65*2;
+    vin_t(c) = vin_t(c) - 0.75*2;
   endif
  
 endfor
@@ -24,16 +31,43 @@ ve_t    = Envelope(t, vin_t, R1, C1);
 vout_t  = Rectifier(t, ve_t, R2, n, m);
 
 %Gráficos
-
-%hold on
-%plot(t*1e3,vin_t)
-%plot(t*1e3,ve_t)
-%plot(t*1e3,vout_t)
-%xlabel ("t, ms");
-%ylabel ("Voltage, V");
-%legend("vd");
-%print (hf_PASSO3, "PASSO3.eps", "-depsc");
+hf_PASSO4 = figure();
+hold on
+plot(t*1e3,ve_t)
+plot(t*1e3,vout_t)
+xlabel ("t, ms");
+ylabel ("Voltage, V");
+legend("v_{envelope}", "v_{out}");
+print (hf_PASSO4, "PASSO4.eps", "-depsc");
 hold off;
+
+hf_PASSO41 = figure();
+hold on
+plot(t*1e3,ve_t)
+xlabel ("t, ms");
+ylabel ("Voltage, V");
+legend("v_{envelope}");
+print (hf_PASSO41, "PASSO41.eps", "-depsc");
+hold off;
+
+hf_PASSO42 = figure();
+hold on
+plot(t*1e3,vout_t)
+xlabel ("t, ms");
+ylabel ("Voltage, V");
+legend("v_{out}");
+print (hf_PASSO42, "PASSO42.eps", "-depsc");
+hold off;
+
+hf_PASSO5 = figure();
+hold on
+plot(t*1e3,vout_t - 12)
+xlabel ("t, ms");
+ylabel ("Voltage, V");
+legend("v_{out} - 12V");
+print (hf_PASSO5, "PASSO5.eps", "-depsc");
+hold off;
+
 
 Media     = mean(real(vout_t));
 Altitude  = max(real(vout_t)) - min(real(vout_t));
@@ -41,9 +75,4 @@ Distancia = Media-12;
 TotalCost = (n*0.1 + R2/1e3);
 merit = 1/((Altitude + abs(Distancia) + 1e-6)*TotalCost);
 
-
-Resultado(1) = Media-12;
-Resultado(2) = Altitude;
-
-endfunction
 

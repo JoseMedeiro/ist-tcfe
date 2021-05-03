@@ -16,7 +16,11 @@ rd = VT*n/( Is*(exp(vd/(VT*n))));
 
 Rdiodo = rd*(m/n);
 Rtotal = R2 + Rdiodo;
+
+
+if m!=0
 cost = 0.1/((Rdiodo/m)/1e3);
+endif
 
 Racio = (rd*((n-m)/n))/(Rtotal);
 I_t = (ve_t-Ve)/(R2+rd);

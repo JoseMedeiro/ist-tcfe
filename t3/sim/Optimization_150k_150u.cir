@@ -3,23 +3,23 @@
 
 V0 OUT 0 0
 
-* Independent Power Sources
-*VS 0 1 10
 
-VS  VIN 	VOUT 	sin 0 100 50
+* Independent Power Sources
+VS  VIN 	VOUT sin 0 130.8317 50
+
 
 DA1 VIN  	IN	my-diode
 DA2 OUT  	VOUT	my-diode
 DA3 VOUT 	IN	my-diode
 DA4 OUT  	VIN	my-diode
 
-C1 IN 		OUT 	1u
-R2 IN 		OUT 	7.1643652k
+* Envelope
+C1 IN 		OUT 	150u
+R1 IN 		OUT 	75k
 
-* Linear dependent Sources
 
 * Diode
-R3 IN 3 	7.1643652k
+R2 	IN 	3 	75k
 
 DR1 3 4 my-diode
 DR2 4 5 my-diode
@@ -39,21 +39,13 @@ DR13 15 16 my-diode
 DR14 16 17 my-diode
 DR15 17 18 my-diode
 DR16 18 19 my-diode
+
 DR17 19 20 my-diode
-DR18 20 21 my-diode
+DR18 20 OUT my-diode
 
-DR19 21 22 my-diode
-DR20 22 23 my-diode
-DR21 23 24 my-diode
-DR22 24 25 my-diode
-DR23 25 26 my-diode
-DR24 27 OUT my-diode
-
-Vteste 20 OUT 0
 
 * Test
 * V3 4 0 0
 
 .MODEL my-diode D
 
-.endc
