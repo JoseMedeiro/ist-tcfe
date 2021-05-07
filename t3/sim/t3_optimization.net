@@ -3,7 +3,8 @@
 * T3
 *
 
-.include Optimization_150k_150u.cir
+*.include Optimization_Progress.cir
+.include EnvelopeTest.cir
 
 .control
 
@@ -24,31 +25,11 @@ echo "********************************************"
 
 tran 1e-5 200e-3 10e-3
 
-hardcopy trans4.ps v(IN) v(3)
-echo trans4_FIG
-
 hardcopy trans41.ps v(IN)
-echo trans41_FIG
-
-hardcopy trans42.ps v(3)
-echo trans42_FIG
-
-hardcopy trans5.ps v(3)-12
-echo trans5_FIG
-
-echo "SIM_TAB"
-echo  n = 0.56882248
-echo  cost = 302.2
-print mean(v(3))-12
-print vecmax(v(3))-vecmin(v(3))
-
-print 1/(abs(mean(v(3))-12) + vecmax(v(3))-vecmin(v(3)) + 1u)/(150+150+(18 + 4)*.1)
-
-echo "SIM_END"
-
+echo envelope_FIG
 
 quit
-.endc
 
+.endc
 .end
 

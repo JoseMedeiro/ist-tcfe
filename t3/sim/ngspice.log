@@ -1,0 +1,62 @@
+
+Circuit: *
+
+********************************************
+Transient analysis
+********************************************
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Warning: vs: no DC value, transient time 0 value used
+
+Initial Transient Solution
+--------------------------
+
+Node                                   Voltage
+----                                   -------
+out                                          0
+vin                               -3.80071e-19
+vout                              -3.80071e-19
+in                                -8.76998e-26
+3                                 -9.27537e-26
+4                                  5.42041e-20
+5                                  2.78095e-19
+6                                  3.48002e-20
+7                                 -1.53742e-19
+8                                 -4.63604e-20
+9                                 -3.43286e-19
+10                                -1.97457e-19
+11                                -4.35545e-19
+12                                -5.67305e-19
+13                                -5.04504e-19
+14                                -1.55506e-19
+15                                  1.1793e-19
+16                                 3.97921e-20
+17                                 1.45135e-19
+18                                -2.27796e-19
+19                                 -1.9666e-19
+20                                -9.83301e-20
+vs#branch                                    0
+v0#branch                         -3.50325e-46
+
+
+No. of Data Rows : 19008
+
+The file "trans4.ps" may be printed on a postscript printer.
+trans4_FIG
+
+The file "trans41.ps" may be printed on a postscript printer.
+trans41_FIG
+
+The file "trans42.ps" may be printed on a postscript printer.
+trans42_FIG
+
+The file "trans5.ps" may be printed on a postscript printer.
+trans5_FIG
+SIM_TAB
+n = 0.56882248
+cost = 302.2
+mean(v(3))-12 = 5.094465e-07
+vecmax(v(3))-vecmin(v(3)) = 8.328428e-04
+1 / (abs(mean(v(3))-12) + vecmax(v(3))-vecmin(v(3)) + 1u) / (150+150+(18 + 4)*.1) = 3.966031e+00
+SIM_END
+ngspice-31 done
