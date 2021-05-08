@@ -1,51 +1,91 @@
 \section{Conclusion}
 \label{sec:conclusion}
 
-To conclude, in this laboratory assigment the objective of analysing a circuit containing a sinusoidal voltage source and a capacitor has been achieved. 
-Static, time and frequency analyses have been performed both theoretically using the Octave maths tool and by circuit simulation using the Ngspice tool.
+The objective of the laboratory is to transform an input AC voltage of 230V in Hz to an output of 12V, while minimizing the ripple, deviation of said 12V and cost. As shown below, the simulation results obtained have non trivial diferences to presented results already expected by the theoretical analysis achieved by Octave and Ngspice simulator. In fact, the relative error between the distances is of the magnitude of $10^5$.
+
+The differences in theoretical analysis is the result of the diode model being different from the one used in the simulation model. Theoretical analysis uses a more simplified diode model than the one used in the simulation, although, we can say that in general a theoretical analysis is acceptable, as it is less complex and still presents good results.
+
+The greater the complexity of the models used, the results can be more and more divergent between the theoretical analysis and a simulation, specialy while considering that the envelope is fully independent of the voltage regulator ande vice versa. If it is not the case, then the results would different regardless of other aproximations used in the theoretical analysis.
+
+The tables with the results are the following:
+
 
 \begin{table}[h]
-\centering
-\begin{minipage}[t]{0.33\linewidth}
- 	 \begin{tabular}[t]{|l|r|}
- 	   \hline    
- 	   {\bf Name} & {\bf Value [A or V]} \\ \hline
- 	   \input{../mat/PASSO1_tab}
- 	 \end{tabular}
- 	 \label{tab:PASSO1_CONCLUSAO}
-\end{minipage}
-\begin{minipage}[t]{0.33\linewidth}
-  		\begin{tabular}[t]{|l|r|}
-    	\hline    
-   		{\bf Name} & {\bf Value [A or V]} \\ \hline
-    	\input{../sim/SIM_tab}
-  		\end{tabular}
-  	\label{tab:SIM_PASSO1_CONCLUSAO}
-\end{minipage}
-  	\caption{Operating point for $t<0$. in Octave and NGSpice, respectivily. A variable preceded by @ is of type {\em current} are expressed in Ampere; other variables are of type {\it voltage} and expressed in Volt. (As shown in Tables \ref{tab:TEO_PASSO1} and \ref{tab:SIM_PASSO1})}
+ \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value} \\ \hline
+    \input{../sim/SIM_tab}
+  \end{tabular}
+  \caption{Merit is in {\it per voltage per cost} and expressed in Volt$^{-1}$UC$^{-1}$; other variables are of type {\it voltage} and expressed in Volt.}
+  \label{tab:SIM_CONCLUSAO}
 \end{table}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value} \\ \hline
+    \input{../mat/MAT_tab}
+  \end{tabular}
+  \caption{Variables are of type {\em voltage} and expressed in Volt.}
+  \label{tab:TEO_CONCLUSAO}
+\end{table}
+
+The Merit result was 3.966 $V^{-1}uc^{-1}$ by Ngspice. It was agreed by the members of the group that the main goal of task was completed.
+\newpage
+The obtained plot with NGSpice and Octave are the following:
+
+\begin{figure}[h] \centering
+	\includegraphics[height=8cm]{PASSO41.eps}
+	\caption{Envelope detector $V_{envelope}$.}
+\end{figure}
+  	
+\begin{figure}[h] \centering
+	\vspace{-2cm}
+	\includegraphics[height=12cm]{../sim/trans41.pdf}
+	\caption{$v_{IN}(t)$ ($v_{Envelope}(t)$)}
+	\vspace{-3cm}
+\end{figure}
 
 \newpage
 
-\begin{table}[h]
-\centering
-\begin{minipage}[t]{0.33\linewidth}
- 	 \begin{tabular}[t]{|l|r|}
- 	   \hline    
- 	   {\bf Name} & {\bf Value [A or V]} \\ \hline
- 	   \input{../mat/PASSO2_tab}
- 	 \end{tabular}
- 	 \label{tab:PASSO2_CONCLUSAO}
-\end{minipage}
-\begin{minipage}[t]{0.33\linewidth}
-  		\begin{tabular}[t]{|l|r|}
-    	\hline    
-   		{\bf Name} & {\bf Value [A or V]} \\ \hline
-    	\input{../sim/PASSO2_tab}
-  		\end{tabular}
-  	\label{tab:SIM_PASSO2_CONCLUSAO}
-\end{minipage}
-  \caption{Operating point for $t=0$. in Octave and NGSpice, respectivily A variable preceded by @ is of type {\em current} and expressed in Ampere; variables preceded by * are expressed in Farad Ohm; variables preceded by \# is of type {\em resistance} and expressed in Ohm; other variables are of type {\em voltage} and expressed in Volt. (As shown in Tables \ref{tab:TEO_PASSO2} and \ref{tab:SIM_PASSO2})}
-\end{table}
+\begin{figure}[h] \centering
+	\includegraphics[height=8cm]{PASSO42.eps}
+	\caption{$V_{out}$.}
+\end{figure}
+  	
+\begin{figure}[h] \centering
+	\vspace{-2cm}
+	\includegraphics[height=12cm]{../sim/trans42.pdf}
+	\caption{$v_{3}(t)$ ($v_{OUT}(t)$)}
+	\vspace{-3cm}
+\end{figure}
 
-The results match considerably, as expected, since this is a relatively straightforward circuit containing only one capacitor apart from linear components, therefore the theoretical and simulation models shouldn't differ. Values of the order of $10^{-14}$ and lower should be taken as~0.
+\newpage
+
+\begin{figure}[h] \centering
+	\includegraphics[height=8cm]{PASSO5.eps}
+	\caption{$V_{out} - 12V$.}
+\end{figure}
+  	
+\begin{figure}[h] \centering
+	\vspace{-2cm}
+	\includegraphics[height=12cm]{../sim/trans5.pdf}
+	\caption{$v_{3}(t)-12$ ($v_{out}(t)-12$)}
+	\vspace{-3cm}
+\end{figure}
+
+\newpage
+
+\begin{figure}[h] \centering
+	\includegraphics[height=8cm]{PASSO4.eps}
+	\caption{$V_c$ and $V_{out}$.}
+\end{figure}
+  	
+\begin{figure}[h] \centering
+	\vspace{-2cm}
+	\includegraphics[height=12cm]{../sim/trans4.pdf}
+	\caption{$v_3(t)$ ($v_{OUT}(t)$) and $v_{IN}$ ($v_{Envelope}(t)$)}
+	\vspace{-3cm}
+\end{figure}

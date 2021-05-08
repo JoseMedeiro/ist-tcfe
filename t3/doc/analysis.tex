@@ -8,7 +8,7 @@ The transformer with a n:1 ratio was used, which means that the initial voltage 
 The output of the transformer will be the input of the Envelope detector, which is made of a rectifier and a capacitor. The rectifier is a full-wave bridge rectifier circuit  and is composed of 4 diodes and a resistor, as shown:
 
 \begin{figure}[h] \centering
-\includegraphics[width=0.60\linewidth]{Circuit_envelope.pdf}
+\includegraphics[height=6cm]{Circuit_envelope.pdf}
 \caption{Envelope Detector circuit.}
 \label{fig:ENV_CIR}
 \end{figure}
@@ -16,7 +16,7 @@ The output of the transformer will be the input of the Envelope detector, which 
 In this case, we have chosen to aproximate the diodes to the ideal model + $V_{on}$, in which $V_{on} = 0.70V$. Knowing also that only one way is used when the diodes are on, we can further simplify the circuit as shown in Figure~\ref{fig:ENV_CIR_S}. We can also say that $V_{in}(t) = V_s(t) - 2V_{on}, V_s(t) - 2V_{on} > 0$ or $V_{in}(t) = 0, V_s(t) - 2V_{on} < 0$.
 
 \begin{figure}[h] \centering
-\includegraphics[width=0.60\linewidth]{Circuit_envelope_simple.pdf}
+\includegraphics[height=6cm]{Circuit_envelope_simple.pdf}
 \caption{Envelope Detector circuit simplified, when the diodes are on.}
 \label{fig:ENV_CIR_S}
 \end{figure}
@@ -43,25 +43,27 @@ To know when the diodes are turned on again, we just have to know when $V_{c}(t)
 The result of this analisys is the following:
 
 \begin{figure}[h] \centering
-\includegraphics[width=0.60\linewidth]{PASSO41.eps}
-\caption{Envelope detector.}
+\includegraphics[height=8cm]{PASSO41.eps}
+\caption{Envelope detector $V_{envelope}$.}
 \label{fig:TEO_ENV}
 \end{figure}
+
+\newpage
 
 \subsection{Step 2: Solution for the Voltage Regulator}
 
 Then, the output of the Envelope Detector is the input of the Voltage Regulator. The last one is made of a resistor and diodes in series. Its output is the voltage in the diodes, as represented:
 
 \begin{figure}[h] \centering
-\includegraphics[width=0.60\linewidth]{Circuit_regulator.pdf}
+\includegraphics[height=6cm]{Circuit_regulator.pdf}
 \caption{Voltage Regulator.}
 \label{fig:TEO_VR_CIR}
 \end{figure}
 
-In the Envolope Detector the diode model used has an ideal diode and a voltage source while in the Voltage Regulator the diode model (where we have said that the emition coefition is $\etam$, being $m=18$ the number of diodes in the regulator) has an ideal diode, a voltage source, $V_{d}$ and a resistor $r_{d}$. 
+In the Envolope Detector the diode model used has an ideal diode and a voltage source while in the Voltage Regulator the diode model (where we have said that the emition coefition is $\eta m$, being $m=18$ the number of diodes in the regulator) has an ideal diode, a voltage source, $V_{d}$ and a resistor $r_{d}$. 
 
 \begin{figure}[h] \centering
-\includegraphics[width=0.60\linewidth]{Circuit_regulator_simple.pdf}
+\includegraphics[height=6cm]{Circuit_regulator_simple.pdf}
 \caption{Simplification of the Voltage Regulator.}
 \label{fig:TEO_VR_CIR_S}
 \end{figure}
@@ -93,32 +95,34 @@ Or, in words, $i$ is the current passing through the diode because of the non co
 The plots for $V_{out}$, $V_{out} - 12V$ and the pair $V_c$, $V_{out}$ are the following:
 
 \begin{figure}[h] \centering
-\includegraphics[width=0.60\linewidth]{PASSO42.eps}
+\includegraphics[height=8cm]{PASSO42.eps}
 \caption{$V_{out}$.}
 \label{fig:TEO_OUT}
 \end{figure}
 
 \begin{figure}[h] \centering
-\includegraphics[width=0.60\linewidth]{PASSO5.eps}
+\includegraphics[height=8cm]{PASSO5.eps}
 \caption{$V_{out} - 12V$.}
 \label{fig:TEO_OUT-12}
 \end{figure}
 
+\newpage
+
 \begin{figure}[h] \centering
-\includegraphics[width=0.60\linewidth]{PASSO4.eps}
+\includegraphics[height=8cm]{PASSO4.eps}
 \caption{$V_c$ and $V_{out}$.}
-\label{fig:TEO_OUT-12}
+\label{fig:TEO_FULL}
 \end{figure}
 
-The ratio of the transformer and the values of the resistors, the capacitor and number of diodes are presented in the following table.
+The results from the theoretical analysis are the following:
 
 \begin{table}[h]
   \centering
   \begin{tabular}{|l|r|}
     \hline    
-    {\bf Name} & {\bf Value [A or V]} \\ \hline
+    {\bf Name} & {\bf Value} \\ \hline
     \input{../mat/MAT_tab}
   \end{tabular}
-  \caption{Operating point for $t<0$. A variable preceded by £ is of type {\it cost} and expressed in Unit of Cost; other variables are of type {\it voltage} and expressed in Volt. Merit as it's units in {\it per voltage per cost} and expressed in Volt$^{-1}$UC$^{-1}$ }
-  \label{tab:SIM_RESULTADOS}
+  \caption{Variables are of type {\em voltage} and expressed in Volt.}
+  \label{tab:TEO_RES}
 \end{table}

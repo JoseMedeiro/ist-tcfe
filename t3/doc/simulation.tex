@@ -4,30 +4,41 @@
 \subsection{AC/DC converter graphs}
 
 In this section we evaluated the AC/DC converter proposed. To simplify the calculations for NGSpice, we have decided to use the circuit \ref{fig:Circuit_Base_S}, since using the ideal model for the transformer was causing NGSpice to slow down significantly.
-In order to analise the circuit after the transiant period, we have chosen $t \in \left \[ 0.010 ; 200 \left \[$ ms.
+In order to analise the circuit after the transiant period, we have chosen $t \in \left[ 10 ; 200 \right[ $ ms.
 
 The graphs for NGSpice are displayed here, alongside the table with the required elements:
 
 \begin{figure}[h] \centering
 \vspace{-3cm}
-\includegraphics[height=10cm]{../sim/trans4.pdf}
+\includegraphics[height=11cm]{../sim/trans4.pdf}
 \caption{$v_3(t)$ ($v_{OUT}(t)$) and $v_{IN}$ ($v_{Envelope}(t)$)}
 \label{fig:SIM_FULL_RES}
 \end{figure}
 
 \begin{figure}[h] \centering
 \vspace{-3cm}
-\includegraphics[height=10cm]{../sim/trans41.pdf}
+\includegraphics[height=11cm]{../sim/trans41.pdf}
 \caption{$v_{IN}(t)$ ($v_{Envelope}(t)$)}
-\label{fig:SIM_FULL_ENV}
+\label{fig:SIM_ENV}
+\end{figure}
+
+\newpage
+
+\begin{figure}[h] \centering
+\vspace{-3cm}
+\includegraphics[height=11cm]{../sim/trans42.pdf}
+\caption{$v_{3}(t)$ ($v_{OUT}(t)$)}
+\label{fig:SIM_OUT}
 \end{figure}
 
 \begin{figure}[h] \centering
 \vspace{-3cm}
-\includegraphics[height=10cm]{../sim/trans42.pdf}
-\caption{$v_{3}(t)$ ($v_{OUT}(t)$)}
-\label{fig:SIM_FULL_OUT}
+\includegraphics[height=11cm]{../sim/trans5.pdf}
+\caption{$v_{3}(t)-12$ ($v_{out}(t)-12$)}
+\label{fig:SIM_OUT-12}
 \end{figure}
+
+\newpage
 
 Table~\ref{tab:SIM_RESULTADOS} shows the simulated operating point results for the circuit under analysis.
 %Colocar a tabela 
@@ -38,7 +49,7 @@ Table~\ref{tab:SIM_RESULTADOS} shows the simulated operating point results for t
     {\bf Name} & {\bf Value} \\ \hline
     \input{../sim/SIM_tab}
   \end{tabular}
-  \caption{Operating point for $t<0$. The variables are of type {\it voltage} and expressed in Volt. Merit is in {\it per voltage per cost} and expressed in Volt$^{-1}$UC$^{-1}$ }
+  \caption{Merit is in {\it per voltage per cost} and expressed in Volt$^{-1}$UC$^{-1}$; other variables are of type {\it voltage} and expressed in Volt.}
   \label{tab:SIM_RESULTADOS}
 \end{table}
 
