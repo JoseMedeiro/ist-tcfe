@@ -1,16 +1,17 @@
 %%  Função do Estabilizador
 
 RESOLUCAO = 3000;
-R1        = 63.5e3;
-R2        = 63.5e3;
-C1        = 125e-6;
+R1        = 75e3;
+R2        = 75e3;
+C1        = 150e-6;
 Vin       = 130.8317;
-n         = 20;
+n         = 18;
 m         = 0;
 
 Resultado = 1:2;
 t     = linspace(0,200e-3,RESOLUCAO);
 vin_t = Vin*abs(real(e.^(j*(50*2*pi*t + pi/2))));
+
 for c=1:RESOLUCAO
   
   if (vin_t(c) < 0.75*2)
@@ -89,7 +90,25 @@ hold off;
 Media     = mean(real(vout_t));
 Altitude  = max(real(vout_t)) - min(real(vout_t));
 Distancia = Media-12;
-TotalCost = (n*0.1 + R2/1e3);
+TotalCost = ((n+4)*0.1 + (R1 + R2)/1e3 + C1*1e6);
 merit = 1/((Altitude + abs(Distancia) + 1e-6)*TotalCost);
 
+printf("VALUES_TAB \n")
 
+printf("$n$ = %e \n"            , 130.8317/230);
+printf("Diodes  = %d + %d  \n"  , 18, 4       );
+printf("\\#$R_1$   = %e  \n"    , R1          );
+printf("\\#$R_2$   = %e  \n"    , R2          );
+printf("\\&$C_1$   = %e  \n"    , C1          );
+
+
+
+printf("VALUES_END \n")
+
+printf("MAT_TAB \n")
+
+printf("£$Custo$ = %e  \n", TotalCost   );
+printf("$Ripple$ = %e \n" , Altitude    );
+printf("$Distance$ = %e\n", Distancia   );
+
+printf("MAT_END \n")

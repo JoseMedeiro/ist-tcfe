@@ -3,7 +3,7 @@
 
 \subsection{AC/DC converter graphs}
 
-In this section we evaluated the AC/DC converter proposed. To simplify the calculations for NGSpice, we have decided to use the circuit \ref{fig:SIM_ANG}, since using the ideal model for the ransformer was causing NGSpice to slow down significantly.
+In this section we evaluated the AC/DC converter proposed. To simplify the calculations for NGSpice, we have decided to use the circuit \ref{fig:Circuit_Base_S}, since using the ideal model for the transformer was causing NGSpice to slow down significantly.
 In order to analise the circuit after the transiant period, we have chosen $t \in \left \[ 0.010 ; 200 \left \[$ ms.
 
 The graphs for NGSpice are displayed here, alongside the table with the required elements:
@@ -35,17 +35,12 @@ Table~\ref{tab:SIM_RESULTADOS} shows the simulated operating point results for t
   \centering
   \begin{tabular}{|l|r|}
     \hline    
-    {\bf Name} & {\bf Value [A or V]} \\ \hline
+    {\bf Name} & {\bf Value} \\ \hline
     \input{../sim/SIM_tab}
   \end{tabular}
-  \caption{Operating point for $t<0$. A variable preceded by £ is of type {\it cost} and expressed in Unit of Cost; other variables are of type {\it voltage} and expressed in Volt. Merit as it's units in {\it per voltage per cost} and expressed in Volt$^{-1}$UC$^{-1}$ }
+  \caption{Operating point for $t<0$. The variables are of type {\it voltage} and expressed in Volt. Merit is in {\it per voltage per cost} and expressed in Volt$^{-1}$UC$^{-1}$ }
   \label{tab:SIM_RESULTADOS}
 \end{table}
-
-Compared to the theoretical analysis the simulation showed practically identical results, except for a small divergence in the last decimal place that probably occurs when Ngspice rounds the numbers. Thus, the maximum relative error is $10^{-5}$. It is worth mentioning that Ngspice software also uses the same mathematical methods as octave to find results, hence, this result was already expected.
-
-
-When comparing the graphics obtained in Ngspice and Octave, the similarity between the results is noticeable and small differences can be explained by approximation errors.
 
 
 
