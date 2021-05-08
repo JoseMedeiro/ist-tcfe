@@ -36,11 +36,15 @@ echo trans42_FIG
 hardcopy trans5.ps v(3)-12
 echo trans5_FIG
 
-echo "SIM_TAB"
-print mean(v(3))-12
-print vecmax(v(3))-vecmin(v(3))
+let ripple 	= mean(v(3))-12
+let distance 	= vecmax(v(3))-vecmin(v(3))
+let merit  	= 1/(abs(mean(v(3))-12)+vecmax(v(3))-vecmin(v(3))+1u)/(150+150+(18+4)*.1)
 
-print 1 / (abs(mean(v(3))-12) + vecmax(v(3))-vecmin(v(3)) + 1u) / (150+150+(18 + 4)*.1)
+echo "SIM_TAB"
+print ripple
+print distance
+
+print merit
 
 echo "SIM_END"
 

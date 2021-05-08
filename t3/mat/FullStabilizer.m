@@ -100,14 +100,14 @@ printf("Diodes  = %d + %d  \n"  , 18, 4       );
 printf("\\#$R_1$   = %e  \n"    , R1          );
 printf("\\#$R_2$   = %e  \n"    , R2          );
 printf("\\&$C_1$   = %e  \n"    , C1          );
-printf("£$Cost$ = %e  \n"       , TotalCost   );
+printf("£Cost = %e  \n"       , TotalCost   );
 
 
 printf("VALUES_END \n")
 
 printf("MAT_TAB \n")
 
-printf("$Distance$ = %e\n", Distancia   );
-printf("$Ripple$ = %e \n" , Altitude    );
+printf("ripple = %e \n" , Altitude    );
+printf("distance = %e\n", Distancia   );
 
 printf("MAT_END \n")
