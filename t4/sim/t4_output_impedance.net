@@ -1,7 +1,7 @@
 .options savecurrents
 
-.include Output_Impedance.cir
-
+*.include Output_Impedance.cir
+.include Coletor_OUT.cir
 .op
 .end
 
@@ -14,11 +14,11 @@ ac dec 10 10 100MEG
 *print v(in2)[40]/(v(in)[40]-v(in2)[40])/100*1000
 
 *output impedance in ohm
-print v(out)[40]/(v(dummy1)[40]-v(dummy0)[40])*100
+print - v(out)[40]/ vout#branch[40]
 
 
 plot vdb(out) vdb(dummy1)/100 vdb(dummy1)[40]/100
-print v(out)[40]
-print v(dummy1)[40]/100
+print v(out)[50]
+print v(dummy1)[50]/100
 .endc 
 
