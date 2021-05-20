@@ -8,6 +8,7 @@
 Vcc vcc 0 12.0
 Vout out 0 0 ac 1.0 sin(0 10m 1k)
 
+
 * input coupling capacitor
 Ci in base 1m
 

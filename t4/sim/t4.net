@@ -12,7 +12,8 @@ op
 print all
 
 print v(coll)-v(base)
-print v(emit2)-v(coll)
+*print v(emit2)-v(coll)
+print v(coll)
 
 * time analysis
 tran 1e-5 1e-2
@@ -25,7 +26,6 @@ ac dec 10 10 100MEG
 plot vdb(coll)
 plot vp(coll)
 hardcopy vo1f.ps vdb(coll)
-
 
 
 plot vdb(out) vecmax(vdb(out))-3
