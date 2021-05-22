@@ -43,11 +43,11 @@ echo ampdb_FIG
 hardcopy phdb.ps vp(out)
 echo phdb_FIG
 
-let Z_in =  v(in2)[40]/(v(in)[40]-v(in2)[40])*100/1000
+let Zin =  v(in2)[40]/(v(in)[40]-v(in2)[40])*100/1000
 echo "SIM_ZIN_TAB"
 
 *input impedance in kohm
-print Z_in
+print Zin
 
 echo "SIM_ZIN_END"
 

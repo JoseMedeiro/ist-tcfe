@@ -10,12 +10,12 @@
 * frequency analysis
 ac dec 10 10 100MEG
 
-let Z_out = -v(out)[40]/ vout#branch[40]
+let Zout = -v(out)[40]/ vout#branch[40]
 
 echo "SIM_ZOUT_TAB"
 
 *output impedance in ohm
-print Z_out
+print Zout
 
 echo "SIM_ZOUT_END"
 

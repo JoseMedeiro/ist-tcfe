@@ -277,7 +277,7 @@ printf("\\#$Z_{out-emitter}$   = %e  \n", ZO2                 );
 printf("\\#$Z_{in-collector}$  = %e  \n", ZI1                 );
 printf("\\#$Z_{out-collector}$ = %e  \n", ZO2                 );
 
-printf("$Z_{in-collector}/$Z_{out-emitter}$ = %e  \n", ZI1/ZO2);
+printf("$Z_{in-collector}/Z_{out-emitter}$ = %e  \n", ZI1/ZO2);
 
 printf("\\#$Z_{in}$            = %e  \n", ZinputFull          );
 printf("\\#$Z_{out}$           = %e  \n", ZoutputFull         );
@@ -288,8 +288,8 @@ printf("MAT_IMP_END \n")
 
 printf("MAT_GAIN_TAB \n")
 
-printf("$Gain1 \\times Gain2$   = %e \n", AV1*AV2    );
-printf("$Gain$   = %e  \n"              , GainFull   );
+printf("$Gain1 \\times Gain2$   = %e \n", abs(AV1*AV2));
+printf("$Gain$   = %e  \n"              , GainFull    );
 
 printf("MAT_GAIN_END \n")
 
