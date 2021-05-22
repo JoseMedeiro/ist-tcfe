@@ -27,12 +27,34 @@ RE1   = 100;
 RE2   = 100;
 RC1   = 1000;
 
-CI    = 10 *1e-3;
-CB    = 10 *1e-3;
-CO    = 10 *1e-6;
+CI    = 1  *1e-3;
+CB    = 1  *1e-3;
+CO    = 1  *1e-6;
 
 f     = 100*1e3;
 w     = 2*pi*f;
+
+printf("VALUES_TAB \n")
+
+printf("BJT        = %d  \n"    , 2           );
+printf("\\#$R_S$   = %e  \n"    , RS          );
+printf("\\#$R_L$   = %e  \n"    , RL          );
+printf("\\#$R_1$   = %e  \n"    , R1          );
+printf("\\#$R_2$   = %e  \n"    , R2          );
+printf("\\#$R_E1$  = %e  \n"    , RE1         );
+printf("\\#$R_C2$  = %e  \n"    , RC1         );
+printf("\\#$R_OUT$ = %e  \n"    , RE2         );
+
+printf("\\&$C_I$   = %e  \n"    , CI          );
+printf("\\&$C_B$   = %e  \n"    , CB          );
+printf("\\&$C_O$   = %e  \n"    , CO          );
+
+TotalCost = (R1+R2+Rc+Re+Rout)*1e-3 + (Cb+Cin+Cout)*1e6 + 0.2;
+
+printf("£Cost = %e  \n"         , TotalCost   );
+
+printf("VALUES_END \n")
+
 
 %%
 %%  Gain Stage
@@ -62,18 +84,25 @@ gm1   = IC1/VT;
 rpi1  = BFN/gm1;
 ro1   = VAFN/IC1;
 
+RSB=RB*RS/(RB+RS);
+
 %%  AC Analysis
 
-AV1 = RC1*(RE1-gm1*rpi1*ro1)/((ro1+RC1+RE1)*(RB+rpi1+RE1)+gm1*RE1*ro1*rpi1 - RE1^2)
-
-AV1simple = gm1*RC1/(1+gm1*RE1)
+AV1 = RSB/RS * RC1*(RE1-gm1*rpi1*ro1)/((ro1+RC1+RE1)*(RSB+rpi1+RE1)+gm1*RE1*ro1*rpi1 - RE1^2)
+AVI_DB = 20*log10(abs(AV1))
+AV1simple = RB/(RB+RS) * gm1*RC1/(1+gm1*RE1)
+AVIsimple_DB = 20*log10(abs(AV1simple))
 
 % Altas frequências
+
 RE1=0;
-AV1 = RC1*(RE1-gm1*rpi1*ro1)/((ro1+RC1+RE1)*(RB+rpi1+RE1)+gm1*RE1*ro1*rpi1 - RE1^2)
-AV1simple = gm1*RC1/(1+gm1*RE1)
+AV1 = RSB/RS * RC1*(RE1-gm1*rpi1*ro1)/((ro1+RC1+RE1)*(RSB+rpi1+RE1)+gm1*RE1*ro1*rpi1 - RE1^2)
+AVI_DB = 20*log10(abs(AV1))
+AV1simple =  - RSB/RS * gm1*RC1/(1+gm1*RE1)
+AVIsimple_DB = 20*log10(abs(AV1simple))
 
 % Back again
+
 RE1 = 100;
 ZI1 = 1/(1/RB1 + 1/RB2 + 1/rpi1)
 
@@ -183,17 +212,6 @@ PO = AO\BO;
 
 ZoutputFull = Vin/(-PO(7))
 
-AO1 = [  ZC , -ZC         , 0     , 0           ;...
-         -ZC, zpi2+ZC     , Zo2E2 , -Zo2E2      ; ...
-         0  , -1-gm2*zpi2 , 1     , 0           ; ...
-         0  , 0           , -Zo2E2, Zo2E2 + ZCO];
-        
-BO1 = [  0; 0       ; 0     ; -Vout ];
-
-PO1 = AO1\BO1;
-
-ZoutputFull1 = Vin/(-PO1(3))
-
 % Normal Business
 
 AG = [  ZS+ZCI+ZB , -ZB               , 0   , 0               , 0           , 0     , 0             ; ...
@@ -208,4 +226,89 @@ BG = [  Vin       ; 0                 ; 0   ; 0               ; 0           ; 0 
 
 PG = AG\BG;
 
-GainFull = 20*log10(abs(PG(7)*ZL/Vin))
+GainFull = abs(PG(7)*ZL/Vin);
+
+%%  Frequency Analysis
+
+f         = logspace(1, 6+2, 10*(log10(100e6/10)));
+w         = f*2*pi;
+GainFreq  = w;
+for c=1:size(w,2)
+  
+  ZCI   = 1/(w(c)*j*CI);
+  ZE1   = RE1;
+  ZCB   = 1/(w(c)*j*CB);
+  ZE1CB = 1/(1/ZE1 + 1/ZCB);
+  ZCO   = 1/(w(c)*j*CO);
+  
+  
+  AG = [  ZS+ZCI+ZB , -ZB               , 0   , 0               , 0           , 0     , 0             ; ...
+        -ZB       , ZB + zpi1 + ZE1CB , 0   , -ZE1CB          , 0           , 0     , 0             ; ...
+        0         , zpi1*gm1          , 1   , 0               , 0           , 0     , 0             ; ...
+        0         , -ZE1CB            , -zo1, ZE1CB + zo1 + ZC, -ZC         , 0     , 0             ; ...
+        0         , 0                 , 0   , -ZC             , zpi2+ZC     , Zo2E2 , -Zo2E2        ; ...
+        0         , 0                 , 0   , 0               , -1-zpi2*gm2 , 1     , 0             ; ...
+        0         , 0                 , 0   , 0               , 0           , -Zo2E2, Zo2E2+ZCO+ZL ];
+        
+  BG = [  Vin       ; 0                 ; 0   ; 0               ; 0           ; 0     ; 0     ];
+
+  PG = AG\BG;
+
+  GainFreq(c) = PG(7)*ZL/Vin;
+  
+endfor
+
+
+%%  Tabela DC
+
+printf("MAT_DC_TAB \n")
+
+printf("$V_{coll} - V_{base}$   = %e  \n", VO1-VE1);
+printf("$V_{coll} - V_{0}$      = %e  \n", VO1    );
+
+printf("MAT_DC_END \n")
+
+%%  Tabela Impedance
+
+printf("MAT_IMP_TAB \n")
+
+printf("\\#$Z_{in-emitter}$    = %e  \n", ZI1                 );
+printf("\\#$Z_{out-emitter}$   = %e  \n", ZO2                 );
+printf("\\#$Z_{in-collector}$  = %e  \n", ZI1                 );
+printf("\\#$Z_{out-collector}$ = %e  \n", ZO2                 );
+
+printf("$Z_{in-collector}/$Z_{out-emitter}$ = %e  \n", ZI1/ZO2);
+
+printf("\\#$Z_{in}$            = %e  \n", ZinputFull          );
+printf("\\#$Z_{out}$           = %e  \n", ZoutputFull         );
+
+printf("MAT_IMP_END \n")
+
+%%  Tabela Gains
+
+printf("MAT_GAIN_TAB \n")
+
+printf("$Gain1 \\times Gain2$   = %e \n", AV1*AV2    );
+printf("$Gain$   = %e  \n"              , GainFull   );
+
+printf("MAT_GAIN_END \n")
+
+%%  Gráficos db
+
+hf_PASSO1 = figure ();
+semilogx(f, 20*log10(abs(GainFreq)));
+hold on;
+xlabel ("f, Hz");
+ylabel ("db(Gain)");
+legend("Gain", "location", "northeast");
+print (hf_PASSO1, "MAT_AB_AMP.eps", "-depsc");
+hold off;
+
+hf_PASSO2 = figure ();
+semilogx(f, angle(GainFreq));
+hold on;
+xlabel ("f, Hz");
+ylabel ("Phase (degrees)");
+legend("Phase", "location", "northeast");
+print (hf_PASSO2, "MAT_AB_PH.eps", "-depsc");
+hold off;

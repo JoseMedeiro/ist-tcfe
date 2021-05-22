@@ -10,19 +10,19 @@ Vin in 0 0 ac 1.0 sin(0 10m 1k)
 Rin in in2 100
 
 * input coupling capacitor
-Ci in2 base 1m
+Ci in2 base 	1m
 
 * bias circuit
-R1 vcc base 80k
-R2 base 0 20k
+R1 vcc base 	80k
+R2 base 0 	20k
 
 * gain stage
 Q1 coll base emit BC547A
-Rc vcc coll 1k
-Re emit 0 100
+Rc vcc coll 	1k
+Re emit 0 	100
 
 * bypass capacitor
-Cb emit 0 1m
+Cb emit 0 	1m
 
 
 * output stage
@@ -30,47 +30,8 @@ Q2 0 coll emit2 BC557A
 Rout emit2 vcc 100
 
 * output coupling capacitor
-Co emit2 out 1u
+Co emit2 out 	1u
 
 *load resistance
 Rl out 0 8
-
-
-<<<<<<< HEAD:t4/sim/General_Circuit.cir
-*to measure the current
-Fteste dummy1 dummy0 Vin 1
-Rdummy dummy1 dummy0 100
-Vdummy dummy0 0      0
-=======
-.control
-
-
-* time analysis
-tran 1e-5 1e-2
-plot v(coll)
-hardcopy vo1.ps vdb(coll)
-
-
-* frequency analysis
-ac dec 10 10 100MEG
-plot vdb(coll)
-plot vp(coll)
-hardcopy vo1f.ps vdb(coll)
-
-
-
-plot vdb(out)
-plot vp(out)
-hardcopy vo2f.ps vdb(coll)
-
-*input impedance in kohm
-*print all
-
-plot abs(v(in2)[40]/vin#branch[40]/(-1000))
-print v(in2)[40]/vin#branch[40]/(-1000)
-
-*need a different setup to measure output impedance
-
-.endc 
->>>>>>> upstream/master:t4/t4.net
 

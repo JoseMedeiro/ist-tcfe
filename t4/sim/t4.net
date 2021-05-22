@@ -7,43 +7,72 @@
 
 .control
 
+*makes plots in color
+set hcopypscolor=0
+set color0=white
+set color1=black
+set color2=red
+set color3=blue
+set color4=violet
+set color5=rgb:3/8/0
+set color6=rgb:4/0/0
+
 * op analysis
 op
 print all
 
+echo "SIM_DC_TAB"
 print v(coll)-v(base)
-*print v(emit2)-v(coll)
 print v(coll)
+echo "SIM_DC_END"
 
 * time analysis
 tran 1e-5 1e-2
-plot v(out) v(in)
-hardcopy vo1.ps v(out) v(in)
-
+hardcopy trans.ps v(out) v(in)
+echo trans_FIG
 
 * frequency analysis
 ac dec 10 10 100MEG
-plot vdb(coll)
-plot vp(coll)
-hardcopy vo1f.ps vdb(coll)
 
+hardcopy amp.ps abs(v(out))
+echo amp_FIG
 
-plot vdb(out) vecmax(vdb(out))-3
-plot vp(out)
-hardcopy vo2f.ps vdb(out) vecmax(vdb(out))-3
+hardcopy ampdb.ps vdb(out) vecmax(vdb(out))-3
+echo ampdb_FIG
+
+hardcopy phdb.ps vp(out)
+echo phdb_FIG
+
+let Z_in =  v(in2)[40]/(v(in)[40]-v(in2)[40])*100/1000
+echo "SIM_ZIN_TAB"
 
 *input impedance in kohm
-print v(in2)[40]/(v(in)[40]-v(in2)[40])*100/1000
-print v(in2)[40]/(v(dummy1)[40]-v(dummy0)[40])*100/1000
+print Z_in
+
+echo "SIM_ZIN_END"
+
 
 let lower_bond 	= vecmax(vdb(out))-3
+let amplitude		= abs(vecmax(v(out)))
 
 meas ac f1 WHEN vdb(out)=lower_bond RISE=1
 meas ac f2 WHEN vdb(out)=lower_bond CROSS=LAST
 
-print vecmax(vdb(out))-3
+let merit		= vecmax(abs(v(out))) * (f2 - f1) / (f1 * 1891.526)
 
-*need a different setup to measure output impedance
+print merit
 
-.endc 
+echo "SIM_RESULTS_TAB"
+
+print amplitude
+print f2 - f1
+print merit
+
+echo "SIM_RESULTS_END"
+
+
+quit
+.endc
+
+.end
 

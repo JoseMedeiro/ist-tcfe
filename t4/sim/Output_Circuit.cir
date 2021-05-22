@@ -8,19 +8,31 @@
 Vcc vcc 0 12.0
 Vout out 0 0 ac 1.0 sin(0 10m 1k)
 
+
+* input coupling capacitor
+Ci in base 80u
+
+* bias circuit
+R1 vcc base 	290k
+R2 base 0 	20k
+
+* gain stage
+Q1 coll base emit BC547A
+Rc vcc coll 	1k
+Re emit 0 	117
+
+* bypass capacitor
+Cb emit 0 1m
+
+
 * output stage
 Q2 0 coll emit2 BC557A
 Rout emit2 vcc 100
 
 * output coupling capacitor
-Co emit2 out 1u
+Co emit2 out 0.5m
 
 *short circuit
-Vin coll 0 0
-
-*to measure the current
-Fteste dummy1 dummy0 Vout 1
-Rdummy dummy1 dummy0 100
-Vdummy dummy0 0      0
+Vin in 0 0
 
 
