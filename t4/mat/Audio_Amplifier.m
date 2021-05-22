@@ -39,8 +39,8 @@ printf("VALUES_TAB \n")
 printf("BJT        = %d  \n"    , 2           );
 printf("\\#$R_S$   = %e  \n"    , RS          );
 printf("\\#$R_L$   = %e  \n"    , RL          );
-printf("\\#$R_1$   = %e  \n"    , R1          );
-printf("\\#$R_2$   = %e  \n"    , R2          );
+printf("\\#$R_1$   = %e  \n"    , RB1         );
+printf("\\#$R_2$   = %e  \n"    , RB2         );
 printf("\\#$R_E1$  = %e  \n"    , RE1         );
 printf("\\#$R_C2$  = %e  \n"    , RC1         );
 printf("\\#$R_OUT$ = %e  \n"    , RE2         );
@@ -49,7 +49,7 @@ printf("\\&$C_I$   = %e  \n"    , CI          );
 printf("\\&$C_B$   = %e  \n"    , CB          );
 printf("\\&$C_O$   = %e  \n"    , CO          );
 
-TotalCost = (R1+R2+Rc+Re+Rout)*1e-3 + (Cb+Cin+Cout)*1e6 + 0.2;
+TotalCost = (RB1+RB2+RC1+RE1+RE2)*1e-3 + (CB+CI+CO)*1e6 + 0.2;
 
 printf("£Cost = %e  \n"         , TotalCost   );
 

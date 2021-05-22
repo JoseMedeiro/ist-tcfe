@@ -15,7 +15,7 @@ The tables with the results are the following:
  	 \begin{tabular}[t]{|l|r|}
  	   \hline    
  	   {\bf Name} & {\bf Value [A or V]} \\ \hline
- 	   \input{../mat/MAT_tab}
+ 	   \input{../mat/MAT_DC_tab}
  	 \end{tabular}
  	 \label{tab:TEO_CONCLUSAO}
 \end{minipage}
@@ -23,7 +23,16 @@ The tables with the results are the following:
   		\begin{tabular}[t]{|l|r|}
     	\hline    
    		{\bf Name} & {\bf Value [A or V]} \\ \hline
-    	\input{../sim/SIM_tab}
+    	\input{../sim/SIM_RESULTS_tab}
+  		\end{tabular}
+  	\label{tab:SIM_CONCLUSAO}
+\end{minipage}
+
+\begin{minipage}[t]{0.33\linewidth}
+  		\begin{tabular}[t]{|l|r|}
+    	\hline    
+   		{\bf Name} & {\bf Value [A or V]} \\ \hline
+    	\input{../sim/SIM_RESULTS_tab}
   		\end{tabular}
   	\label{tab:SIM_CONCLUSAO}
 \end{minipage}
@@ -34,57 +43,3 @@ The tables with the results are the following:
 The Merit result was 3.966 $V^{-1}uc^{-1}$ by Ngspice. It was agreed by the members of the group that the main goal of task was completed.
 \newpage
 The obtained plot with NGSpice and Octave are the following:
-
-\begin{figure}[h] \centering
-	\includegraphics[height=8cm]{PASSO41.eps}
-	\caption{Envelope detector $V_{envelope}$.}
-\end{figure}
-  	
-\begin{figure}[h] \centering
-	\vspace{-2cm}
-	\includegraphics[height=12cm]{../sim/trans41.pdf}
-	\caption{$v_{IN}(t)$ ($v_{Envelope}(t)$)}
-	\vspace{-3cm}
-\end{figure}
-
-\newpage
-
-\begin{figure}[h] \centering
-	\includegraphics[height=8cm]{PASSO42.eps}
-	\caption{$V_{out}$.}
-\end{figure}
-  	
-\begin{figure}[h] \centering
-	\vspace{-2cm}
-	\includegraphics[height=12cm]{../sim/trans42.pdf}
-	\caption{$v_{3}(t)$ ($v_{OUT}(t)$)}
-	\vspace{-3cm}
-\end{figure}
-
-\newpage
-
-\begin{figure}[h] \centering
-	\includegraphics[height=8cm]{PASSO5.eps}
-	\caption{$V_{out} - 12V$.}
-\end{figure}
-  	
-\begin{figure}[h] \centering
-	\vspace{-2cm}
-	\includegraphics[height=12cm]{../sim/trans5.pdf}
-	\caption{$v_{3}(t)-12$ ($v_{out}(t)-12$)}
-	\vspace{-3cm}
-\end{figure}
-
-\newpage
-
-\begin{figure}[h] \centering
-	\includegraphics[height=8cm]{PASSO4.eps}
-	\caption{$V_c$ and $V_{out}$.}
-\end{figure}
-  	
-\begin{figure}[h] \centering
-	\vspace{-2cm}
-	\includegraphics[height=12cm]{../sim/trans4.pdf}
-	\caption{$v_3(t)$ ($v_{OUT}(t)$) and $v_{IN}$ ($v_{Envelope}(t)$)}
-	\vspace{-3cm}
-\end{figure}

@@ -1,24 +1,26 @@
 \section{Simulation Analysis }
 \label{sec:simulation}
 
-\subsection{AC/DC converter graphs}
+\subsection{Audio Amplifier converter graphs}
 
-In this section we evaluated the AC/DC converter proposed. To simplify the calculations for NGSpice, we have decided to use the circuit \ref{fig:Circuit_Base_S}, since using the ideal model for the transformer was causing NGSpice to slow down significantly.
-In order to analise the circuit after the transiant period, we have chosen $t \in \left[ 10 ; 200 \right[ $ ms.
+In this section we evaluated the Audio Amplifier proposed.
+In order to analise the circuit after the transiant period, we have chosen $t \in \left[ 10 \mu s; 20 ms \right[ $.
 
 The graphs for NGSpice are displayed here, alongside the table with the required elements:
 
 \begin{figure}[h] \centering
 \vspace{-3cm}
-\includegraphics[height=11cm]{../sim/trans4.pdf}
-\caption{$v_3(t)$ ($v_{OUT}(t)$) and $v_{IN}$ ($v_{Envelope}(t)$)}
-\label{fig:SIM_FULL_RES}
+\includegraphics[height=11cm]{../sim/trans.pdf}
+\caption{$v_{in}$ and $v_{out}$.}
+\label{fig:SIM_TRANS}
 \end{figure}
+
+It is worth noting that the output is not distorted, making this amplifier a viable option for usage.
 
 \begin{figure}[h] \centering
 \vspace{-3cm}
-\includegraphics[height=11cm]{../sim/trans41.pdf}
-\caption{$v_{IN}(t)$ ($v_{Envelope}(t)$)}
+\includegraphics[height=11cm]{../sim/amp.pdf}
+\caption{$ \left | v_{out}/v_{in} \right |$.}
 \label{fig:SIM_ENV}
 \end{figure}
 
@@ -26,19 +28,45 @@ The graphs for NGSpice are displayed here, alongside the table with the required
 
 \begin{figure}[h] \centering
 \vspace{-3cm}
-\includegraphics[height=11cm]{../sim/trans42.pdf}
-\caption{$v_{3}(t)$ ($v_{OUT}(t)$)}
+\includegraphics[height=11cm]{../sim/ampdb.pdf}
+\caption{$db(v_{out})$ and $max(db(v_{out}))-3$.}
 \label{fig:SIM_OUT}
 \end{figure}
 
 \begin{figure}[h] \centering
 \vspace{-3cm}
-\includegraphics[height=11cm]{../sim/trans5.pdf}
-\caption{$v_{3}(t)-12$ ($v_{out}(t)-12$)}
+\includegraphics[height=11cm]{../sim/phdb.pdf}
+\caption{Phasor of $v_{out}$, rad}
 \label{fig:SIM_OUT-12}
 \end{figure}
 
 \newpage
+
+Table~\ref{tab:SIM_DC} shows the simulated operating point results for the circuit under analysis. From here we can see that the transistors stay in the FAR region.
+%Colocar a tabela 
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value} \\ \hline
+    \input{../sim/SIM_DC_tab}
+  \end{tabular}
+  \caption{Merit is in {\it per voltage per cost} and expressed in Volt$^{-1}$UC$^{-1}$; other variables are of type {\it voltage} and expressed in Volt.}
+  \label{tab:SIM_DC}
+\end{table}
+
+Table~\ref{tab:SIM_RES} and table~\ref{tab:SIM_RES} show the simulated operating point results for the circuit under analysis.
+%Colocar a tabela 
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value} \\ \hline
+    \input{../sim/SIM_ZIN_tab}
+  \end{tabular}
+  \caption{Merit is in {\it per voltage per cost} and expressed in Volt$^{-1}$UC$^{-1}$; other variables are of type {\it voltage} and expressed in Volt.}
+  \label{tab:SIM_ZIN}
+\end{table}
 
 Table~\ref{tab:SIM_RES} shows the simulated operating point results for the circuit under analysis.
 %Colocar a tabela 
@@ -47,11 +75,21 @@ Table~\ref{tab:SIM_RES} shows the simulated operating point results for the circ
   \begin{tabular}{|l|r|}
     \hline    
     {\bf Name} & {\bf Value} \\ \hline
-    \input{../sim/SIM_tab}
+    \input{../sim/SIM_ZOUT_tab}
+  \end{tabular}
+  \caption{Merit is in {\it per voltage per cost} and expressed in Volt$^{-1}$UC$^{-1}$; other variables are of type {\it voltage} and expressed in Volt.}
+  \label{tab:SIM_ZOUT_RES}
+\end{table}
+
+Table~\ref{tab:SIM_RES} shows the simulated ac response results for the circuit.
+%Colocar a tabela 
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value} \\ \hline
+    \input{../sim/SIM_RESULTS_tab}
   \end{tabular}
   \caption{Merit is in {\it per voltage per cost} and expressed in Volt$^{-1}$UC$^{-1}$; other variables are of type {\it voltage} and expressed in Volt.}
   \label{tab:SIM_RES}
 \end{table}
-
-
-
