@@ -1,6 +1,7 @@
 .options savecurrents
 
-.include General_Circuit.cir
+*.include General_Circuit.cir
+.include AUDIO_AMP.cir
 
 .op
 
@@ -31,7 +32,7 @@ print v(coll)
 echo "SIM_DC_END"
 
 * time analysis
-tran 1e-5 1e-2
+tran 1e-5 10e-3 1e-3
 hardcopy trans.ps v(out) v(in)
 echo trans_FIG
 
