@@ -3,6 +3,7 @@
 .include General_Circuit.cir
 
 .op
+
 .end
 
 .control
@@ -20,6 +21,9 @@ set color6=rgb:4/0/0
 * op analysis
 op
 print all
+
+print v(coll)-v(base)
+print v(coll)
 
 echo "SIM_DC_TAB"
 print v(coll)-v(base)
@@ -43,7 +47,7 @@ echo ampdb_FIG
 hardcopy phdb.ps vp(out)
 echo phdb_FIG
 
-let Zin =  v(in2)[40]/(v(in)[40]-v(in2)[40])*100/1000
+let Zin =  v(in2)[40]/(v(in)[40]-v(in2)[40])*100
 echo "SIM_ZIN_TAB"
 
 *input impedance in kohm

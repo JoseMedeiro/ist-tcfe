@@ -1,11 +1,9 @@
 \section{Conclusion}
 \label{sec:conclusion}
 
-The objective of the laboratory is to transform an input AC voltage of 230V in Hz to an output of 12V, while minimizing the ripple, deviation of said 12V and cost. As shown in Table~\ref{tab:CONCLUSAO}, the simulation results obtained have non trivial diferences to presented results already expected by the theoretical analysis achieved by Octave and Ngspice simulator. In fact, the relative error between the distances is of the magnitude of $10^2$ and the relative error between the ripples is of the magnitude of $10^3$.
-
-The differences in theoretical analysis is the result of the diode model being different from the one used in the simulation model. Theoretical analysis uses a more simplified diode model than the one used in the simulation, although, we can say that in general a theoretical analysis is acceptable, as it is less complex and still presents good results.
-
-The greater the complexity of the models used, the results can be more and more divergent between the theoretical analysis and a simulation, specialy while considering that the envelope is fully independent of the voltage regulator ande vice versa. If it is not the case, then the results would different regardless of other aproximations used in the theoretical analysis.
+All things considered, an audio amplifier with the smallest number of components that allows a greater gain in voltage was the main objective of this laboratory. A theoretically and simulated model was created to analyze this amplifier and see how it works. \par
+Using Octave as the theoretical analysis and Ngspice for the simulation, a very discrepant results were observed between the two. The main cause of this problem is due of the transistor models used in Ngspice that is more complex than Octave models. Transistors in Ngspice makes it impossible to get the same results because of non-linearity components.\par
+It is possible to say that the theoretical model had a good result even with its low complexity, but only for low frequencies, as shown in figures~\ref{fig:SIM_OUT}, \ref{fig:SIM_PH}, \ref{fig:MAT_OUT}, \ref{fig:MAT_PH}. This is possibly due to the rise of second and higher order derivatives of the function that describe the circuit and in the theoretical analysis are not considered. But it shows that Ngspice has results more like reality due to more accurate models and components.
 
 The tables with the results are the following:
 
@@ -81,8 +79,8 @@ The tables with the results are the following:
 \end{table}
 
 
-
 The Merit result was 3.966 $V^{-1}uc^{-1}$ by Ngspice. It was agreed by the members of the group that the main goal of task was completed.
+
 \newpage
 The obtained plot with NGSpice and Octave are the following:
 
@@ -90,6 +88,7 @@ The obtained plot with NGSpice and Octave are the following:
 	\vspace{-3cm}
 	\includegraphics[height=12cm]{../sim/ampdb.pdf}
 	\caption{NGSpice plot:$db(v_{out})$ and $max(db(v_{out}))-3$.}
+	\label{fig:MAT_OUT}
 \end{figure}
 
 \begin{figure}[h] \centering
@@ -104,11 +103,13 @@ The obtained plot with NGSpice and Octave are the following:
 	\vspace{-3cm}
 	\includegraphics[height=12cm]{../sim/phdb.pdf}
 	\caption{NGSpice plot: Phasor of $v_{out}$, rad}
+	\label{fig:MAT_PH}
 \end{figure}
 
 \begin{figure}[h] \centering
 	\includegraphics[height=8cm]{MAT_AB_PH.eps}
 	\caption{Octave plot: Phasor of $v_{out}$, rad}
+	\label{fig:SIM_PH}
 \end{figure}
 
 \newpage

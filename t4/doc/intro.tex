@@ -2,46 +2,47 @@
 \label{sec:introduction}
 
 % state the learning objective 
-The aim of this laboratory assignment is to design and analyse an AC/DC converter that would transform an input AC voltage of amplitude 230V and frequency of 50 Hz to an output DC voltage of amplitude 12V and frequency 50Hz, using an Envelope Detector, a Voltage Regulator and a Transformer. The final circuit is shown below
+The aim of this laboratory assignment was to create an audio amplifier circuit and analyze it both theoretically and by simulation using Ngspice, designing the gain and output stages . It receives an audio input of 10mV as is connected to an 8 Ohm speaker. The source has an 100 Ohm impedance and the circuit is supplied with 12V by a DC source (Vcc).
 
-\begin{figure}[h] \centering
-\includegraphics[height=7cm]{Circuit_base.pdf}
-\caption{Circuit analysed.}
-\label{fig:Circuit_Base}
-\end{figure}
+In order to have a good voltage amplifier, a high gain $A_v$, a hight input impedance $Z_i$ and a low output impedance are required, so that the input and output voltages do not get degraded. There are two stages in the audio amplifier circuit: the gain and output stages. 
 
-even though the circuit used in the calculations and simulations is the following:
+Firstly, in the gain stage a common emitter amplifier with degeneration was used as it leads to a high $Z_i$ as well as a high gain $A_v$. However, it also has high $Z_o$, that degrades the output signal. The next stages then, solves this problem. For this stage a NPN transistor was used. 
 
-\begin{figure}[h] \centering
-\includegraphics[height=7cm]{Circuit_base_simple.pdf}
-\caption{Simplified circuit analysed.}
-\label{fig:Circuit_Base_S}
-\end{figure}
+Secondly, in the output stage a common collector amplifier was used because it not only keeps the hight gain $A_v$ from the first stage but also has a low $Z_o$. This happens because of its high input impedance which connects to the lower output impedance (but still high) from the previous stage and the gain in this section is approximately 1. For this stage a PNP transistor was used.
 
-The quality of the circuit, when compared to the others, is determined by calculating the merit of the work: 
+The quality of the audio amplifier, comparing to others, is determined by a merit classification system. It takes into account the cost of the components used, the voltage gain, the cut off frequency and the bandwidth. The merit is calculated according the following equation:
 
 \begin{equation}
-	Merit = \frac{1}{cost*(ripple_{reg}+|average_{reg}-12|+10^{-6})}
-\label{eq:i1}
+	MERIT = \frac {Voltage Gain * Bandwidth}{Cost * Lower Cut Off Frequency}
+	\label{eq:i1}
 \end{equation}
 
-The cost of the components are the following: cost of resistors = 1 monetary unit (MU) per kOhm, cost of capacitors = 1 MU/uF and cost of diodes = 0.1 MU per diode.
+And the cost of the components is: resistors = 1 monetary unit (MU) per kOhm; capacitors = 1 MU/uF; transistors = 0.1 MU per diode.
+
+Figure~\ref{fig:Circuit_Base} shows the layout of the implemented circuit and its actual architecture implemented for each stage will sooner be analyzed in detail.
+
+\begin{figure}[h] 
+	\centering
+	\includegraphics[height=7cm]{Circuit_base.pdf}
+	\caption{Circuit analysed.}
+	\label{fig:Circuit_Base}
+\end{figure}
 
 \newpage
 
-The ratio of the transformer and the values of the resistors, the capacitor and number of diodes are presented in the following table.
+Table~\ref{tab:VALUES} shows the resistors, capacitors and number of transistors, as well as the total cost of the circuit.
 
 \begin{table}[h]
   \centering
   \begin{tabular}{|l|r|}
     \hline    
     {\bf Name} & {\bf Value} \\ \hline
-    \input{../mat/VALUES_tab}
+    \input{../mat/Values_tab}
   \end{tabular}
-  \caption{Variables preceded by \# is of type {\em resistance} and expressed in Ohm; variables preceded by \& is of type {\em capacitance} and expressed in Farad; A variable preceded by £ is of type {\it cost} and expressed in Unit of Cost; $n$ is adimentional.}
-  \label{tab:INTRO_VALUES}
+  \caption{Variables preceded by \# is of type {\em resistance} and expressed in Ohm; variables preceded by \& is of type {\em capacitance} and expressed in Farad; A variable preceded by £ is of type {\it cost} and expressed in Unit of Cost; the numbers of $BJTs$ are in units.}
+  \label{tab:VALUES}
 \end{table}
 
-In Section~\ref{sec:simulation}, the circuit is analysed by simulation using a default model fo the diode in NGSpice. The converter was simulated for 10 periods and the voltage average and ripple were measured using built in functions, and plots of the output of the Envelope Detector and the Voltage Regulator Circuits are presented.\par
-In Section~\ref{sec:analysis}, a theoretical analysis of the circuit is presented, using theoretical models of the diodes to predict the output of the Envelope Detector and the Voltage Regulator Circuits. The output DC level and the voltage ripple are calculated as well as the plots for the output deviation and the output of the regulator.\par
-The conclusions of the assigment are outlined in  Section~\ref{sec:conclusion}, which also includes a comparison of the results obtained.
+In Section~\ref{sec:simulation}, the circuit is analyzed by simulation in Ngspice, using the Philips BJT’S model BC557A (PNP) and BC547A (NPN) for the transistors. The simulation allowed to compute the input and output frequencies (where the difference between both corresponds to the bandwidth), as well as the gain.	\par
+Then, in Section~\ref{sec:analysis}, a theoretical analysis of the circuit in presented, using a suitable OP, making sure the transistors are in the Forward Active Region) and incremental theoretical models studied in order to predict the gain and the input and output impedances for each stage. \par
+In the conclusion, Section~\ref{sec:conclusion} the theoretical and the simulation results were compared.

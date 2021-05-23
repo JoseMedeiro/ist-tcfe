@@ -1,93 +1,98 @@
 \section{Theoretical Analysis}
 \label{sec:analysis}
 
-The transformer with a n:1 ratio was used, which means that the initial voltage will have its amplitude (230 V) multiplied by a factor n. This way, the voltage at the terminals of the transformer can be represented as a voltage source with an amplitude of $230n$ but with the same frequency as the initial source.
+In this section, a theoretical analysis of the previously shown circuit was conducted. 
+An audio amplifier is always divided into two separate stages, as said before. The first stage has the main function of increasing the amplitude of the voltage signal so that it can be used in the second stage. The high impedance helps to prevent signal corruption even in the first stage. Moreover, this high impedance at the output is a problem because it becomes difficult to connect the speaker without degradation of the output signal. The second stage, on the other hand, will have a low impedance so that it allows you to connect the speakers without the least possible loss of information or degradation of the signal. \par
+The human ear perceives frequencies in a range of frequencies between 20 Hz to 20 kHz so we should choose coupling capacitors that behave like short circuits for these frequencies, as the coupling capacitors affect the lower cutoff frequency and thus the bandwidth.
 
-\subsection{Step 1: Solution for the Envelope Detector}
+\subsection{Step 1: DC and AC analysis for the Gain Stage}
 
-The output of the transformer will be the input of the Envelope detector, which is made of a rectifier and a capacitor. The rectifier is a full-wave bridge rectifier circuit  and is composed of 4 diodes and a resistor, as shown:
-
-\begin{figure}[h] \centering
-\includegraphics[height=6cm]{Circuit_envelope.pdf}
-\caption{Envelope Detector circuit.}
-\label{fig:ENV_CIR}
-\end{figure}
-
-In this case, we have chosen to aproximate the diodes to the ideal model + $V_{on}$, in which $V_{on} = 0.70V$. Knowing also that only one way is used when the diodes are on, we can further simplify the circuit as shown in Figure~\ref{fig:ENV_CIR_S}. We can also say that $V_{in}(t) = V_s(t) - 2V_{on}, V_s(t) - 2V_{on} > 0$ or $V_{in}(t) = 0, V_s(t) - 2V_{on} < 0$.
+The Gain Stage under analysis is the following:
 
 \begin{figure}[h] \centering
-\includegraphics[height=6cm]{Circuit_envelope_simple.pdf}
-\caption{Envelope Detector circuit simplified, when the diodes are on.}
-\label{fig:ENV_CIR_S}
+\includegraphics[height=6cm]{Circuit_Gain.pdf}
+\caption{Gain Stage circuit.}
+\label{fig:GAIN_CIR}
 \end{figure}
 
-Using the full-wave rectifier instead of the half-wave enables the decrease of the ripple withoud increasing the time constant, reducing the costs. This is possible because the voltage that comes out of the transformer will leave the rectifier oscillating at twice the frequency, which reduces the period corresponding to the wave ripple.
+The capacitor bypass has the main function of preventing a loss of gain in the resistors and the main function of the resistors is to make the temperature effect stable. In the AC circuit the gain is more important and in the DC circuit the temperature effect is more important. In addition, the capacitors work as open circuits at low frequency and the current also stabilizes in the resistors thanks to the effect of temperature. At high frequencies we have the capacitors in equivalent short circuit and a bypass is used in the resistors to avoid loss of gain. \par
+The values for the DC analysis, from where we garantee that the first BJT is on the FAR region, are in table~\ref{tab:TEO_DC}, and the AC results are distribuited in the input and output impedance from the gain stage (1) (table~\ref{tab:TEO_IMP}) and the gain from this stage (table~\ref{tab:TEO_GAIN}).
+Both of the previous analysis were done by using the Octave script given, and as such are covered in the lectures 16 and 17.
 
-To compute the voltage in the capacitor we need to take in account the possibility of the diodes being turned off. This will happen when $V_C > V_{in}$, and, in this case the voltage in the capacitor will decay as:
-\begin{equation}
-  V_{C}(t) = Ae^{-\frac{t}{RC}},
-  \label{eq:vc_nat}
-\end{equation}
-where $A$ is the voltage right before the diodes are turned off.
-When the diodes are on, $V_C = V_{in}$.
-As such, we have to calculate when the diodes are turned off and on. To estimate the first we have noticed that the discharge of the capacitor is limited by equation~\ref{eq:vc_nat}. In other words, knowing that in the moment before being turned off, $V_C = V_{in}$, we just have to evaluate
+\subsection{Step 2: DC and AC analysis for the Output Stage}
 
-\begin{equation}
-  V_{C}(t) = V_{in}(t-\delta) e^{-\frac{\delta}{RC}} > V_{in}(t).
-  \label{eq:vc_off}
-\end{equation}
+The Output Stage under analysis is the following:
 
-where we assume that the diodes have been turned off.If the expression is true, then the voltage in the diodes becomes negative, what means that it is turned off and voltage in the capacitor decays as described in equation~\ref{eq:vc_nat}. If the expression is false, the voltage in the diodes stays positive, and the diodes stay on.
-To know when the diodes are turned on again, we just have to know when $V_{c}(t)<V_{in}(t)$. From that point on, the diodes are turned on, until the innequality \ref{eq:vc_off} is valid again.
+\begin{figure}[h] \centering
+\includegraphics[height=6cm]{Circuit_Out.pdf}
+\caption{Gain Stage circuit.}
+\label{fig:OUT_CIR}
+\end{figure}
 
-The result of this analisys is the following:
+The values for the DC analysis, from where we garantee that the first BJT is on the FAR region, are in table~\ref{tab:TEO_DC}, and the AC results are distribuited in the input and output impedance from the gain stage (1) (table~\ref{tab:TEO_IMP}) and the gain from this stage (table~\ref{tab:TEO_GAIN}).
+Both of the previous analysis were done by using the Octave script given, and as such are covered in the lectures 16 and 17.
 
+\subsection{Step 3: AC analysis for the Audio Amplifier}
+
+To make a more correct analysis, we have chosen to calculate the various variables using the full circuit. The DC analysis is the same as before, therefore we did not repeat it; the AC analysis was done using the following circuit:
+
+\begin{figure}[h] \centering
+\includegraphics[height=6cm]{Circuit_AC.pdf}
+\caption{Audio Amplifier AC circuit.}
+\label{fig:FULL_CIR}
+\end{figure}
+
+The important results from all this analysis are in the next tables:
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value} \\ \hline
+    \input{../mat/MAT_DC_tab}
+  \end{tabular}
+  \caption{The variables are of type {\it voltage} and expressed in Volt.}
+  \label{tab:TEO_DC}
+\end{table}
+
+Here we can assure that the BJT's are in the FAR region, since both diferences in voltages are positive, hence ensuring the wanted behaviour.
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value} \\ \hline
+    \input{../mat/MAT_IMP_tab}
+  \end{tabular}
+  \caption{The variables of type {\it impedance} and expressed in Ohm.}
+  \label{tab:TEO_IMP}
+\end{table}
+
+From this table we can see that the imput impedance of audio amplifier is almost the same as the gain stage and that the output impedance of the amplifier differs significantly from the output stage of the output stage. We can also see that the racio between the input impedance of the output stage and output impedance of the gain stage is big, allowing us to connect the two together. We can also observe that the output impedance of the gain stage is far larger than that of the output stage; this is the primary reason we use the output stage. We only print the real part of the input and output impedances in order to be coerent with the previous results.
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value} \\ \hline
+    \input{../mat/MAT_GAIN_tab}
+  \end{tabular}
+  \caption{Variables are adimentional.}
+  \label{tab:TEO_RES}
+\end{table}
+
+Here we can see that the gain from the full circuit is smaller than that of both parts combined, which means that the output stage is influencing the gain stage and vice versa.
 
 \newpage
 
-\subsection{Step 2: Solution for the Voltage Regulator}
-
-Then, the output of the Envelope Detector is the input of the Voltage Regulator. The last one is made of a resistor and diodes in series. Its output is the voltage in the diodes, as represented:
+The following figures show the plot obtained in the theoretical analysis for the gain and phase:
 
 \begin{figure}[h] \centering
-\includegraphics[height=6cm]{Circuit_regulator.pdf}
-\caption{Voltage Regulator.}
-\label{fig:TEO_VR_CIR}
+	\includegraphics[height=8cm]{MAT_AB_AMP.eps}
+	\caption{$db(v_{out})$ and $max(db(v_{out}))-3$.}
 \end{figure}
-
-In the Envolope Detector the diode model used has an ideal diode and a voltage source while in the Voltage Regulator the diode model (where we have said that the emition coefition is $\eta m$, being $m=18$ the number of diodes in the regulator) has an ideal diode, a voltage source, $V_{d}$ and a resistor $r_{d}$. 
 
 \begin{figure}[h] \centering
-\includegraphics[height=6cm]{Circuit_regulator_simple.pdf}
-\caption{Simplification of the Voltage Regulator.}
-\label{fig:TEO_VR_CIR_S}
+	\includegraphics[height=8cm]{MAT_AB_PH.eps}
+	\caption{Phasor of $v_{out}$, degrees.}
 \end{figure}
-
-The steps to know each one of this constants are described in the theory classes:
-$V_{d}$ is determined by solving the non linear equation
-
-\begin{equation}
-  V_d + R*Is*(exp(V_d/(V_Tm))-1) = V_c.
-  \label{eq:Vd}
-\end{equation}
-
-$r_{d}$ is then calculated with the folowing expression:
-
-\begin{equation}
-  r_{d} = V_T*n/( Is*(exp(V_d/(V_Tm)))).
-  \label{eq:Rd}
-\end{equation}
-
-From here we say that
-
-\begin{equation}
-  V_{D} = V_d + ir_d; \text{ where } i = \frac{V_C-V_d})/(R_2+r_d);
-  \label{eq:TEO_VD}
-\end{equation}
-
-Or, in words, $i$ is the current passing through the diode because of the non constant voltage.
-
-The plots for $V_{out}$, $V_{out} - 12V$ and the pair $V_c$, $V_{out}$ are the following:
-
-
-The results from the theoretical analysis are the following:

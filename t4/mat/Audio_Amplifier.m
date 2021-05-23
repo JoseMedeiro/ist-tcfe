@@ -295,17 +295,19 @@ printf("MAT_GAIN_END \n")
 
 %%  Gráficos db
 
+lol = 0*log10(abs(GainFreq)) + 20*log10(max(abs(GainFreq))) - 3;
+
 hf_PASSO1 = figure ();
-semilogx(f, 20*log10(abs(GainFreq)));
+semilogx(f, 20*log10(abs(GainFreq)), f, lol);
 hold on;
 xlabel ("f, Hz");
 ylabel ("db(Gain)");
-legend("Gain", "location", "northeast");
+legend("Gain", "Cutoff amplitude", "location", "northeast");
 print (hf_PASSO1, "MAT_AB_AMP.eps", "-depsc");
 hold off;
 
 hf_PASSO2 = figure ();
-semilogx(f, angle(GainFreq));
+semilogx(f, angle(GainFreq)*180/pi);
 hold on;
 xlabel ("f, Hz");
 ylabel ("Phase (degrees)");
