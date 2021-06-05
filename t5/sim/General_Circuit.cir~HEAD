@@ -1,3 +1,5 @@
+*t5
+
 *-----------------------------------------------------------------------------
 *
 * To use a subcircuit, the name must begin with 'X'.  For example:
@@ -11,6 +13,9 @@
 *                |  |  |  |  |
 .subckt uA741    1  2  3  4  5
 *
+
+
+.options savecurrents
 
 
   c1   11 12 8.661E-12
@@ -51,28 +56,49 @@
 
 Vcc 	vcc 		0 	10.0
 Vee 	vee 		0 	-10.0
-Vout 	out 		0 	0 ac 1.0 sin(0 0.01 1000)
+Vin 	in 		0 	0 ac 1.0 sin(0 0.010 1000)
 
-X1 non_in inv_in vcc vee out_amp uA741
+X1 in inv_in vcc vee out uA741
 
-C1 	in 		non_in  220n
-R1 	non_in 	0 	1k
+*C1 	in 		non_in  0.000000220
+*R1 	non_in 	0 	1000
+
+*R2 	out_amp 	out 	500
+*C2 	out 		0 	0.000000220
+
+R3   	inv_in 	out 	100000
+R41 	0 		inv_in  1000
+R42 	0 		inv_in  2000
+
+* load
+RL out 0 8
+<<<<<<< HEAD:t5/sim/General_Circuit.cir
+=======
+
+.op
+.end
+
+.control
+
+print all
+
+* time analysis
+tran 1e-5 1e-2
+plot v(out)
+hardcopy vo1.ps v(out)
 
 
-R21	out_amp out 		1k
-R22 	out_amp out 		1k
-C2 	out 	0 		220n
+* frequency analysis
+ac dec 10 10 100MEG
+plot vdb(out)
+plot vp(out)
+hardcopy vo1f.ps vdb(out)
 
-R3   	inv_in  out_amp	100k
-R41 	0 	inv_in		2k
-R42 	0 	inv_in  	2k
-R43 	0 	inv_in  	2k
+*input impedance in kohm
+*print v(in)[40]/R1[i]/1000
 
-**	Output Impedance Circuit	**
-Vin 	in 		0 		0
+*need a different setup to measure output impedance
 
-RI	output_r	0		1k
-FI 	output_r 	0 	Vout 	1
+.endc 
 
-
-
+>>>>>>> upstream/master:t5/t5.net

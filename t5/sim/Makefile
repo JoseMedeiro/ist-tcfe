@@ -4,7 +4,7 @@ all: NorNgspice_normal.log NorNgspice_output.log
 	rm -f NorNgspice_normal.log
 	rm -f NorNgspice_output.log
 	
-PreNgspice_normal.log: t4.net
+PreNgspice_normal.log: t5.net
 	ngspice -b $< -o $@
 
 NorNgspice_normal.log: PreNgspice_normal.log
@@ -15,7 +15,7 @@ NorNgspice_normal.log: PreNgspice_normal.log
 	$(foreach i, $(NGSFIGPS), ps2pdf $i;)
 
 
-PreNgspice_output.log: t4_Output.net
+PreNgspice_output.log: t5_Output.net
 	ngspice -b $< -o $@
 
 NorNgspice_output.log: PreNgspice_output.log

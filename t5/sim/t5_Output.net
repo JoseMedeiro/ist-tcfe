@@ -1,4 +1,4 @@
-.options savecurrents
+*t5
 
 .include Output_Circuit.cir
 
@@ -7,10 +7,12 @@
 
 .control
 
-* frequency analysis
-ac dec 10 10 100MEG
 
-let Zout = -v(out)[40]/ vout#branch[40]
+** 	Frequency Analysis	**
+ac dec 10 1 100k
+
+**	Output Impedance	**
+let Zout = v(out)[30] / (v(output_r)[30] / 1k)
 
 echo "SIM_ZOUT_TAB"
 
