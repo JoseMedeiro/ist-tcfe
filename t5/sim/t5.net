@@ -36,8 +36,11 @@ echo vodb_FIG
 print vecmax(vdb(out))
 
 let lower_bond 	= vecmax(vdb(out))-3
-let amplitude		= abs(v(out)[30])
-let amplitude_vdb	= vdb(out)[30]
+let amplitude		= abs(vecmax(v(out)))
+let amplitude_vdb	= vecmax(vdb(out))
+
+let normal_cost	= 2*220*0.001 + 3*2 + 3*1 + 1*100
+let cost		= normal_cost +13.323*1000
 
 echo "SIM_DATA_TAB"
 
@@ -49,8 +52,16 @@ let	f0 = sqrt(f1*f2)
 print f0
 print f0 - 1000
 
-print amplitude
 print amplitude_vdb
+print amplitude
+print amplitude - 100
+
+let merit		= abs( 1 / ( cost * (f0 - 1000) * (abs(vecmax(v(out))) - 100) ) )
+let normal_merit	= abs( 1 / ( normal_cost * (f0 - 1000) * (abs(vecmax(v(out))) - 100) ) )
+
+print cost
+print merit
+*print normal_merit
 
 echo "SIM_DATA_END"
 
