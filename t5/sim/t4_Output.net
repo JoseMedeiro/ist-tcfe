@@ -1,0 +1,26 @@
+.options savecurrents
+
+.include Output_Circuit.cir
+
+.op
+.end
+
+.control
+
+* frequency analysis
+ac dec 10 10 100MEG
+
+let Zout = -v(out)[40]/ vout#branch[40]
+
+echo "SIM_ZOUT_TAB"
+
+*output impedance in ohm
+print Zout
+
+echo "SIM_ZOUT_END"
+
+quit
+.endc
+
+.end
+

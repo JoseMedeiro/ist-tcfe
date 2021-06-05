@@ -1,0 +1,49 @@
+* NGSPICE simulation script
+
+* T2 - Circuit 
+
+V1 1 0 0 ac 1
+C1 1 2 220n
+R1 2 0 1k
+
+R2 2 6 500
+C2 6 0 220n
+	
+* CONTRAL COMMANDS
+
+
+
+.control
+
+*makes plots in color
+set hcopypscolor=0
+set color0=white
+set color1=black
+set color2=red
+set color3=blue
+set color4=violet
+set color5=rgb:3/8/0
+set color6=rgb:4/0/0
+
+op
+
+
+echo "********************************************"
+echo  "Transient analysis"
+echo "********************************************"
+ac dec 100 0.1 1MEG
+
+hardcopy db.ps vdb(6) vecmax(vdb(6)) - 3
+print vecmax(vdb(6))
+
+let lower_bond 	= vecmax(vdb(6))-3
+
+meas ac f1 WHEN vdb(6)=lower_bond RISE=1
+meas ac f2 WHEN vdb(6)=lower_bond CROSS=LAST
+
+print sqrt(f1*f2)
+
+quit
+.endc
+
+.end	

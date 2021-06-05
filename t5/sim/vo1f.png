@@ -1,0 +1,337 @@
+%!PS-Adobe-3.0 EPSF-3.0
+%%Creator: nutmeg
+%%BoundingBox: 54 54 612 612
+/Re-encode { % inFont outFont encoding | -
+   /MyEncoding exch def
+      exch findfont
+      dup length dict
+      begin
+         {def} forall
+         /Encoding MyEncoding def
+         currentdict
+      end
+      definefont
+} def
+/Helvetica /HelveticaLatin1 ISOLatin1Encoding Re-encode
+1 1 scale
+0.000 0.000 0.000 setrgbcolor
+newpath
+54 54 moveto 612 54 lineto
+612 612 lineto 54 612 lineto
+closepath fill
+/HelveticaLatin1 findfont 10 scalefont setfont
+
+1.000 1.000 1.000 setrgbcolor
+0.502 0.502 0.502 setrgbcolor
+1.000 1.000 1.000 setrgbcolor
+243 66 moveto
+0 rotate
+(frequency) show
+-0 rotate
+0.502 0.502 0.502 setrgbcolor
+1.000 1.000 1.000 setrgbcolor
+54 596 moveto
+0 rotate
+(ac4: *t5) show
+-0 rotate
+0.502 0.502 0.502 setrgbcolor
+1.000 1.000 1.000 setrgbcolor
+newpath
+84 104 moveto
+84 545 lineto
+stroke
+81 87 moveto
+0 rotate
+(1) show
+-0 rotate
+0.502 0.502 0.502 setrgbcolor
+newpath
+132 104 moveto
+132 545 lineto
+stroke
+newpath
+147 104 moveto
+147 545 lineto
+stroke
+newpath
+157 104 moveto
+157 545 lineto
+stroke
+1.000 1.000 1.000 setrgbcolor
+newpath
+165 104 moveto
+165 545 lineto
+stroke
+159 87 moveto
+0 rotate
+(10) show
+-0 rotate
+0.502 0.502 0.502 setrgbcolor
+newpath
+213 104 moveto
+213 545 lineto
+stroke
+newpath
+228 104 moveto
+228 545 lineto
+stroke
+newpath
+238 104 moveto
+238 545 lineto
+stroke
+1.000 1.000 1.000 setrgbcolor
+newpath
+246 104 moveto
+246 545 lineto
+stroke
+237 87 moveto
+0 rotate
+(100) show
+-0 rotate
+0.502 0.502 0.502 setrgbcolor
+newpath
+294 104 moveto
+294 545 lineto
+stroke
+newpath
+309 104 moveto
+309 545 lineto
+stroke
+newpath
+319 104 moveto
+319 545 lineto
+stroke
+1.000 1.000 1.000 setrgbcolor
+newpath
+327 104 moveto
+327 545 lineto
+stroke
+315 87 moveto
+0 rotate
+(10^3) show
+-0 rotate
+0.502 0.502 0.502 setrgbcolor
+newpath
+375 104 moveto
+375 545 lineto
+stroke
+newpath
+390 104 moveto
+390 545 lineto
+stroke
+newpath
+400 104 moveto
+400 545 lineto
+stroke
+1.000 1.000 1.000 setrgbcolor
+newpath
+408 104 moveto
+408 545 lineto
+stroke
+396 87 moveto
+0 rotate
+(10^4) show
+-0 rotate
+0.502 0.502 0.502 setrgbcolor
+newpath
+456 104 moveto
+456 545 lineto
+stroke
+newpath
+471 104 moveto
+471 545 lineto
+stroke
+newpath
+481 104 moveto
+481 545 lineto
+stroke
+1.000 1.000 1.000 setrgbcolor
+newpath
+489 104 moveto
+489 545 lineto
+stroke
+477 87 moveto
+0 rotate
+(10^5) show
+-0 rotate
+0.502 0.502 0.502 setrgbcolor
+newpath
+537 104 moveto
+537 545 lineto
+stroke
+newpath
+552 104 moveto
+552 545 lineto
+stroke
+newpath
+562 104 moveto
+562 545 lineto
+stroke
+1.000 1.000 1.000 setrgbcolor
+newpath
+570 104 moveto
+570 545 lineto
+stroke
+558 87 moveto
+0 rotate
+(10^6) show
+-0 rotate
+382 66 moveto
+0 rotate
+(Hz) show
+-0 rotate
+0.502 0.502 0.502 setrgbcolor
+newpath
+84 104 moveto
+570 104 lineto
+stroke
+1.000 1.000 1.000 setrgbcolor
+54 101 moveto
+0 rotate
+(-20.0) show
+-0 rotate
+0.502 0.502 0.502 setrgbcolor
+newpath
+84 167 moveto
+570 167 lineto
+stroke
+1.000 1.000 1.000 setrgbcolor
+54 164 moveto
+0 rotate
+(-10.0) show
+-0 rotate
+0.502 0.502 0.502 setrgbcolor
+1.000 1.000 1.000 setrgbcolor
+newpath
+84 230 moveto
+570 230 lineto
+stroke
+0.502 0.502 0.502 setrgbcolor
+1.000 1.000 1.000 setrgbcolor
+66 227 moveto
+0 rotate
+(0.0) show
+-0 rotate
+0.502 0.502 0.502 setrgbcolor
+newpath
+84 293 moveto
+570 293 lineto
+stroke
+1.000 1.000 1.000 setrgbcolor
+60 290 moveto
+0 rotate
+(10.0) show
+-0 rotate
+0.502 0.502 0.502 setrgbcolor
+newpath
+84 356 moveto
+570 356 lineto
+stroke
+1.000 1.000 1.000 setrgbcolor
+60 353 moveto
+0 rotate
+(20.0) show
+-0 rotate
+0.502 0.502 0.502 setrgbcolor
+newpath
+84 419 moveto
+570 419 lineto
+stroke
+1.000 1.000 1.000 setrgbcolor
+60 416 moveto
+0 rotate
+(30.0) show
+-0 rotate
+0.502 0.502 0.502 setrgbcolor
+newpath
+84 482 moveto
+570 482 lineto
+stroke
+1.000 1.000 1.000 setrgbcolor
+60 479 moveto
+0 rotate
+(40.0) show
+-0 rotate
+0.502 0.502 0.502 setrgbcolor
+newpath
+84 545 moveto
+570 545 lineto
+stroke
+1.000 1.000 1.000 setrgbcolor
+60 542 moveto
+0 rotate
+(50.0) show
+-0 rotate
+0.502 0.502 0.502 setrgbcolor
+1.000 1.000 1.000 setrgbcolor
+54 582 moveto
+0 rotate
+(V) show
+-0 rotate
+0.502 0.502 0.502 setrgbcolor
+1.000 0.000 0.000 setrgbcolor
+newpath
+291 586 moveto
+315 586 lineto
+stroke
+1.000 1.000 1.000 setrgbcolor
+321 582 moveto
+0 rotate
+(vdb(out)) show
+-0 rotate
+1.000 0.000 0.000 setrgbcolor
+newpath
+84 144 moveto
+92 157 lineto
+100 169 lineto
+108 182 lineto
+116 195 lineto
+125 207 lineto
+133 220 lineto
+141 232 lineto
+149 245 lineto
+157 258 lineto
+165 270 lineto
+173 283 lineto
+181 295 lineto
+189 308 lineto
+197 321 lineto
+206 333 lineto
+214 346 lineto
+222 358 lineto
+230 371 lineto
+238 383 lineto
+246 396 lineto
+254 408 lineto
+262 420 lineto
+270 431 lineto
+278 443 lineto
+287 453 lineto
+295 463 lineto
+303 471 lineto
+311 477 lineto
+319 481 lineto
+327 482 lineto
+335 481 lineto
+343 477 lineto
+351 470 lineto
+359 461 lineto
+368 449 lineto
+376 436 lineto
+384 420 lineto
+392 403 lineto
+400 383 lineto
+408 362 lineto
+416 340 lineto
+424 317 lineto
+432 293 lineto
+440 269 lineto
+449 244 lineto
+457 219 lineto
+465 194 lineto
+473 169 lineto
+481 144 lineto
+489 119 lineto
+stroke
+showpage
+%%EOF
