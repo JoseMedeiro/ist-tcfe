@@ -51,7 +51,7 @@
 
 Vcc 	vcc 		0 	5.0
 Vee 	vee 		0 	-5.0
-Vout 	out 		0 	0 ac 1.0 sin(0 0.01 1000)
+Vin 	in 		0 	0 ac 1.0 sin(0 0.01 1000)
 
 X1 non_in inv_in vcc vee out_amp uA741
 
@@ -64,16 +64,13 @@ R22 	out_amp out 		1k
 C21 	out 	0 		220n
 
 
-R31   	inv_in  out_amp	300k
-R41 	0 	inv_in		10k
-R42 	0 	inv_in  	10k
-R43 	0 	inv_in  	10k
+R3   	inv_in  out_amp	100k
+R41 	0 	inv_in		2k
+R42 	0 	inv_in  	2k
+R43 	0 	inv_in  	2k
 
-**	Output Impedance Circuit	**
-Vin 	in 		0 		0
-
-RI	output_r	0		1k
-FI 	output_r 	0 	Vout 	1
-
+**	Input Impedance Circuit	**
+RI	input_r	0		1k
+FI 	input_r 	0 	Vin 	1
 
 

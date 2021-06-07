@@ -26,7 +26,7 @@ hardcopy vo1t.ps v(out) v(in)
 echo vo1t_FIG
 
 ** 	Frequency Analysis	**
-ac dec 10 1 100k
+ac dec 10 10 100MEG
 
 *print all
 
@@ -39,7 +39,7 @@ let lower_bond 	= vecmax(vdb(out))-3
 let amplitude		= abs(vecmax(v(out)))
 let amplitude_vdb	= vecmax(vdb(out))
 
-let normal_cost	= 2*220*0.001 + 3*2 + 3*1 + 1*100
+let normal_cost	= 2*220*0.001 + 3*10 + 3*1 + 3*100
 let cost		= normal_cost +13.323*1000
 
 echo "SIM_DATA_TAB"
@@ -56,7 +56,7 @@ print amplitude_vdb
 print amplitude
 print amplitude - 100
 
-let merit		= abs( 1 / ( cost * (f0 - 1000) * (abs(vecmax(v(out))) - 100) ) )
+let merit		= abs( 1 / ( cost * ((f0 - 1000) + (amplitude -100) + 1e-6) ) )
 let normal_merit	= abs( 1 / ( normal_cost * (f0 - 1000) * (abs(vecmax(v(out))) - 100) ) )
 
 print cost
@@ -66,7 +66,7 @@ print merit
 echo "SIM_DATA_END"
 
 **	Input Impedance	**
-let Zin = v(out)[30]/ (v(input_r)[30] / 1k)
+let Zin = v(in)[20]/ (v(input_r)[20] / 1k)
 
 echo "SIM_ZIN_TAB"
 

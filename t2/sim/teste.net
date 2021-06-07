@@ -3,11 +3,11 @@
 * T2 - Circuit 
 
 V1 1 0 0 ac 1
-C1 1 2 220n
-R1 2 0 1k
+C1 1 6 220n
+R1 6 0 1k
 
-R2 2 6 500
-C2 6 0 220n
+*R2 2 6 500
+*C2 6 0 220n
 	
 * CONTRAL COMMANDS
 
