@@ -95,7 +95,7 @@ printf("MAT_GAIN_END \n")
 
 printf("MAT_IMP_TAB \n")
 
-printf("\\#$Z_{in}$    = %e  \n", ZI1                 );
-printf("\\#$Z_{out}$ = %e  \n"  , ZO1                 );
+printf("\\#$Z_{in}$  = %e +j*%e \n", real(ZI1), imag(ZI1));
+printf("\\#$Z_{out}$ = %e +j*%e \n", real(ZO1), imag(ZO1));
 
 printf("MAT_IMP_END \n")

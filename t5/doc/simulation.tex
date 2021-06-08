@@ -1,57 +1,37 @@
 \section{Simulation Analysis }
 \label{sec:simulation}
 
-\subsection{Audio Amplifier converter graphs}
-
-In this section we evaluated the Audio Amplifier proposed.
-In order to analise the circuit after the transiant period, we have chosen $t \in \left[ 1 ms; 20 ms \right[ $.
+In this section we evaluated the BPF proposed.
+In order to analise the circuit after the transiant period, we have chosen $t \in \left[ 1.5 ms; 11.5 ms \right[ $.
 
 The graphs for NGSpice are displayed here, alongside the table with the required elements:
 
 \begin{figure}[h] 
 	\centering
 	\vspace{-3cm}
-	\includegraphics[height=11cm]{../sim/trans.pdf}
+	\includegraphics[height=12cm]{../sim/trans.pdf}
+	\vspace{-0.75cm}
 	\caption{$v_{in}$ and $v_{out}$.}
 	\label{fig:SIM_TRANS}
 \end{figure}
 
-It is worth noting that the output is not distorted, making this amplifier a viable option for usage.
-
 \begin{figure}[h] \centering
 	\vspace{-3cm}
-	\includegraphics[height=11cm]{../sim/amp.pdf}
-	\caption{$ \left | v_{out}/v_{in} \right |$.}
-\end{figure}
-
-\newpage
-
-\begin{figure}[h] \centering
-	\vspace{-3cm}
-	\includegraphics[height=11cm]{../sim/ampdb.pdf}
+	\includegraphics[height=12cm]{../sim/ampdb.pdf}
+	\vspace{-0.75cm}
 	\caption{$db(v_{out})$ and $max(db(v_{out}))-3$.}
+	\label{fig:SIM_OUT}
 \end{figure}
 
 \begin{figure}[h] \centering
 	\vspace{-3cm}
-	\includegraphics[height=11cm]{../sim/phdb.pdf}
+	\includegraphics[height=12cm]{../sim/phdb.pdf}
+	\vspace{-0.75cm}
 	\caption{Phasor of $v_{out}$, rad}
+	\label{fig:SIM_PH}
 \end{figure}
 
 \newpage
-
-Table~\ref{tab:SIM_DC} shows the simulated operating point results for the circuit under analysis. From here we can see that the transistors stay in the FAR region.
-%Colocar a tabela 
-\begin{table}[h]
-  \centering
-  \begin{tabular}{|l|r|}
-    \hline    
-    {\bf Name} & {\bf Value} \\ \hline
-    \input{../sim/SIM_DC_tab}
-  \end{tabular}
-  \caption{Variables are of type {\it voltage} and expressed in Volt.}
-  \label{tab:SIM_DC}
-\end{table}
 
 Table~\ref{tab:SIM_RES} shows the simulated frequency response results for the circuit.
 \begin{table}[h]
@@ -59,12 +39,13 @@ Table~\ref{tab:SIM_RES} shows the simulated frequency response results for the c
   \begin{tabular}{|l|r|}
     \hline    
     {\bf Name} & {\bf Value} \\ \hline
-    \input{../sim/SIM_RESULTS_tab}
+    \input{../sim/SIM_DATA_tab}
   \end{tabular}
-  \caption{Merit is in {\it per voltage per cost} and expressed in Volt$^{-1}$UC$^{-1}$; $f1 - f2$ is of the type {\it frequency} and expressed in Hz; other variables are adimentional.}
+  \caption{Merit is in {\it per voltage per cost} and expressed in Volt$^{-1}$UC$^{-1}$; $f1$, $f2$,  $f0$, $f0-1000$ are of the type {\it frequency} and expressed in Hz; amplitude ande amplitude - 100 are of the type {\it voltage} in Volt; other variables are adimentional.}
   \label{tab:SIM_RES}
 \end{table}
 
+\newpage
 Table~\ref{tab:SIM_ZIN} and table~\ref{tab:SIM_ZOUT} show the input and output impedances, respectivly.
 %Colocar a tabela 
 
@@ -91,3 +72,4 @@ Table~\ref{tab:SIM_ZIN} and table~\ref{tab:SIM_ZOUT} show the input and output i
 \end{minipage}
 \end{table}
 
+As will be discused in the next chapter, the output impedance is high, meaning that this particular circuit wuold face chalanges connecting to low impedance loads.
